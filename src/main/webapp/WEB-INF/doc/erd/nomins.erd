@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.java.amateras.db.visual.model.RootModel>
+  <listeners serialization="custom">
+    <java.beans.PropertyChangeSupport>
+      <default>
+        <source class="net.java.amateras.db.visual.model.RootModel" reference="../../../.."/>
+        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+      </default>
+      <null/>
+    </java.beans.PropertyChangeSupport>
+  </listeners>
+  <children>
+    <net.java.amateras.db.visual.model.TableModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <source class="net.java.amateras.db.visual.model.TableModel" reference="../../../.."/>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <constraint>
+        <height>-1</height>
+        <width>-1</width>
+        <x>384</x>
+        <y>106</y>
+      </constraint>
+      <sourceConnections>
+        <net.java.amateras.db.visual.model.ForeignKeyModel>
+          <listeners serialization="custom">
+            <java.beans.PropertyChangeSupport>
+              <default>
+                <source class="net.java.amateras.db.visual.model.ForeignKeyModel" reference="../../../.."/>
+                <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+              </default>
+              <null/>
+            </java.beans.PropertyChangeSupport>
+          </listeners>
+          <source class="net.java.amateras.db.visual.model.TableModel" reference="../../.."/>
+          <target class="net.java.amateras.db.visual.model.TableModel">
+            <listeners serialization="custom">
+              <java.beans.PropertyChangeSupport>
+                <default>
+                  <source class="net.java.amateras.db.visual.model.TableModel" reference="../../../.."/>
+                  <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+                </default>
+                <null/>
+              </java.beans.PropertyChangeSupport>
+            </listeners>
+            <constraint>
+              <height>-1</height>
+              <width>-1</width>
+              <x>42</x>
+              <y>96</y>
+            </constraint>
+            <sourceConnections/>
+            <targetConnections>
+              <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
+            </targetConnections>
+            <error></error>
+            <linkedPath></linkedPath>
+            <tableName>member</tableName>
+            <logicalName>member</logicalName>
+            <description></description>
+            <columns>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>mno</columnName>
+                <logicalName>mno</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>INT</name>
+                  <logicalName>Integer</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>4</type>
+                </columnType>
+                <size>10</size>
+                <notNull>true</notNull>
+                <primaryKey>true</primaryKey>
+                <description></description>
+                <autoIncrement>true</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>id</columnName>
+                <logicalName>id</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>VARCHAR</name>
+                  <logicalName>String</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>12</type>
+                </columnType>
+                <size>20</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>passwd</columnName>
+                <logicalName>passwd</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>20</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>mname</columnName>
+                <logicalName>mname</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>20</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>tel</columnName>
+                <logicalName>tel</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>14</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>zipcode</columnName>
+                <logicalName>zipcode</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>5</size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>address1</columnName>
+                <logicalName>address1</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>80</size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>address2</columnName>
+                <logicalName>address2</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+                <size>50</size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>mdate</columnName>
+                <logicalName>mdate</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>DATETIME</name>
+                  <logicalName>Datetime</logicalName>
+                  <supportSize>false</supportSize>
+                  <type>91</type>
+                </columnType>
+                <size>19</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>pino</columnName>
+                <logicalName>번호</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>MEDIUMINT</name>
+                  <logicalName>Integer</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>4</type>
+                </columnType>
+                <size></size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+            </columns>
+            <indices>
+              <net.java.amateras.db.visual.model.IndexModel>
+                <indexName>id</indexName>
+                <indexType class="net.java.amateras.db.dialect.IndexType">
+                  <name>UNIQUE</name>
+                </indexType>
+                <columns>
+                  <string>id</string>
+                </columns>
+              </net.java.amateras.db.visual.model.IndexModel>
+            </indices>
+            <backgroundColor>
+              <red>255</red>
+              <green>255</green>
+              <blue>206</blue>
+            </backgroundColor>
+            <sql></sql>
+          </target>
+          <foreignKeyName>order_FK_1</foreignKeyName>
+          <references/>
+        </net.java.amateras.db.visual.model.ForeignKeyModel>
+      </sourceConnections>
+      <targetConnections>
+        <net.java.amateras.db.visual.model.ForeignKeyModel>
+          <listeners serialization="custom">
+            <java.beans.PropertyChangeSupport>
+              <default>
+                <source class="net.java.amateras.db.visual.model.ForeignKeyModel" reference="../../../.."/>
+                <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+              </default>
+              <null/>
+            </java.beans.PropertyChangeSupport>
+          </listeners>
+          <source class="net.java.amateras.db.visual.model.TableModel">
+            <listeners serialization="custom">
+              <java.beans.PropertyChangeSupport>
+                <default>
+                  <source class="net.java.amateras.db.visual.model.TableModel" reference="../../../.."/>
+                  <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+                </default>
+                <null/>
+              </java.beans.PropertyChangeSupport>
+            </listeners>
+            <constraint>
+              <height>-1</height>
+              <width>-1</width>
+              <x>347</x>
+              <y>384</y>
+            </constraint>
+            <sourceConnections>
+              <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
+            </sourceConnections>
+            <targetConnections/>
+            <error></error>
+            <linkedPath></linkedPath>
+            <tableName>payment</tableName>
+            <logicalName>주문/결제</logicalName>
+            <description></description>
+            <columns>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>payno</columnName>
+                <logicalName>번호</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel[10]/columnType"/>
+                <size></size>
+                <notNull>true</notNull>
+                <primaryKey>true</primaryKey>
+                <description></description>
+                <autoIncrement>true</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>item</columnName>
+                <logicalName>결재할 물품</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>TEXT</name>
+                  <logicalName>String</logicalName>
+                  <supportSize>false</supportSize>
+                  <type>12</type>
+                </columnType>
+                <size>10</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>payfile1</columnName>
+                <logicalName>결제할 물품 사진</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>VARCHAR</name>
+                  <logicalName>String</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>12</type>
+                </columnType>
+                <size>100</size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>pcnt</columnName>
+                <logicalName>상품 개수</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>SMALLINT</name>
+                  <logicalName>Integer</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>5</type>
+                </columnType>
+                <size></size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue>0</defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>paymoney</columnName>
+                <logicalName>결제금액</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel[10]/columnType"/>
+                <size></size>
+                <notNull>true</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>delivemoney</columnName>
+                <logicalName>배송비</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[4]/columnType"/>
+                <size></size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+                <columnName>orderno</columnName>
+                <logicalName>번호</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>MEDIUMINT</name>
+                  <logicalName>Integer</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>4</type>
+                </columnType>
+                <size></size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+            </columns>
+            <indices/>
+            <backgroundColor>
+              <red>255</red>
+              <green>255</green>
+              <blue>206</blue>
+            </backgroundColor>
+            <sql></sql>
+          </source>
+          <target class="net.java.amateras.db.visual.model.TableModel" reference="../../.."/>
+          <foreignKeyName>payment_FK_1</foreignKeyName>
+          <references/>
+        </net.java.amateras.db.visual.model.ForeignKeyModel>
+      </targetConnections>
+      <error></error>
+      <linkedPath></linkedPath>
+      <tableName>order</tableName>
+      <logicalName>주문내역</logicalName>
+      <description></description>
+      <columns>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>orderno</columnName>
+          <logicalName>번호</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[7]/columnType"/>
+          <size></size>
+          <notNull>true</notNull>
+          <primaryKey>true</primaryKey>
+          <description></description>
+          <autoIncrement>true</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>orderno</columnName>
+          <logicalName>주문번호</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[7]/columnType"/>
+          <size></size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>orderdate</columnName>
+          <logicalName>주문일</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>DATE</name>
+            <logicalName>Date</logicalName>
+            <supportSize>false</supportSize>
+            <type>91</type>
+          </columnType>
+          <size>10</size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>payno</columnName>
+          <logicalName>결제번호</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[7]/columnType"/>
+          <size></size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>paymoney</columnName>
+          <logicalName>결제금액</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>BIGINT</name>
+            <logicalName>Integer</logicalName>
+            <supportSize>true</supportSize>
+            <type>-5</type>
+          </columnType>
+          <size></size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>thumbfile</columnName>
+          <logicalName>파일</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[3]/columnType"/>
+          <size>100</size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>orderstate</columnName>
+          <logicalName>주문상태</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+          <size>10</size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description>입금대기, 배송중, 배송완료, 결재완료</description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>mno</columnName>
+          <logicalName>mno</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel/columnType"/>
+          <size>10</size>
+          <notNull>false</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+      </columns>
+      <indices/>
+      <backgroundColor>
+        <red>255</red>
+        <green>255</green>
+        <blue>206</blue>
+      </backgroundColor>
+      <sql></sql>
+    </net.java.amateras.db.visual.model.TableModel>
+    <net.java.amateras.db.visual.model.TableModel reference="../net.java.amateras.db.visual.model.TableModel/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target"/>
+    <net.java.amateras.db.visual.model.TableModel reference="../net.java.amateras.db.visual.model.TableModel/targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source"/>
+  </children>
+  <dommains/>
+  <dialectName>MySQL</dialectName>
+  <logicalMode>true</logicalMode>
+  <jarFile>C:\hybrid2\setup\mysql-connector-java-5.1.37\mysql-connector-java-5.1.37\mysql-connector-java-5.1.37-bin.jar</jarFile>
+  <jdbcDriver>org.gjt.mm.mysql.Driver</jdbcDriver>
+  <jdbcUrl>jdbc:mysql://localhost:3306/web</jdbcUrl>
+  <jdbcUser>root</jdbcUser>
+  <jdbcPassword>1234</jdbcPassword>
+  <jdbcSchema></jdbcSchema>
+  <jdbcCatalog></jdbcCatalog>
+  <includeView>false</includeView>
+  <fontData></fontData>
+</net.java.amateras.db.visual.model.RootModel>

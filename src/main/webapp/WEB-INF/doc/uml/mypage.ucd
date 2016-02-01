@@ -283,8 +283,8 @@
                             <constraint>
                               <height>44</height>
                               <width>125</width>
-                              <x>381</x>
-                              <y>187</y>
+                              <x>425</x>
+                              <y>276</y>
                             </constraint>
                             <sourceConnections/>
                             <targetConnections>
@@ -293,48 +293,6 @@
                             <children/>
                             <filterProperty/>
                             <name>10 주문/배송 조회</name>
-                          </target>
-                          <bendpoints/>
-                        </net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel>
-                        <net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel>
-                          <showIcon>true</showIcon>
-                          <listeners serialization="custom">
-                            <java.beans.PropertyChangeSupport>
-                              <default>
-                                <source class="net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel" reference="../../../.."/>
-                                <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
-                              </default>
-                              <null/>
-                            </java.beans.PropertyChangeSupport>
-                          </listeners>
-                          <source class="net.java.amateras.uml.usecasediagram.model.UsecaseModel" reference="../../.."/>
-                          <target class="net.java.amateras.uml.usecasediagram.model.UsecaseModel">
-                            <backgroundColor reference="../../../../../../../../../../../../../../backgroundColor"/>
-                            <foregroundColor reference="../../../../../../../../../../../../../../foregroundColor"/>
-                            <showIcon>true</showIcon>
-                            <parent class="net.java.amateras.uml.usecasediagram.model.SystemModel" reference="../../../../../../../../../../../.."/>
-                            <listeners serialization="custom">
-                              <java.beans.PropertyChangeSupport>
-                                <default>
-                                  <source class="net.java.amateras.uml.usecasediagram.model.UsecaseModel" reference="../../../.."/>
-                                  <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
-                                </default>
-                                <null/>
-                              </java.beans.PropertyChangeSupport>
-                            </listeners>
-                            <constraint>
-                              <height>46</height>
-                              <width>110</width>
-                              <x>438</x>
-                              <y>287</y>
-                            </constraint>
-                            <sourceConnections/>
-                            <targetConnections>
-                              <net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel reference="../../.."/>
-                            </targetConnections>
-                            <children/>
-                            <filterProperty/>
-                            <name>13 취소 내역 조회</name>
                           </target>
                           <bendpoints/>
                         </net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel>
@@ -542,7 +500,6 @@
         <net.java.amateras.uml.usecasediagram.model.UsecaseModel reference="../net.java.amateras.uml.usecasediagram.model.UsecaseModel[2]/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/target/targetConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel[3]/source/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel/target"/>
         <net.java.amateras.uml.usecasediagram.model.UsecaseModel reference="../net.java.amateras.uml.usecasediagram.model.UsecaseModel[2]/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/target/targetConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel[3]/source/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel[2]/target"/>
         <net.java.amateras.uml.usecasediagram.model.UsecaseModel reference="../net.java.amateras.uml.usecasediagram.model.UsecaseModel[2]/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/target/targetConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/source/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel/target"/>
-        <net.java.amateras.uml.usecasediagram.model.UsecaseModel reference="../net.java.amateras.uml.usecasediagram.model.UsecaseModel[2]/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/target/targetConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/source/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseIncludeModel[2]/target"/>
       </children>
       <filterProperty/>
       <name>PHONE-01 쇼핑몰 마이페이지-노민성</name>
