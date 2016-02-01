@@ -15,8 +15,9 @@
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
-    <property name="typeAliasesPackage" value="com.phone.member" />
-		 <property name="mapperLocations" value="classpath:dev/mvc/**/*.xml" />
+    <property name="typeAliasesPackage" value="com.phone.member
+                                                            com.phone.index" />
+		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
   
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
