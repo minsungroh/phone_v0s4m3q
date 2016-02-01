@@ -289,7 +289,7 @@
         <net.java.amateras.uml.usecasediagram.model.UsecaseModel reference="../net.java.amateras.uml.usecasediagram.model.UsecaseModel/targetConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel/source/sourceConnections/net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel[4]/target"/>
       </children>
       <filterProperty/>
-      <name> PHONE - 04 장바구니</name>
+      <name> PHONE - 04 장바구니 - 노재훈</name>
     </net.java.amateras.uml.usecasediagram.model.SystemModel>
     <net.java.amateras.uml.usecasediagram.model.UsecaseActorModel>
       <backgroundColor reference="../../../backgroundColor"/>
