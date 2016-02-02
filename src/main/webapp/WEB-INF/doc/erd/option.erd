@@ -88,7 +88,7 @@
                   </targetConnections>
                   <error></error>
                   <linkedPath></linkedPath>
-                  <tableName>code</tableName>
+                  <tableName>p_code</tableName>
                   <logicalName>분류</logicalName>
                   <description></description>
                   <columns>
@@ -142,7 +142,7 @@
             </targetConnections>
             <error></error>
             <linkedPath></linkedPath>
-            <tableName>phonecategory</tableName>
+            <tableName>p_category</tableName>
             <logicalName>카테고리</logicalName>
             <description></description>
             <columns>
@@ -259,7 +259,7 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>phonecontent</tableName>
+      <tableName>p_content</tableName>
       <logicalName>물품내용</logicalName>
       <description></description>
       <columns>
@@ -276,8 +276,13 @@
         </net.java.amateras.db.visual.model.ColumnModel>
         <net.java.amateras.db.visual.model.ColumnModel>
           <columnName>title</columnName>
-          <logicalName>제목</logicalName>
-          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
+          <logicalName>카테고리 종류</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>VARCHAR</name>
+            <logicalName>String</logicalName>
+            <supportSize>true</supportSize>
+            <type>12</type>
+          </columnType>
           <size>200</size>
           <notNull>true</notNull>
           <primaryKey>false</primaryKey>
