@@ -18,7 +18,9 @@
     <property name="typeAliasesPackage" 
                        value="com.phone.member,
                                    com.phone.index,
-                                   com.phone.code" />
+                                   com.phone.code,
+                                   com.phone.payment,
+                                   com.phone.content" />
 		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
   

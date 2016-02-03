@@ -34,8 +34,3 @@ CREATE TABLE p_content(
   FOREIGN KEY (phonecategoryno) REFERENCES p_category (phonecategoryno)
 ) COMMENT='물품내용';
 
-
-CREATE INDEX codeno ON p_category (codeno);
-
-CREATE INDEX blogcategoryno ON p_content (blogcategoryno);
-
