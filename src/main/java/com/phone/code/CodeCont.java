@@ -43,10 +43,7 @@ public class CodeCont {
     return mav;
   }
   
-  /**
-   * 전체 목록을 출력합니다.
-   * @return
-   */
+
   @RequestMapping(value = "/code/list.do", method = RequestMethod.GET)
   public ModelAndView list() {
     ModelAndView mav = new ModelAndView();
@@ -100,7 +97,7 @@ public class CodeCont {
       mav.addObject("msgs", msgs);
       mav.addObject("links", links);
     }
-
+ 
     return mav;
   }
 
