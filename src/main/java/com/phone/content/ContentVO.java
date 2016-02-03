@@ -1,17 +1,16 @@
 package com.phone.content;
 
 public class ContentVO {
-
+  
   private int contentno;
   private String title;
   private String content;
   private String file;
   private String file1;
   private String itemnum;
-  private String replycnt;
+  private String reply;
   private int money;
   private int productcnt;
-  private int p_categoryno;
 
   public int getContentno() {
     return contentno;
@@ -61,12 +60,12 @@ public class ContentVO {
     this.itemnum = itemnum;
   }
 
-  public String getReplycnt() {
-    return replycnt;
+  public String getReply() {
+    return reply;
   }
 
-  public void setReplycnt(String replycnt) {
-    this.replycnt = replycnt;
+  public void setReplycnt(String reply) {
+    this.reply = reply;
   }
 
   public int getMoney() {
@@ -85,12 +84,5 @@ public class ContentVO {
     this.productcnt = productcnt;
   }
 
-  public int getP_categoryno() {
-    return p_categoryno;
-  }
-
-  public void setP_categoryno(int p_categoryno) {
-    this.p_categoryno = p_categoryno;
-  }
 
 }

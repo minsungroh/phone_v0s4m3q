@@ -24,7 +24,7 @@ import web.tool.Tool;
 @Controller
 public class MemberCont {
   @Autowired
-  @Qualifier("dev.mvc.member.memberDAO")
+  @Qualifier("com.phone.member.memberDAO")
   private MemberDAO memberDAO;
 
   public MemberCont() {

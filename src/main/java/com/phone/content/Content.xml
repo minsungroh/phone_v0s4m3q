@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.phone.content.ContentMapperInter">
 
   <select id="read" resultType="ContentVO" parameterType="int">
-    select contentno, title, content, file, file1, itemnum, replycnt, money, productcnt, p_categoryno
+    select contentno, title, content, file, file1, itemnum, replycnt, money, productcnt, mno
     from p_content
     where contentno=#{contentno}
   </select>

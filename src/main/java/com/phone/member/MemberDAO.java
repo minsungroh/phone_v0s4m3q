@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("dev.mvc.member.memberDAO")
+@Repository("com.phone.member.memberDAO")
 public class MemberDAO {
   @Autowired
   private SqlSession sqlSession; // MyBATIS 3 ¿¬°á °´Ã¼

@@ -6,18 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.phone.payment.PaymentMapperInter">
 
   <insert id="create" parameterType="PaymentVO">
-      insert into payment(item, orderno, payfile1, pcnt, paymoney, mno)
-      values(#{item}, #{orderno}, #{payfile1}, #{pcnt}, #{paymoney}, #{mno})
+     insert into payment(item, payfile1, pcnt, paymoney, contentno, mno)
+     values(#{item}, #{payfile1}, #{pcnt}, #{paymoney}, #{contentno}, #{mno});
   </insert>
   
   <select id="read" resultType="PaymentVO" parameterType="int">
-    select payno, item, orderno, payfile1, pcnt, paymoney, mno
+    select payno, item, payfile1, pcnt, paymoney, contentno, mno
     from payment
-    where payno=#{payno}
+    where contentno = #{contentno}
   </select>
   
   <select id="list" resultType="PaymentVO">
-    select payno, item, orderno, payfile1, pcnt, payment, mno
+    select payno, item, orderno, payfile1, pcnt, paymoney, mno
     from payment
   </select>
   

@@ -18,6 +18,38 @@ CREATE TABLE member(
 ) COMMENT='회원';
 
 /**********************************/
+/* Table Name: p_content */
+/**********************************/
+CREATE TABLE p_content(
+		contentno                     		MEDIUMINT(7)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT 'contentno',
+		title                         		VARCHAR(200)		 NOT NULL COMMENT 'title',
+		content                       		MEDIUMTEXT		 NOT NULL COMMENT 'content',
+		file                          		VARCHAR(100)		 NULL  COMMENT 'file',
+		file1                         		VARCHAR(300)		 NULL  COMMENT 'file1',
+		itemnum                       		VARCHAR(50)		 NOT NULL COMMENT 'itemnum',
+		replycnt                      		TEXT		 NOT NULL COMMENT 'replycnt',
+		money                         		MEDIUMINT(7)		 NOT NULL COMMENT 'money',
+		productcnt                    		MEDIUMINT(7)		 NULL  COMMENT 'productcnt',
+		mno                           		INT(10)		 NULL  COMMENT 'mno',
+  FOREIGN KEY (mno) REFERENCES member (mno)
+) COMMENT='p_content';
+
+/**********************************/
+/* Table Name: 주문/결제 */
+/**********************************/
+CREATE TABLE payment(
+		payno                         		INT(10)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+		item                          		TEXT		 NOT NULL COMMENT '결재할 물품',
+		payfile1                      		VARCHAR(100)		 NOT NULL COMMENT '결제할 물품 사진',
+		pcnt                          		SMALLINT		 DEFAULT 0		 NOT NULL COMMENT '상품 개수',
+		paymoney                      		MEDIUMINT		 NOT NULL COMMENT '결제금액',
+		contentno                     		MEDIUMINT(7)		 NULL  COMMENT 'contentno',
+		mno                           		INT(10)		 NULL  COMMENT 'mno',
+  FOREIGN KEY (contentno) REFERENCES p_content (contentno),
+  FOREIGN KEY (mno) REFERENCES member (mno)
+) COMMENT='주문/결제';
+
+/**********************************/
 /* Table Name: 주문내역 */
 /**********************************/
 CREATE TABLE incantation(
@@ -29,23 +61,8 @@ CREATE TABLE incantation(
 		thumbfile                     		VARCHAR(100)		 NOT NULL COMMENT '파일',
 		orderstate                    		VARCHAR(10)		 NOT NULL COMMENT '주문상태',
 		ordersubmit                   		CHAR		 DEFAULT 'N'		 NULL  COMMENT '구매확정',
-		mno                           		INT(10)		 NULL  COMMENT 'mno',
-  FOREIGN KEY (mno) REFERENCES member (mno)
+  FOREIGN KEY (payno) REFERENCES payment (payno)
 ) COMMENT='주문내역';
-
-/**********************************/
-/* Table Name: 주문/결제 */
-/**********************************/
-CREATE TABLE payment(
-		payno                         		INT(10)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
-		item                          		TEXT		 NOT NULL COMMENT '결재할 물품',
-		payfile1                      		VARCHAR(100)		 NOT NULL COMMENT '결제할 물품 사진',
-		pcnt                          		SMALLINT		 DEFAULT 0		 NOT NULL COMMENT '상품 개수',
-		paymoney                      		MEDIUMINT		 NOT NULL COMMENT '결제금액',
-		delivemoney                   		SMALLINT		 NULL  COMMENT '배송비',
-		mno                           		INT(10)		 NULL  COMMENT 'mno',
-  FOREIGN KEY (mno) REFERENCES member (mno)
-) COMMENT='주문/결제';
 
 /**********************************/
 /* Table Name: 배송추적 */

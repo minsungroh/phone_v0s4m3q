@@ -3,11 +3,11 @@ package com.phone.payment;
 public class PaymentVO {
 
   private int payno;
-  private String orderno;
   private String item;
   private String payfile1;
   private int pcnt;
   private int paymoney;
+  private int contentno;
   private int mno;
 
   public int getPayno() {
@@ -16,14 +16,6 @@ public class PaymentVO {
 
   public void setPayno(int payno) {
     this.payno = payno;
-  }
-
-  public String getOrderno() {
-    return orderno;
-  }
-
-  public void setOrderno(String orderno) {
-    this.orderno = orderno;
   }
 
   public String getItem() {
@@ -56,6 +48,14 @@ public class PaymentVO {
 
   public void setPaymoney(int paymoney) {
     this.paymoney = paymoney;
+  }
+
+  public int getContentno() {
+    return contentno;
+  }
+
+  public void setContentno(int contentno) {
+    this.contentno = contentno;
   }
 
   public int getMno() {

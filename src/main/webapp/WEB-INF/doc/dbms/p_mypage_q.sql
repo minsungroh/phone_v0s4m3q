@@ -1,17 +1,16 @@
 1. 테이블 생성
 drop table mypage;
 
-CREATE TABLE mypage(
-    mpno                               MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
-    mypageno                       BIGINT     NOT NULL COMMENT '주문번호',
-    mypagedate                     DATE     NOT NULL COMMENT '주문일',
+CREATE TABLE incantation(
+    ino                               MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+    incantateno                       BIGINT     NOT NULL COMMENT '주문번호',
+    incantatedate                     DATE     NOT NULL COMMENT '주문일',
     payno                             BIGINT     NOT NULL COMMENT '결제번호',
     paymoney                          MEDIUMINT    NOT NULL COMMENT '결제금액',
     thumbfile                         VARCHAR(100)     NOT NULL COMMENT '파일',
     orderstate                        VARCHAR(10)    NOT NULL COMMENT '주문상태',
-    ordersubmit                       CHAR(1)    DEFAULT 'N'     NULL  COMMENT '구매확정',
-    mno                               INT(10)    NULL  COMMENT 'mno',
-  FOREIGN KEY (mno) REFERENCES member (mno)
+    ordersubmit                       CHAR     DEFAULT 'N'     NULL  COMMENT '구매확정',
+  FOREIGN KEY (payno) REFERENCES payment (payno)
 ) COMMENT='주문내역';
 
 
