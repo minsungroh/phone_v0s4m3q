@@ -1,5 +1,7 @@
 package com.phone.payment;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +37,17 @@ public class PaymentDAO {
      */
     public PaymentVO read(int payno){
       return mapper().read(payno);
+    }
+    
+    public ArrayList<PaymentVO> list(){
+      return mapper().list();
+    }
+    
+    public int update(PaymentVO paymentVO){
+      return mapper().update(paymentVO);
+    }
+    
+    public int delete(int payno){
+      return mapper().delete(payno);
     }
 }

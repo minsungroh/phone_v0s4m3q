@@ -11,8 +11,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </insert>
   
   <select id="read" resultType="PaymentVO" parameterType="int">
-  select payno, item, orderno, payfile1, pcnt, paymoney, mno
-  from payment
-  where payno=#{payno}
+    select payno, item, orderno, payfile1, pcnt, paymoney, mno
+    from payment
+    where payno=#{payno}
   </select>
+  
+  <select id="list" resultType="PaymentVO">
+    select payno, item, orderno, payfile1, pcnt, payment, mno
+    from payment
+  </select>
+  
+  <update id="update" parameterType="PaymentVO">
+     update payment
+     set pcnt=#{pcnt}
+     where payno=#{payno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from payment
+    where payno=#{payno}
+  </delete>
 </mapper>

@@ -48,12 +48,52 @@ window.onload = function(){
       </TR>
       <tr>
         <td style="padding-left: 1%;">
-        <%=paymentVO.getPayfile1() %>&nbsp;<span style="line-height: 80px; vertical-align: middle;">
-        [ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></span></td>
+          <img src="./images/festival01_m.jpg" style="float: left">&nbsp;
+          <span style="line-height:80px; vertical-align: middle;">[ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></span></td>
         <td><%=paymentVO.getPcnt() %></td>
         <td>0</td>
         <td><%=paymentVO.getPaymoney()%></td>
        </tr>
+    </table>
+    <table style="width:100%; border-collapse: collapse;">
+      <colgroup>
+        <col style="width:20%" />
+        <col style="width:3%" />
+        <col style="width:20%" />
+        <col style="width:3%" />
+        <col style="width:20%" />
+        <col style="width:3%" />
+        <col style="width:20%" />
+      </colgroup>
+      <tr>
+        <th>상품금액<br><br><%=paymentVO.getPaymoney() %></th>
+        <th><img src="./images/ico_plus.gif"></th>
+        <th>배송비<br><br>0</th>
+        <th><img src="./images/ico_minus.gif"></th>
+        <th>할인금액<br><br>0</th>
+        <th><img src="./images/ico_total.gif"></th>
+        <th>총 결제금액<br><br><%=paymentVO.getPaymoney() %></th>
+    </table>
+    <br><br>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+      <colgroup>
+        <col style="width:20%;" />
+        <col style="width:80%;" />
+      </colgroup>
+      <tr>
+        <th colspan="2">2. 배송지 정보 입력&nbsp;<span style="font-size: 13px; color: #ff6600;">( * 필수입력  )</span></th>
+      </tr>
+      <tr>
+        <td style="line-height: 35px;">배송지 선택</td>
+        <td>
+         <label><input type="radio" name="delivery" id="delivery" checked="checked" value="new">새로운배송지</label>
+         <label><input type="radio" name="delivery" id="delivery" value="default">회원정보와 동일한 배송지</label>
+         <button type="button" style="margin-left: 45%;">나의 배송 주소록</button>
+        </td>
+       </tr>
+        <tr>
+          <td style="line-height: 35px;">받으시는 분</td>
+        </tr>
     </table>
     <%-- <ul>
       <li>
