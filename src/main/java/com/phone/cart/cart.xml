@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.phone.cart.CartMapperInter">
+
+<insert id="create" parameterType="CartVO">
+INSERT INTO p_box(mno,producttitle,productno,cnt,total)
+VALUES (#{mno},#{producttitle},#{productno},#{cnt},#{total})
+</insert>
+
+<select id="list" resultType="CartVO">
+SELECT cartno,mno,producttitle,productno,cnt,total
+FROM p_box
+ORDER BY cartno ASC
+</select>
+
+<update id="update" parameterType="CartVO">
+UPDATE p_box
+SET cnt=#{cnt}
+WHERE cartno=#{cartno}
+</update>
+
+<delete id="delete" parameterType="int">
+DELETE FROM p_box
+WHERE cartno=#{cartno}
+</delete>
+
+
+
+</mapper>
