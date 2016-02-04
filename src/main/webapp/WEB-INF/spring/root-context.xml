@@ -20,7 +20,9 @@
                                    com.phone.index,
                                    com.phone.code,
                                    com.phone.payment,
-                                   com.phone.content" />
+                                   com.phone.content,
+                                   com.phone.deliveryaddr,
+                                   com.phone.mypage" />
 		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
   
