@@ -19,6 +19,8 @@
                        value="com.phone.member,
                                    com.phone.index,
                                    com.phone.code,
+                                   com.phone.p_category,
+                                   com.phone.p_content,
                                    com.phone.payment,
                                    com.phone.content,
                                    com.phone.deliveryaddr,
