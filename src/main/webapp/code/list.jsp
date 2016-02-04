@@ -131,7 +131,7 @@ ArrayList<CodeVO> list = (ArrayList<CodeVO>)request.getAttribute("list");
 <DIV class='bottom'>
   <button type='button' onclick="create();">등록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
-  <button type='button' onclick="location.href='../blogcategory/list.do'">게시판 목록</button>
+  <button type='button' onclick="location.href='../p_category/list.do'">게시판 목록</button>
 </DIV>
 <!-- -------------------------------------------- -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />
