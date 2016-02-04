@@ -37,7 +37,7 @@ from member;
 4. 조회
 select mno, id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate
 from member
-where mno='1';
+where mno='2';
 
 
 5. 수정

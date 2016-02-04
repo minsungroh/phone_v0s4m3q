@@ -1,21 +1,24 @@
 1. 테이블 생성
 drop table mypage;
 
-CREATE TABLE incantation(
-    ino                               MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+CREATE TABLE mypage(
+    mypageno                          MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
     incantateno                       BIGINT     NOT NULL COMMENT '주문번호',
     incantatedate                     DATE     NOT NULL COMMENT '주문일',
-    payno                             BIGINT     NOT NULL COMMENT '결제번호',
     paymoney                          MEDIUMINT    NOT NULL COMMENT '결제금액',
     thumbfile                         VARCHAR(100)     NOT NULL COMMENT '파일',
     orderstate                        VARCHAR(10)    NOT NULL COMMENT '주문상태',
     ordersubmit                       CHAR     DEFAULT 'N'     NULL  COMMENT '구매확정',
-  FOREIGN KEY (payno) REFERENCES payment (payno)
+    point                             MEDIUMINT    DEFAULT 0     NOT NULL COMMENT '포인트',
+    payno                             INT(10)    NULL  COMMENT '번호',
+    mno                               INT(10)    NULL  COMMENT 'mno',
+  FOREIGN KEY (payno) REFERENCES payment (payno),
+  FOREIGN KEY (mno) REFERENCES member (mno)
 ) COMMENT='주문내역';
 
 
 2. 등록
-insert into mypage(mypageno, mypagedate, payno, paymoney, thumbfile, orderstate, ordersubmit, mno)
+insert into mypage(incantateno, incantatedate, paymoney, thumbfile, orderstate, ordersubmit, point, payno, mno)
 values('201602020001', now(), '201602020001', '50000', 'file1.jpg', '입금대기', 'N', '1');
 
 insert into mypage(mypageno, mypagedate, payno, paymoney, thumbfile, orderstate, ordersubmit, mno)

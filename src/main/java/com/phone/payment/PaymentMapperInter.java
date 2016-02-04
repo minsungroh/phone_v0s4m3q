@@ -7,7 +7,7 @@ public interface PaymentMapperInter {
   public int create(PaymentVO paymentVO);
   
   // <select id="read" resultType="PaymentVO" parameterType="int">
-  public PaymentVO read(int contentno);
+  public PaymentVO read(PaymentVO paymentVO);
   
   // <select id="list" resultType="PaymentVO">
   public ArrayList<PaymentVO> list();

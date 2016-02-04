@@ -24,9 +24,12 @@ window.onload = function(){
 	  $("#zipcode").attr("value", "");
 	  $("#address1").attr("value", "");
 	  $("#address2").attr("value", "");
+	  $("#m_phone").attr("value", "");
 	  evt("card1", "click", card_p);
 	  evt("card2", "click", etrans_p);
 	  evt("card3", "click", btrans_p);
+	  evt("s_card", "change", s_card_p);
+	  evt("m_phone", "blur", phone_format);
   }
   
 function delivery1(){
@@ -34,13 +37,15 @@ function delivery1(){
 	$("#zipcode").attr("value", "");
 	$("#address1").attr("value", "");
 	$("#address2").attr("value", "");
+	$("#m_phone").attr("value", "");
 }
 
-function delivery2(rname, zipcode, address1, address2){
+function delivery2(rname, zipcode, address1, address2, tel){
 	 $("#rname").attr("value", rname);
 	  $("#zipcode").attr("value", zipcode);
 	  $("#address1").attr("value", address1);
 	  $("#address2").attr("value", address2);
+	  $("#m_phone").attr("value", tel);
 }
 
 /* 전화번호 입력 정규화, 자동 - 입력(예 01040793588 --> 010-4079-3588)*/
@@ -73,8 +78,40 @@ function btrans_p(){
 	  $("#e_trans_select").css("display", "none");
 	  $("#r_trans_select").css("display", "block");
 }
-</script>
+
+function s_card_p(){
+	if(<%=paymentVO.getPaymoney()%> >= 50000){
+	$("#discount").prop("disabled", "");
+	}
+}
+
+function deliveryaddr(mno) {
+    var win_file1 = window.open("../deliveryaddr/list.do?mno=" + mno, '주소변경', 'width=750px, height=550px',
+        'scrollbars=no');
+
+    var x = (screen.width - 750) / 2;
+    var y = (screen.height - 550) / 2;
+
+    win_file1.moveTo(x, y);
+  }
+  
+ function go(payno){
+	 $("#frm").attr("action", "./update.do?payno=" + payno);
+	 $("#payno").attr("value", payno);
+	 $("#frm").submit();
+ }
  
+ function cancle(payno){
+	 $("#frm").attr("action", "./delete.do?payno=" + payno);
+	 $("#payno").attr("value", payno);
+	 $("#frm").submit();
+ }
+</script>
+ <style type="text/css">
+*{
+font-size: 15px;
+}
+</style>
 </head> 
 <!-- ----------------------------------------- -->
 <body leftmargin="0" topmargin="0">
@@ -82,10 +119,11 @@ function btrans_p(){
 <!-- ----------------------------------------- -->
  
 <DIV class='title' style="font-size: 2em; text-align: center; font-weight: bold; color: #FF0000">주문서</DIV>
- 
+
 <DIV style="width:70%; margin: 0 auto;">
-<FORM name='frm' method='POST' action='./update.do'>
+<FORM name='frm' id="frm" method='POST' action='./update.do'>
   <input type="hidden" name="payno" id="payno" value="<%=paymentVO.getPayno()%>">
+  <input type="hidden" name="mno" id="mno" value="<%=memberVO.getMno()%>">
   <span style="font-weight: bold;">1. 주문상품 확인</span>
   <fieldset style="border: none;">
     <table border="1" style="width:100%; border-collapse: collapse; border-bottom: 2px solid black">
@@ -146,28 +184,28 @@ function btrans_p(){
          <label><input type="radio" name="delivery" id="delivery" checked="checked" value="new" 
          onclick="delivery1()">새로운배송지</label>
          <label><input type="radio" name="delivery" id="delivery" value="default"
-         onclick="delivery2('<%=memberVO.getMname()%>', '<%=memberVO.getZipcode() %>', '<%=memberVO.getAddress1() %>', '<%=memberVO.getAddress2() %>')">회원정보와 동일한 배송지</label>
-         <button type="button" style="margin-left: 35%;">나의 배송 주소록</button>
+         onclick="delivery2('<%=memberVO.getMname()%>', '<%=memberVO.getZipcode() %>', '<%=memberVO.getAddress1() %>', '<%=memberVO.getAddress2() %>','<%=memberVO.getTel()%>')">회원정보와 동일한 배송지</label>
+         <button type="button" style="margin-left: 35%;" onclick="deliveryaddr(<%=memberVO.getMno()%>)">나의 배송 주소록</button>
         </td>
        </tr>
         <tr>
           <td style="line-height: 35px;">받으시는 분</td>
-          <td><input type="text" name="rname" id="rname" size="15px" value="<%=memberVO.getMname()%>"></td>
+          <td><input type="text" name="rname" id="rname" size="15px" value="<%=memberVO.getMname()%>" required="required"></td>
         </tr>
         <tr>
           <td style="line-height: 35px;">배송지</td>
           <td><ul><li class="create_form">
         <label class='label' for="zipcode">우편번호</label>
-        <input type="text" name="zipcode" id="zipcode" value="<%=memberVO.getZipcode() %>" placeholder="우편번호">
+        <input type="text" name="zipcode" id="zipcode" value="<%=memberVO.getZipcode() %>" placeholder="우편번호" required="required">
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
      </li>   
      <li class="create_form">
         <label class='label' for="address1">주소</label>
-        <input type="text" name="address1" id="address1" value="<%=memberVO.getAddress1() %>" size="50" placeholder="주소">
+        <input type="text" name="address1" id="address1" value="<%=memberVO.getAddress1() %>" size="50" placeholder="주소" required="required">
      </li>
      <li class="create_form">
         <label class='label' for="address2">상세 주소</label>
-        <input type="text" name="address2" id="address2" value="<%=memberVO.getAddress2() %>" size="30" placeholder="상세 주소" autocomplete="off">   
+        <input type="text" name="address2" id="address2" value="<%=memberVO.getAddress2() %>" size="30" placeholder="상세 주소" autocomplete="off" required="required">   
         <!-- ***** DAUM 우편번호 API 시작 *****  -->
           
           <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 90px;position:relative">
@@ -242,15 +280,8 @@ function btrans_p(){
       <td><ul>
       <li class="create_form">
         <label for="m_agency">휴대전화</label>
-        <select name="m_agency" id="m_agency">
-          <option value="none">통신사 선택</option>
-          <option value="SKT">SKT</option>
-          <option value="KT">KT</option>
-          <option value="LG U+">LG U+</option>
-          <option value="etc">기타</option>
-        </select>
         <label for="m_phone"></label>
-        <input type="text" name="m_phone" id="m_phone" value="" size="30" required="required" placeholder="하이픈(-) 제외한 숫자만 입력" autocomplete="off"> 
+        <input type="text" name="m_phone" id="m_phone" value="<%=memberVO.getTel() %>" size="30" required="required" placeholder="하이픈(-) 제외한 숫자만 입력" autocomplete="off"> 
         <span id="phone_content" style="font-size: 10px; color:#999999; margin-left: 2%; display: inline;">하이픈(<span style="font-size: 1em;">-</span>) 을 제외한 숫자만 입력하시기 바랍니다 </span>
       </li></ul>
       </td>
@@ -272,12 +303,12 @@ function btrans_p(){
         </tr>
         <tr>
           <td style="line-height: 35px;">신용/체크 카드</td>
-          <td><label><input type="radio" name="card" id="card1" value="card" checked="checked">신용/체크카드</label></td>
+          <td><label><input type="radio" name="payments" id="card1" value="card" checked="checked">신용/체크카드</label></td>
         </tr>
         <tr>
           <td style="line-height: 35px;">온라인이체</td>
-          <td><label><input type="radio" name="card" id="card2" value="e_transfer">무통장입금</label>
-              <label><input type="radio" name="card" id="card3" value="r_transfer">실시간계좌이체</label>
+          <td><label><input type="radio" name="payments" id="card2" value="e_transfer">무통장입금</label>
+              <label><input type="radio" name="payments" id="card3" value="r_transfer">실시간계좌이체</label>
           <div id="card_select" style="border: 2px solid black; display: block">
                 <label>카드 선택</label>
                 <select id="s_card">
@@ -290,12 +321,12 @@ function btrans_p(){
                 </select><br>
                 <label>할부선택</label>
                   <select id="discount" disabled="disabled">
-                    <option value="none">할부선택</option>
+                    <option value="1">일시불</option>
                     <option value="3">3개월</option>
                     <option value="4">4개월</option>
                     <option value="5">5개월</option>
                   </select><br>
-                  <p>할부는 5개월 이상부터 가능합니다</p>
+                  <p>할부는 5만원 이상부터 가능합니다</p>
               </div>
            <div id="e_trans_select" style="display: none">
                 <label>입금은행</label>
@@ -320,12 +351,12 @@ function btrans_p(){
        <th>4. 결제 총 금액</th>
       </tr>
       <tr>
-        <td><div style="width:30%; margin: 0 auto; text-align: center; background-color: #AAAA00"><%=paymentVO.getPaymoney() %> 원</div></td>
+        <td><div style="width:30%; margin: 0 auto; text-align: center; background-color: #AAAA00"><%=df.format(paymentVO.getPaymoney()) %> 원</div></td>
       </tr>
      </table>
      <div style="text-align: center;">
-     <button type="submit">결제하기</button>
-     <button type="reset">취소</button>
+     <button type="button" onclick="go(<%=paymentVO.getPayno()%>)">결제하기</button>
+     <button type="button" onclick="cancle(<%=paymentVO.getPayno()%>)">취소</button>
      </div>
   </fieldset>
 </FORM>

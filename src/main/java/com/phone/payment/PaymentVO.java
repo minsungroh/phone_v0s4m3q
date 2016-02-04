@@ -4,9 +4,12 @@ public class PaymentVO {
 
   private int payno;
   private String item;
+  private String orderno;
   private String payfile1;
   private int pcnt;
   private int paymoney;
+  private String paycharge;
+  private String paymeans;
   private int contentno;
   private int mno;
 
@@ -50,6 +53,14 @@ public class PaymentVO {
     this.paymoney = paymoney;
   }
 
+  public String getPaycharge() {
+    return paycharge;
+  }
+
+  public void setPaycharge(String paycharge) {
+    this.paycharge = paycharge;
+  }
+
   public int getContentno() {
     return contentno;
   }
@@ -64,6 +75,22 @@ public class PaymentVO {
 
   public void setMno(int mno) {
     this.mno = mno;
+  }
+
+  public String getOrderno() {
+    return orderno;
+  }
+
+  public void setOrderno(String orderno) {
+    this.orderno = orderno;
+  }
+
+  public String getPaymeans() {
+    return paymeans;
+  }
+
+  public void setPaymeans(String paymeans) {
+    this.paymeans = paymeans;
   }
 
 }
