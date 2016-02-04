@@ -10,8 +10,8 @@ CREATE TABLE p_code(
 /* Table Name: 카테고리 */
 /**********************************/
 CREATE TABLE p_category(
-		phonecategoryno               		MEDIUMINT(7)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '카테고리번호',
-		title                         		VARCHAR(50)		 NOT NULL COMMENT '제목',
+		p_categoryno                  		MEDIUMINT(7)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '카테고리번호',
+		title                         		VARCHAR(50)		 NOT NULL COMMENT '카테고리 종류',
 		orderno                       		SMALLINT(5)		 NOT NULL COMMENT '정렬순서',
 		visible                       		CHAR(1)		 NOT NULL COMMENT '공개여부',
 		ids                           		VARCHAR(100)		 NOT NULL COMMENT '관리계정',
@@ -24,13 +24,15 @@ CREATE TABLE p_category(
 /* Table Name: 물품내용 */
 /**********************************/
 CREATE TABLE p_content(
-		contentno                     		MEDIUMINT(7)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '물품번호',
-		title                         		VARCHAR(200)		 NOT NULL COMMENT '카테고리 종류',
+		p_contentno                   		MEDIUMINT(7)		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT COMMENT '물품번호',
+		title                         		VARCHAR(200)		 NOT NULL COMMENT '상품이름',
 		content                       		MEDIUMTEXT		 NOT NULL COMMENT '내용',
 		file                          		VARCHAR(100)		 NULL  COMMENT 'Thumb파일',
 		file1                         		VARCHAR(300)		 NULL  COMMENT '첨부파일',
-		replycnt                      		SMALLINT(5)		 NOT NULL COMMENT '댓글',
-		phonecategoryno               		MEDIUMINT(7)		 NULL  COMMENT '카테고리번호',
-  FOREIGN KEY (phonecategoryno) REFERENCES p_category (phonecategoryno)
+		replycnt                      		INT(5)		 NULL  COMMENT '댓글수',
+		p_categoryno                  		MEDIUMINT(7)		 NULL  COMMENT '카테고리번호',
+		money                         		MEDIUMINT(10)		 NOT NULL COMMENT '상품값',
+		productcnt                    		MEDIUMINT(10)		 DEFAULT 0		 NULL  COMMENT '상품개수',
+  FOREIGN KEY (p_categoryno) REFERENCES p_category (p_categoryno)
 ) COMMENT='물품내용';
 

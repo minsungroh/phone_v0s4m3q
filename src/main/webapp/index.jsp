@@ -7,7 +7,7 @@
 <meta charset="UTF-8"> 
 <title></title> 
  
-<link href="./css/style.css" rel="Stylesheet" type="text/css">
+<link href="./css/style2.css" rel="Stylesheet" type="text/css">
  
 </head> 
 <!-- ----------------------------------------- -->
