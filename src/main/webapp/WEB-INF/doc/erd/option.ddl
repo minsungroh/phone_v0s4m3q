@@ -33,6 +33,12 @@ CREATE TABLE p_content(
 		p_categoryno                  		MEDIUMINT(7)		 NULL  COMMENT '카테고리번호',
 		money                         		MEDIUMINT(10)		 NOT NULL COMMENT '상품값',
 		productcnt                    		MEDIUMINT(10)		 DEFAULT 0		 NULL  COMMENT '상품개수',
+		meterial                      		TEXT		 NOT NULL COMMENT '소재',
   FOREIGN KEY (p_categoryno) REFERENCES p_category (p_categoryno)
 ) COMMENT='물품내용';
+
+
+CREATE INDEX codeno ON p_category (codeno);
+
+CREATE INDEX blogcategoryno ON p_content (blogcategoryno);
 

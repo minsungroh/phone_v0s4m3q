@@ -51,6 +51,11 @@ public ArrayList<P_contentVO> list2(P_contentVO p_contentVO) {
 	return mapper().list2(p_contentVO);
 }
 
+@Override
+public ArrayList<P_contentVO> show_list(P_contentVO p_contentVO) {
+	return mapper().show_list(p_contentVO);
+}
+
   
   
 }

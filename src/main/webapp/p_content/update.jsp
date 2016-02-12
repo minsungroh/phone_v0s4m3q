@@ -64,7 +64,14 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
         %>
         <input type="file" name='file1MF' id='file1MF' value='<%=Tool.checkNull(p_contentVO.getFile1()) %>'>
       </li>
-
+       <li>
+        <label class='label' for='money'>가격</label>
+        <input type="text" name='money' id='money' >
+      </li>
+       <li>
+        <label class='label' for='meterial'>소재</label>
+        <input type="text" name='meterial' id='meterial' >
+      </li>
       <li class='right'>
         <button type="submit">수정</button>
         <button type="button" onclick="location.href='./list2.do?p_categoryno=<%=p_contentVO.getP_categoryno() %>'">목록</button>

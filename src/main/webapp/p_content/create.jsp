@@ -55,6 +55,14 @@ $(function(){
         <input type="file" name='file1MF' id='file1MF' >
       </li>
       <li>
+        <label class='label' for='money'>가격</label>
+        <input type="text" name='money' id='money' >
+      </li>
+       <li>
+        <label class='label' for='meterial'>소재</label>
+        <input type="text" name='meterial' id='meterial' >
+      </li>
+      <li>
         <label class='label' for='p_categoryno'>카테고리 번호</label>
         <input type="text" name='p_categoryno' id='p_categoryno' value='<%=p_contentVO.getP_categoryno() %>'>
       </li>

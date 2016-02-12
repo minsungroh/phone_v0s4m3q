@@ -21,6 +21,7 @@ public class P_contentVO {
   private int replycnt;
   private int money;
   private int productcnt;
+  private String meterial;
   private int p_categoryno;
   
   public int getP_contentno() {
@@ -70,6 +71,13 @@ public int getProductcnt() {
 }
 public void setProductcnt(int productcnt) {
 	this.productcnt = productcnt;
+}
+
+public String getMeterial() {
+	return meterial;
+}
+public void setMeterial(String meterial) {
+	this.meterial = meterial;
 }
 public int getP_categoryno() {
 	return p_categoryno;

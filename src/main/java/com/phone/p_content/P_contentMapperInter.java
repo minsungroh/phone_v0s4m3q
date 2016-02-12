@@ -21,6 +21,8 @@ public interface P_contentMapperInter {
   // <select id="list2" resultType="<select id="list2" resultType="P_contentVO" parameterType="P_contentVO">" parameterType="P_contentVO">
   public ArrayList<P_contentVO> list2(P_contentVO p_contentVO); 
   
+  public ArrayList<P_contentVO> show_list(P_contentVO p_contentVO);
+  
 }
 
 

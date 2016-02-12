@@ -283,5 +283,19 @@ public class P_contentCont {
     return mav;
   }
   
+  @RequestMapping(value = "/p_content/show_list.do", method = RequestMethod.GET)
+  public ModelAndView show_list(P_contentVO p_contentVO){
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/p_content/show_list");
+    mav.addObject("show_list", p_contentDAO.show_list(p_contentVO));
+  /*  mav.addObject("p_contentVO", p_contentVO);*/
+
+    P_categoryVO vo = p_categoryDAO.read(p_contentVO.getP_categoryno());
+    mav.addObject("title", vo.getTitle());
+    /*mav.addObject("read", vo.getP_categoryno());*/
+    
+    return mav;
+  }
+  
 }
 

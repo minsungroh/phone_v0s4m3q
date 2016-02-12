@@ -392,6 +392,22 @@
           <autoIncrement>false</autoIncrement>
           <defaultValue>0</defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>meterial</columnName>
+          <logicalName>소재</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>TEXT</name>
+            <logicalName>String</logicalName>
+            <supportSize>false</supportSize>
+            <type>12</type>
+          </columnType>
+          <size>10</size>
+          <notNull>true</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
       </columns>
       <indices>
         <net.java.amateras.db.visual.model.IndexModel>

@@ -24,6 +24,33 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
     <A href='./update.do?p_contentno=<%=p_contentVO.getP_contentno()%>'>글 수정</A>｜
     <A href='./delete.do?p_contentno=<%=p_contentVO.getP_contentno()%>&p_categoryno=<%=p_contentVO.getP_categoryno() %>'>글 삭제</A>
   </div> 
+  
+     <DIV>
+          <fieldset style="width: 1000px; height: 500px; margin: 20px auto;">
+         <br><br>
+ 
+            <span style="margin-left: 50px; margin-top: 50px; "><IMG src = './storage/<%=Tool.checkNull(p_contentVO.getFile()) %>'></span>
+            <span style="float: right; margin-right: 100px;"><%=p_contentVO.getTitle() %><br>
+            <br>상품번호 : <%=p_contentVO.getP_contentno() %><br>
+            <br>판매가 : <%=p_contentVO.getMoney() %><br>
+            <br>배송비안내 : 50,000원 이상 구매시 무료배송<br>
+            <br>소재 : <%=p_contentVO.getMeterial() %><br>
+            <br>수량 : <input type="number" min='1' max='50' step='1' value='1'><br>
+            <br>색상 : <select>
+              <option value='Black'>Black</option>
+	          <option value='Gray'>Gray</option>
+	          <option value='Red'>Red</option>
+	          <option value='Blue'>Blue</option>
+	          <option value='Pink'>Pink</option>
+            </select>
+              
+            </span>
+            
+            <button type='button' onclick="location.href='#'" style="margin-left: 600px;">바로구매</button>
+            <button type='button' onclick="location.href='#'" >장바구니</button>
+          
+          </fieldset>
+          </DIV>
   <DIV class='content'>
     <FORM name='frm' method="get" action='./update.do'>
       <input type="hidden" name="p_contentno" value="<%=p_contentVO.getP_contentno() %>">
@@ -31,27 +58,25 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
      
       <fieldset class="fieldset">
         <ul>
-          <li>
+         <%--  <li>
             <label for='title' class="label" style="width:150px;">제목 : </label>
             <span><%=p_contentVO.getTitle() %></span><br>
-          </li>
+          </li> --%>
+          
+       
           <li>
             <label for='content' class="label" style="width:150px;">내용 : </label>
             <span><%=p_contentVO.getContent() %></span>
           </li>
  
           <li>
-            <label for="file" class="label" style="width:150px;">Thumb 파일 : </label>
-            <%=Tool.checkNull(p_contentVO.getFile()) %><br>
-          </li>
-          <li>
             <label for="file1" class="label" style="width:150px;">업로드 파일: </label>
             <div>
-              <%=Tool.checkNull(p_contentVO.getFile1()) %><br>
+              <IMG src = './storage/<%=Tool.checkNull(p_contentVO.getFile1()) %>'><br>
             </div>
           </li>
            <li>
-            <label for='money' class="label" style="width:150px;">내용 : </label>
+            <label for='money' class="label" style="width:150px;">가격 : </label>
             <span><%=p_contentVO.getMoney() %></span>
           </li>
           <li>
