@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -399,5 +400,51 @@ public class Tool {
 
     return str;
   }
+  public static synchronized boolean isImage(String filename){
+	    boolean bol = false;  // 이미지 여부 저장
+	    
+	    filename = filename.toLowerCase(); // 소문자로 변경
+	    
+	    if (filename.endsWith(".jpg") ||
+	        filename.endsWith(".jpeg") ||
+	        filename.endsWith(".png") ||
+	        filename.endsWith(".gif") ||
+	        filename.endsWith(".bmp")){
+	      bol = true;
+	    }
+	    
+	    return bol;
+	  }
+  public static synchronized boolean isNew(String date, int period) {
+	    boolean sw = false;
 
+	    Date _date = new Date();
+	    // 숫자 형태인 날짜를 '년월일 시분초'의 형태로 변환
+	    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+	    try {
+	      _date = sd.parse(date);
+	    } catch (Exception e) {
+	    }
+	    // System.out.println(date);
+	    // 1970년1월1일부터 시간을 1000을 1초로하여 계산하여 리턴
+	    long time = _date.getTime(); // 글을 작성한 시간
+
+	    // 현재 시간을 1970년 1월 1일부터 수치형식으로 리턴
+	    long currentTime = System.currentTimeMillis();
+
+	    // 현재 시간과 글 등록시간의 차이를 계산
+	    long diff = currentTime - time;
+
+	    // 1일 86,400,000: 1초를 1000으로 하루를 계산
+
+	    // ceil: 아주 작은 소수점이 있어도 정수로 반올림 처리됨.
+	    // 0.0001 --> 1: 오늘 날짜
+	    // 1.00002 --> 2: 어제 날짜
+	    int day = (int) Math.ceil(((double) diff / 86400000)); // 지난 날짜 계산
+
+	    if (day <= period) {
+	      sw = true; // 최신글 처리
+	    }
+	    return sw;
+	  }
 }

@@ -26,6 +26,8 @@
                                    com.phone.deliveryaddr,
                                    com.phone.mypage,
                                    com.phone.cart,
+                                   com.phone.admin1,
+                                   com.phone.pds5,
                                    com.phone.trace" />
 		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
