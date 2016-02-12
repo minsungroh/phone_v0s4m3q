@@ -149,7 +149,9 @@ ArrayList<CartVO> list = (ArrayList<CartVO>)request.getAttribute("list");
 %> 
   <TR>
     <TD class='td'><%=cartno %></TD>
-    <TD class='td'><%=vo.getMno() %></TD>
+    <TD class='td'>
+    <a href="./list2.do?cartno=<%=cartno %>&mno=<%=vo.getMno()%>"><%=vo.getMno() %></a>
+    </TD>
     <TD class='td'><%=vo.getProducttitle() %></TD>
     <TD class='td'><%=vo.getProductno() %></TD>
     <TD class='td'><%=vo.getCnt() %></TD>
