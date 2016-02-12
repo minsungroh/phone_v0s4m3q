@@ -1,9 +1,9 @@
 /**********************************/
 /* Table Name: 장바구니 */
 /**********************************/
-DROP TABLE cart
+DROP TABLE p_box
 
-CREATE TABLE cart(
+CREATE TABLE p_box(
 		cartno                        		SMALLINT		 NOT NULL  PRIMARY KEY AUTO_INCREMENT COMMENT '장바구니번호',
 		mno                      		MEDIUMINT		 NOT NULL COMMENT '회원번호',
 		producttitle                  		VARCHAR(200)		 NOT NULL COMMENT '상품이름',
