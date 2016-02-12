@@ -1,6 +1,6 @@
   *{ 
     font-family: ¸¼Àº °íµñ; 
-    font-size: 20px;
+    font-size: 15px;
     color: #555555;
     padding: 0px;
     margin:  0px;
@@ -318,8 +318,12 @@
    text-align: center;
  }
  
- 
-
+.apple a{
+	text-align : center;
+	font-weight: bold;
+	margin-left : 10px;
+	color: blue;
+}
 
 
     

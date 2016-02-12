@@ -29,6 +29,9 @@ values ('user2', '1234', '철수', 'F', 0, 0, '010-1234-5678', '12345', '서울시 관
 insert into member(id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate)
 values ('user3', '1234', '영희', 'F', 0, 0, '010-1234-5678', '12345', '서울시 관철동', '관철동', now());
 
+insert into member(id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate)
+values ('user4', '1234', '영희', 'A', 0, 0, '010-1234-5678', '12345', '서울시 관철동', '관철동', now());
+
 3. 목록
 select mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
 from member;
@@ -37,7 +40,7 @@ from member;
 4. 조회
 select mno, id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate
 from member
-where mno='1';
+where mno='2';
 
 
 5. 수정

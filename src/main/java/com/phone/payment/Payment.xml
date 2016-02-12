@@ -6,24 +6,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.phone.payment.PaymentMapperInter">
 
   <insert id="create" parameterType="PaymentVO">
-     insert into payment(item, payfile1, pcnt, paymoney, contentno, mno)
-     values(#{item}, #{payfile1}, #{pcnt}, #{paymoney}, #{contentno}, #{mno});
+     insert into payment(item, orderno, payfile1, pcnt, paymoney, paycharge, paymeans, resive_name, resive_addr, resive_phone, contentno, mno, dno)
+     values(#{item}, #{orderno}, #{payfile1}, #{pcnt}, #{paymoney}, #{paycharge}, #{paymeans}, #{resive_name}, #{resive_addr}, #{resive_phone}, #{contentno}, #{mno}, #{dno});
   </insert>
   
-  <select id="read" resultType="PaymentVO" parameterType="int">
-    select payno, item, payfile1, pcnt, paymoney, contentno, mno
+  <select id="read" resultType="PaymentVO" parameterType="PaymentVO">
+    select payno, item, orderno, payfile1, pcnt, paymoney, paycharge, paymeans, contentno, mno, dno
     from payment
-    where contentno = #{contentno}
+    where contentno=#{contentno} and mno=#{mno}
   </select>
   
   <select id="list" resultType="PaymentVO">
-    select payno, item, orderno, payfile1, pcnt, paymoney, mno
+    select payno, item, payfile1, pcnt, paymoney, paycharge, paymeans, contentno, mno, dno
     from payment
+    where payno=#{payno}
   </select>
   
   <update id="update" parameterType="PaymentVO">
      update payment
-     set pcnt=#{pcnt}
+     set paycharge='Y', resive_name=#{resive_name}, resive_post=#{resive_post}, resive_addr1=#{resive_addr1}, resive_addr2=#{resive_addr2}, resive_phone=#{resive_phone}, paymeans=#{paymeans}, payday=now(),
+     card_input=#{card_input}, discount=#{discount}, deposit_input=#{deposit_input}, phone_input=#{phone_input}
      where payno=#{payno}
   </update>
   

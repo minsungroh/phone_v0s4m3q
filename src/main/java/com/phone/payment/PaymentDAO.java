@@ -35,12 +35,12 @@ public class PaymentDAO {
      * @param payno
      * @return
      */
-    public PaymentVO read(int contentno){
-      return mapper().read(contentno);
+    public PaymentVO read(PaymentVO paymentVO){
+      return mapper().read(paymentVO);
     }
     
-    public ArrayList<PaymentVO> list(){
-      return mapper().list();
+    public ArrayList<PaymentVO> list(int payno){
+      return mapper().list(payno);
     }
     
     public int update(PaymentVO paymentVO){

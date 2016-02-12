@@ -13,8 +13,8 @@ CREATE TABLE p_box(
 ) COMMENT='장바구니';
 
 2. 등록
-INSERT INTO p_box(mno,producttitle,productno,cnt,total)
-VALUES (1,'케이스',1,1,10000);
+INSERT INTO p_box(mno, producttitle, productno, cnt, total)
+VALUES (1, '케이스' , 1 , 1 ,10000);
  
 INSERT INTO p_box(mno,producttitle,productno,cnt,total)
 VALUES (2,'배터리',2,1,10000);

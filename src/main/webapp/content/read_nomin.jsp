@@ -59,7 +59,7 @@ window.onload = function(){
       </li>
      <li>
         <label for="p_categoryno">카테고리 번호</label>
-        <input type="text" name="p_categoryno" id="p_categoryno" value="<%=contentVO.getP_categoryno() %>">
+        <%-- <input type="text" name="p_categoryno" id="p_categoryno" value="<%=contentVO.getP_categoryno() %>"> --%>
       </li>
     </ul>
     <button type="submit">전송</button>
