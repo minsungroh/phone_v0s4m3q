@@ -86,7 +86,7 @@ $(function(){
               <a href="./delete.do?blogno=<%=cartno %>&Mno=<%=vo.getMno()%>"><img src="./images/delete.png" title="삭제" /></a>
             </td>
           </tr>
-          <% 
+          <%  
         }
         %>
       </tbody>
