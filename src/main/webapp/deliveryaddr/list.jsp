@@ -71,12 +71,12 @@ function phone_format() {
 	  $("#mobile3").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$3"));
 }
 	
-function use(name, post, addr1, addr1, phone){
-	opener.document.frm.rname.value=name;
-	opener.document.frm.zipcode.value=post;
-	opener.document.frm.address1.value=addr1;
-	opener.document.frm.address2.value=addr1;
-	opener.document.frm.m_phone.value=phone;
+function use(name, post, addr1, addr2, phone){
+	$("#rname", opener.document).attr("value", name);
+	$("#zipcode", opener.document).attr("value", post);
+	$("#address1", opener.document).attr("value", addr1);
+	$("#address2", opener.document).attr("value", addr2);
+	$("#m_phone", opener.document).attr("value", phone);
 	window.close();
 }
 </script>
@@ -238,7 +238,7 @@ ArrayList<DeliveryAddrVO> list = (ArrayList<DeliveryAddrVO>)request.getAttribute
 %> 
   <TR>
     <TD class='td'><a href="javascript:use('<%=vo.getDname()%>', '<%=vo.getDzipcode()%>', '<%=vo.getDaddr1()%>', '<%=vo.getDaddr2()%>', '<%=vo.getDphone()%>')"><%=vo.getDcategory() %></a></TD>
-    <TD class='td'><a href="#"><%=vo.getDname() %></a></TD>
+    <TD class='td'><a href="javascript:use('<%=vo.getDname()%>', '<%=vo.getDzipcode()%>', '<%=vo.getDaddr1()%>', '<%=vo.getDaddr2()%>', '<%=vo.getDphone()%>')"><%=vo.getDname() %></a></TD>
     <TD class='td'><%=vo.getDphone()  %></TD>
     <TD class='td'><%=Tool.textLength(50, addr)  %>
     <%if(!vo.getDzipcode().equals("")){ %>

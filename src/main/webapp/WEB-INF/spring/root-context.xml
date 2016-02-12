@@ -23,7 +23,10 @@
                                    com.phone.p_content,
                                    com.phone.payment,
                                    com.phone.content,
-                                   com.phone.cart" />
+                                   com.phone.deliveryaddr,
+                                   com.phone.mypage,
+                                   com.phone.cart,
+                                   com.phone.trace" />
 		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
   

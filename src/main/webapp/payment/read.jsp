@@ -3,6 +3,7 @@
 <%@ page import="com.phone.payment.*" %>
 <%@ page import="com.phone.member.*" %>
 <%@ page import="web.tool.*" %>
+<% request.setCharacterEncoding("utf-8"); // 한글 깨짐 방지 %> 
 <% String root = application.getContextPath(); %>
 <% PaymentVO paymentVO = (PaymentVO)request.getAttribute("PaymentVO"); %>
 <% MemberVO memberVO = (MemberVO)request.getAttribute("MemberVO"); %>
@@ -31,7 +32,7 @@ window.onload = function(){
 	  evt("s_card", "change", s_card_p);
 	  evt("m_phone", "blur", phone_format);
   }
-  
+	 
 function delivery1(){
 	$("#rname").attr("value", "");
 	$("#zipcode").attr("value", "");
@@ -63,20 +64,20 @@ function phone_format() {
 
 function card_p(){
 	$("#card_select").css("display", "block");
-	$("#e_trans_select").css("display", "none");
-	$("#r_trans_select").css("display", "none");
+	$("#deposit_select").css("display", "none");
+	$("#phone_select").css("display", "none");
 }
 
 function etrans_p(){
 	 $("#card_select").css("display", "none");
-	  $("#e_trans_select").css("display", "block");
-	  $("#r_trans_select").css("display", "none");
+	  $("#deposit_select").css("display", "block");
+	  $("#phone_select").css("display", "none");
 }
 
 function btrans_p(){
 	  $("#card_select").css("display", "none");
-	  $("#e_trans_select").css("display", "none");
-	  $("#r_trans_select").css("display", "block");
+	  $("#deposit_select").css("display", "none");
+	  $("#phone_select").css("display", "block");
 }
 
 function s_card_p(){
@@ -94,18 +95,22 @@ function deliveryaddr(mno) {
 
     win_file1.moveTo(x, y);
   }
-  
- function go(payno){
-	 $("#frm").attr("action", "./update.do?payno=" + payno);
-	 $("#payno").attr("value", payno);
-	 $("#frm").submit();
- }
  
- function cancle(payno){
-	 $("#frm").attr("action", "./delete.do?payno=" + payno);
-	 $("#payno").attr("value", payno);
-	 $("#frm").submit();
- }
+ function update(payno, card_input, discount, deposit_input, phone_input){
+	  $("#payno").attr("value", payno);
+     var card = $(":radio[name='paymeans']:checked").val();
+     $("#rname").prop("name","resive_name");
+     $("#zipcode").prop("name", "resive_post");
+     $("#address1").prop("name", "resive_addr1");
+     $("#address2").prop("name", "resive_addr2");
+     $("#m_phone").prop("name", "resive_phone");
+     $("#card_input").attr("value", card_input);
+     $("#discount").attr("value", discount);
+     $("#deposit_input").attr("value", deposit_input);
+     $("#phone_input").attr("value", phone_input);
+     $("#frm").attr("action", "./update.do?payno=" + payno );
+     $("#frm").submit();
+   }
 </script>
  <style type="text/css">
 *{
@@ -121,7 +126,8 @@ font-size: 15px;
 <DIV class='title' style="font-size: 2em; text-align: center; font-weight: bold; color: #FF0000">주문서</DIV>
 
 <DIV style="width:70%; margin: 0 auto;">
-<FORM name='frm' id="frm" method='POST' action='./update.do'>
+<FORM name='frm' id="frm" method='POST' action='./.do' onsubmit="update(<%=paymentVO.getPayno()%>, '<%=paymentVO.getCard_input()%>', <%=paymentVO.getDiscount()%>, '<%=paymentVO.getDeposit_input()%>', 
+'<%=paymentVO.getPhone_input()%>' )">
   <input type="hidden" name="payno" id="payno" value="<%=paymentVO.getPayno()%>">
   <input type="hidden" name="mno" id="mno" value="<%=memberVO.getMno()%>">
   <span style="font-weight: bold;">1. 주문상품 확인</span>
@@ -142,7 +148,7 @@ font-size: 15px;
       <tr>
         <td style="padding-left: 1%;">
           <a href="#"><img src="./images/festival01_m.jpg" style="float: left"></a>&nbsp;
-          <span style="line-height:80px; vertical-align: middle;"><a href="#">[ <%=paymentVO.getContentno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></a></span></td>
+          <span style="line-height:80px; vertical-align: middle;"><a href="#">[ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></a></span></td>
         <td style="text-align: center;"><%=paymentVO.getPcnt() %></td>
         <td style="text-align: center;">0</td>
         <td style="text-align: center;"><%=df.format(paymentVO.getPaymoney()) %></td>
@@ -303,15 +309,15 @@ font-size: 15px;
         </tr>
         <tr>
           <td style="line-height: 35px;">신용/체크 카드</td>
-          <td><label><input type="radio" name="payments" id="card1" value="card" checked="checked">신용/체크카드</label></td>
+          <td><label><input type="radio" name="paymeans" id="card1" value="card" checked="checked">신용/체크카드</label></td>
         </tr>
         <tr>
           <td style="line-height: 35px;">온라인이체</td>
-          <td><label><input type="radio" name="payments" id="card2" value="e_transfer">무통장입금</label>
-              <label><input type="radio" name="payments" id="card3" value="r_transfer">실시간계좌이체</label>
-          <div id="card_select" style="border: 2px solid black; display: block">
+          <td><label><input type="radio" name="paymeans" id="card2" value="deposit">무통장입금</label>
+              <label><input type="radio" name="paymeans" id="card3" value="phone">휴대폰결제</label>
+               <div id="card_select" style="border: 2px solid black; display: block">
                 <label>카드 선택</label>
-                <select id="s_card">
+                <select id="card_input" name="card_input">
                   <option value="bc" selected="selected">비씨카드</option>
                   <option value="kbc">KB국민카드</option>
                   <option value="uric">우리카드</option>
@@ -320,17 +326,17 @@ font-size: 15px;
                   <option value="samsungc">삼성카드</option>
                 </select><br>
                 <label>할부선택</label>
-                  <select id="discount" disabled="disabled">
-                    <option value="1">일시불</option>
+                  <select id="discount" name="discount" disabled="disabled">
+                    <option value="1" selected="selected">일시불</option>
                     <option value="3">3개월</option>
                     <option value="4">4개월</option>
                     <option value="5">5개월</option>
                   </select><br>
                   <p>할부는 5만원 이상부터 가능합니다</p>
               </div>
-           <div id="e_trans_select" style="display: none">
+                <div id="deposit_select" style="display: none">
                 <label>입금은행</label>
-                <select id="e_tr">
+                <select id="deposit_input" name="deposit_input">
                     <option value="none" selected="selected">은행선택</option>
                     <option value="kbb">국민은행</option>
                     <option value="urib">우리은행</option>
@@ -339,8 +345,16 @@ font-size: 15px;
                     <option value="postb">우체국</option>
                 </select>
               </div>
-              <div id="r_trans_select" style="display: none">
-                <p>&lt;결재하기&gt;버튼을 누르시면 가상 계좌번호가 자동적으로 생성됩니다. </p>
+              <div id="phone_select" style="display: none">
+                <label>통신사를 선택해주세요</label>
+                <select id="phone_input" name="phone_input">
+                    <option value="none" selected="selected">통신사 선택</option>
+                    <option value="skt">SKT</option>
+                    <option value="lgu">LGU+</option>
+                    <option value="kt">KT</option>
+                    <option value="kct">알뜰폰-KCT</option>
+                    <option value="hm">알뜰폰-헬로모바일</option>
+                </select>
               </div>
           </td>
      </table>
@@ -355,8 +369,8 @@ font-size: 15px;
       </tr>
      </table>
      <div style="text-align: center;">
-     <button type="button" onclick="go(<%=paymentVO.getPayno()%>)">결제하기</button>
-     <button type="button" onclick="cancle(<%=paymentVO.getPayno()%>)">취소</button>
+     <input type="submit" value="결제하기">
+     <button type="button" onclick="history.back();">취소</button>
      </div>
   </fieldset>
 </FORM>

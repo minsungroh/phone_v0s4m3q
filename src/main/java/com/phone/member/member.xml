@@ -17,14 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 검색을하지 않는 전체 목록 -->
   <select id="list" resultType="MemberVO">
-    SELECT mno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+    SELECT mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
     FROM member
     ORDER BY mno ASC
   </select>
 
   <!-- 조회 -->
   <select id="read" resultType="MemberVO" parameterType="int">
-    SELECT mno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+    SELECT mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
     FROM member
     WHERE mno=#{mno}
   </select>

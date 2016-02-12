@@ -10,7 +10,7 @@ public interface PaymentMapperInter {
   public PaymentVO read(PaymentVO paymentVO);
   
   // <select id="list" resultType="PaymentVO">
-  public ArrayList<PaymentVO> list();
+  public ArrayList<PaymentVO> list(int payno);
   
   // <update id="update" parameterType="PaymentVO">
   public int update(PaymentVO paymentVO);

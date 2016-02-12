@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.phone.mypage.MypageMapperInter">
+  <select id="read" resultType="MypageVO" parameterType="MypageVO">
+    select mypageno, orderstate, ordersubmit, point, traceno, payno, mno
+    from mypage
+    where mno=#{mno}
+  </select>
+  
+  <select id="count_paywait" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='pay_wait' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+  <select id="count_payok" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='pay_ok' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+  <select id="count_pready" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='product_ready' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+  <select id="count_delivery" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='delivery' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+   <select id="count_complate" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='complate' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+   <select id="count_okwait" resultType="int" parameterType="int">
+    select count(m.mypageno) as cnt
+    from mypage m
+    join payment p on m.payno = p.payno 
+    where m.orderstate='ok_wait' and m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
+  </select>
+  
+  <select id="list" resultType="MypageVO" parameterType="MypageVO">
+    select p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, m.mno, m.ordersubmit, t.traceno, t.waybil, p.paycharge
+    from mypage m
+    join payment p on m.payno = p.payno
+    join trace t on m.traceno = t.traceno
+    where m.mno=#{mno} and p.paycharge=#{paycharge};
+  </select>
+  
+  <select id="detail_list" resultType="MypageVO" parameterType="MypageVO">
+    select p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, t.traceno, t.waybil, p.resive_name, 
+    p.resive_phone, p.resive_post, p.resive_addr1, p.resive_addr2, p.paymeans, p.card_input, p.discount, p.deposit_input, p.phone_input, p.paymoney, p.paymeans
+    from mypage m
+    join payment p on m.payno = p.payno
+    join trace t on m.traceno = t.traceno
+    where p.orderno='201602020101';
+  </select>
+  
+  <update id="update_os" parameterType="MypageVO">
+      update mypage as m join payment as p on m.payno = p.payno
+      set m.ordersubmit=#{ordersubmit}, m.point=#{point}
+      where m.mno = #{mno} and p.orderno=#{orderno}
+  </update>
+  
+  <select id="update_read" resultType="MypageVO" parameterType="int">
+    select m.mypageno, m.orderstate, m.ordersubmit, m.point, m.traceno, m.payno, m.mno, p.paycharge, p.paymoney
+    from mypage as m
+    join payment as p on m.payno = p.payno
+    where m.mno=#{mno}
+  </select>
+</mapper>

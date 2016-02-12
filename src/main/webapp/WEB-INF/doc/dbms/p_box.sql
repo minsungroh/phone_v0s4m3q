@@ -3,7 +3,7 @@
 /**********************************/
 DROP TABLE cart
 
-CREATE TABLE cart(
+CREATE TABLE p_box(
 		cartno                        		SMALLINT		 NOT NULL  PRIMARY KEY AUTO_INCREMENT COMMENT '장바구니번호',
 		mno                      		MEDIUMINT		 NOT NULL COMMENT '회원번호',
 		producttitle                  		VARCHAR(200)		 NOT NULL COMMENT '상품이름',
@@ -13,8 +13,8 @@ CREATE TABLE cart(
 ) COMMENT='장바구니';
 
 2. 등록
-INSERT INTO p_box(mno,producttitle,productno,cnt,total)
-VALUES (1,'케이스',1,1,10000);
+INSERT INTO p_box(mno, producttitle, productno, cnt, total)
+VALUES (1, '케이스' , 1 , 1 ,10000);
  
 INSERT INTO p_box(mno,producttitle,productno,cnt,total)
 VALUES (2,'배터리',2,1,10000);

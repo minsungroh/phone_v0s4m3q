@@ -29,6 +29,9 @@ values ('user2', '1234', 'Ã¶¼ö', 'F', 0, 0, '010-1234-5678', '12345', '¼­¿ï½Ã °ü
 insert into member(id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate)
 values ('user3', '1234', '¿µÈñ', 'F', 0, 0, '010-1234-5678', '12345', '¼­¿ï½Ã °üÃ¶µ¿', '°üÃ¶µ¿', now());
 
+insert into member(id, passwd, mname, grade, money, point,  tel, zipcode, address1, address2, mdate)
+values ('user4', '1234', '¿µÈñ', 'A', 0, 0, '010-1234-5678', '12345', '¼­¿ï½Ã °üÃ¶µ¿', '°üÃ¶µ¿', now());
+
 3. ¸ñ·Ï
 select mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
 from member;

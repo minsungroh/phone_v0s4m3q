@@ -1,0 +1,77 @@
+package com.phone.mypage;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository("com.phone.mypage.MypageDAO")
+public class MypageDAO {
+    @Autowired
+    private SqlSession sqlSession; // MyBATIS 3 연결 객체
+    
+    public MypageDAO(){
+      System.out.println("--> PaymentDAO created.");
+    }
+    
+    public MypageMapperInter mapper(){
+      MypageMapperInter mapper = sqlSession.getMapper(MypageMapperInter.class);    
+      
+      return mapper;
+    }
+    
+    // 마이페이지 조회(구매 등급)
+    public MypageVO read(MypageVO mypageVO){
+      return mapper().read(mypageVO);
+    }
+    
+    // 마이페이지 조회수(입금대기)
+    public int count_paywait(int mno){
+      return mapper().count_paywait(mno);
+    }
+    
+   // 마이페이지 조회수(결재완료)
+    public int count_payok(int mno){
+      return mapper().count_payok(mno);
+    }
+    
+   // 마이페이지 조회수(상품준비중)
+    public int count_pready(int mno){
+      return mapper().count_pready(mno);
+    }
+    
+   // 마이페이지 조회수(배송중)
+    public int count_delivery(int mno){
+      return mapper().count_delivery(mno);
+    }
+    
+    // 마이페이지 조회수(배송완료)
+    public int count_complate(int mno){
+      return mapper().count_complate(mno);
+    }
+    
+    // 마이페이지 조회수(구매결정대기)
+    public int count_okwait(int mno){
+      return mapper().count_okwait(mno);
+    }
+    
+    // 구매내역
+    public ArrayList<MypageVO> list(MypageVO mypageVO){
+      return mapper().list(mypageVO);
+    }
+    
+    // 주문 상세 조회
+    public ArrayList<MypageVO> detail_list(MypageVO mypageVO){
+      return mapper().detail_list(mypageVO);
+    }
+    
+    // 주문확정 수정
+    public int update_os(MypageVO mypageVO){
+      return mapper().update_os(mypageVO);
+    }
+    
+    public MypageVO update_read(int mno){
+      return mapper().update_read(mno);
+    }
+}

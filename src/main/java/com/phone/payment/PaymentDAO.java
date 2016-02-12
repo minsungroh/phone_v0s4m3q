@@ -39,8 +39,8 @@ public class PaymentDAO {
       return mapper().read(paymentVO);
     }
     
-    public ArrayList<PaymentVO> list(){
-      return mapper().list();
+    public ArrayList<PaymentVO> list(int payno){
+      return mapper().list(payno);
     }
     
     public int update(PaymentVO paymentVO){
