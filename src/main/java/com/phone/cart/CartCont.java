@@ -2,12 +2,16 @@ package com.phone.cart;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+
 
 
 
@@ -114,6 +118,17 @@ public class CartCont {
 	      mav.addObject("links", links);
 	    }
 	 
+	    return mav;
+	  }
+	 
+	 @RequestMapping(value = "/cart/list2.do", method = RequestMethod.GET)
+	  public ModelAndView list2(CartVO cartVO){
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("/cart/list2");
+	    mav.addObject("list", cartDAO.list2(cartVO.getMno()));
+	    mav.addObject("CartVO", cartVO);
+	   //mav.addObject("title", blogcategoryDAO.read(blogVO.getBlogcategoryno()).getTitle());
+	   //System.out.println("title °ª" + blogcategoryDAO.read(blogVO.getBlogcategoryno()).getTitle());
 	    return mav;
 	  }
 

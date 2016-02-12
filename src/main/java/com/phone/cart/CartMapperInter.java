@@ -9,6 +9,9 @@ public interface CartMapperInter {
 	//<select id="list" resultType="CartVO">
 	public ArrayList<CartVO> list();
 	
+	//<select id="list2" resultType="CartVO" parameterType="int">
+	public ArrayList<CartVO> list2(int mno);
+	
 	public int update(CartVO cartVO);
 	
 	//<delete id="delete" parameterType="int">
