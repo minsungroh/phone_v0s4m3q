@@ -127,8 +127,8 @@ ArrayList<P_categoryVO> list = (ArrayList<P_categoryVO>)request.getAttribute("li
     <ul>   
       <li>
        <span class="apple" style="margin-left: 40px;">
-      <a  href='../p_content/show_list.do?p_categoryno=1'>Iphone6+  </a><a  href='../p_content/show_list.do?p_categoryno=7'> Iphone6   </a>
-      <a  href='../p_content/show_list.do?p_categoryno=2'> Iphone5   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=1'>Iphone6+  </a><a  href='<%=root %>/p_content/show_list.do?p_categoryno=7'> Iphone6   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=2'> Iphone5   </a>
       </span>
       </li>  
     </ul>
@@ -142,8 +142,8 @@ ArrayList<P_categoryVO> list = (ArrayList<P_categoryVO>)request.getAttribute("li
     <ul>    
       <li>
        <span class="apple" style="margin-left: 40px;">
-      <a  href='../p_content/show_list.do?p_categoryno=3'>Galaxy6  </a><a  href='../p_content/show_list.do?p_categoryno=8'> GalaxyNote5   </a>
-      <a  href='../p_content/show_list.do?p_categoryno=9'> Galaxy5   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=3'>Galaxy6  </a><a  href='<%=root %>/p_content/show_list.do?p_categoryno=8'> GalaxyNote5   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=9'> Galaxy5   </a>
       </span>
       </li>    
     </ul>
@@ -156,7 +156,7 @@ ArrayList<P_categoryVO> list = (ArrayList<P_categoryVO>)request.getAttribute("li
     <ul>    
       <li>
        <span class="apple" style="margin-left: 40px;">
-      <a  href='../p_content/show_list.do?p_categoryno=4'>V10  </a><a  href='#'> G4   </a><a  href='#'> 넥서스   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=4'>V10  </a><a  href='#'> G4   </a><a  href='#'> 넥서스   </a>
       <a  href='#'> G프로   </a>
       </span>
       </li>    
@@ -170,8 +170,8 @@ ArrayList<P_categoryVO> list = (ArrayList<P_categoryVO>)request.getAttribute("li
     <ul>    
       <li>
        <span class="apple" style="margin-left: 40px;">
-      <a  href='../p_content/show_list.do?p_categoryno=5'>Speaker  </a><a  href='#'> Earphone   </a><a  href='#'> Headphone   </a>
-      <a  href='../p_content/show_list.do?p_categoryno=11'> Bluetooth   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=5'>Speaker  </a><a  href='#'> Earphone   </a><a  href='#'> Headphone   </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=11'> Bluetooth   </a>
       </span>
       </li>    
     </ul>
@@ -184,7 +184,7 @@ ArrayList<P_categoryVO> list = (ArrayList<P_categoryVO>)request.getAttribute("li
     <ul>    
       <li>
        <span class="apple" style="margin-left: 40px;">
-      <a  href='../p_content/show_list.do?p_categoryno=10'>Cable/Charger  </a><a  href='#'> stand   </a><a  href='#'> ETC </a>
+      <a  href='<%=root %>/p_content/show_list.do?p_categoryno=10'>Cable/Charger  </a><a  href='#'> stand   </a><a  href='#'> ETC </a>
       </span>
       </li>    
     </ul>
