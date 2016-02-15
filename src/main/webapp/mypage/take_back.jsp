@@ -1,11 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="com.phone.mypage.*" %>
-<%@ page import="com.phone.payment.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*" %>
-<%@page import="java.text.DecimalFormat"%>
-<%MypageVO mypageVO = (MypageVO)request.getAttribute("MypageVO");%>
-<%PaymentVO paymentVO = (PaymentVO)request.getAttribute("PaymentVO");%>
-<%DecimalFormat df = new DecimalFormat("#,###,### 원"); %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,26 +43,6 @@
               <span style="font-weight: bold;">반품신청&nbsp;<span style="border-left: 1px solid #898989; font-size: 13px; color: #BBBBBB;">&nbsp;반품하실 상품의 사유를 선택하세요.</span></span>
             </div>
            <div id="order" style="margin: 2%;">
-            <%
-            ArrayList take_back = (ArrayList)request.getAttribute("take_back");
-  
-            for (int i = 0; i < take_back.size(); i++) {
-              MypageVO vo = (MypageVO)take_back.get(i);
-              String delivery = "";
-              if(vo.getOrderstate().equals("delivery_wait")){
-                delivery = "배송준비중";
-              } else if(vo.getOrderstate().equals("pay_wait")){
-                delivery = "결제 대기중";
-              } else if(vo.getOrderstate().equals("pay_ok")){
-                delivery = "결재 완료";
-              } else if(vo.getOrderstate().equals("delivery")){
-                delivery = "배송중";
-              } else if(vo.getOrderstate().equals("complate")){
-                delivery = "배송완료";
-              } else if(vo.getOrderstate().equals("ok_wait")){
-                delivery = "구매 결정 대기";
-              }
-             %>
              <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
                 <colgroup>
                   <col style="width:40%"/>
@@ -84,18 +60,16 @@
                 </tr>
                 <tr>
                   <td style="text-align: left;"><a href="" target="_blank"><img src="./images/festival01_m.jpg" style="float: left; margin-right: 2%;"></img></a>
-                      <br><span><%=vo.getItem() %></span></td>
-                  <td><%=vo.getPaymoney() %></td>
-                  <td><%=vo.getPcnt() %></td>
+                      <br><span>${take_back.item}</span></td>
+                  <td><fmt:formatNumber value="${take_back.paymoney }" pattern="￦#,###,### 원" /></td>
+                  <td>${take_back.pcnt}</td>
                   <td>0원</td>
-                  <td><%=delivery %></td>
+                  <td>${take_back.my_state }</td>
                 </tr>
                 <tr>
                   <td colspan="5" style="height:30px;">
-                    <%String money = df.format(5000); 
-                    String tot = df.format(vo.getPaymoney() - 5000);
-                    %>
-                    <select name="reason" id="reason" onchange="reason('<%=df.format(vo.getPaymoney())%>', '<%=money %>', '<%=tot%>')">
+                    <select name="reason" id="reason" onchange="reason(${take_back.paymoney },
+                    5000, ${take_back.paymoney - 5000 })">
                       <option value="1" selected="selected">상품에 이상 없으나, 구매 의사 없어짐</option>
                       <option value="2">색상을 잘 못 선택함</option>
                       <option value="3">상품이 상품상세 정보와 틀림</option>
@@ -122,24 +96,24 @@
                  </tr>
                  <tr>
                   <td>원 결재 금액</td>
-                  <td><span id="default"><%=df.format(0) %></span></td>
+                  <td><span id="default">0</span></td>
                   <td>차감 금액 : </td>
-                  <td><span id="minus"><%=df.format(0) %></span></td>
+                  <td><span id="minus">0</span></td>
                   <td style="color: red; font-weight: bold;">환불 예상 금액</td>
-                  <td><span id="take" style="color: red; font-weight: bold;"><%=df.format(0) %></span></td>
+                  <td><span id="take" style="color: red; font-weight: bold;">0</span></td>
                 </tr>
                 <ul>
                 <tr>
                   <td><li>상품금액</li></td>
-                  <td><span id="item_won"><%=df.format(0) %></span></td>
+                  <td><span id="item_won">0</span></td>
                   <td><li>추가배송비</li></td>
-                  <td><span id="add_trace"><%=df.format(0) %></span></td>
+                  <td><span id="add_trace">0</span></td>
                   <td></td>
                   <td></tr>
                 </tr>
                 <tr>  
                   <td><li>할인금액</li></td>
-                  <td><span id="discount"><%=df.format(0) %></span></td>
+                  <td><span id="discount">0</span></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -155,7 +129,7 @@
                  <tr>
                  <ul>
                   <td><li><span style="font-weight: bold; color: red">구매자 책임사유</span>에 의한 반품이므로<span style="font-weight: bold; color: red"> 반품배송비</span>
-                  <span style="font-weight: bold; color: red" id="resive"><%=df.format(0) %></span> 을 구매자가 부담합니다.</li>
+                  <span style="font-weight: bold; color: red" id="resive"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span> 을 구매자가 부담합니다.</li>
                   </td>
                   </ul>
                 </tr>
@@ -166,7 +140,6 @@
                 <td><input type="radio" name="resive_money" id="resive_money1" value="box">판매자에게 직접송금(판매자에게 연락 후 반품배송비를 입금처리하겠습니다.)</td>
                  </tr>
              </table>
-            <%}%>
               <br><br>
 
      <div style="text-align: center;">

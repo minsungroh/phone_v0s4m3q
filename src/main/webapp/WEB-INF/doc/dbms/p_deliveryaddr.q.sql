@@ -31,9 +31,9 @@ from deliveryaddr
 order by dno asc;
 
 4. 조회
-select dno, dcategory, dname, dzipcode, daddr1, dadd2, dphone, mno
+select dno, dcategory, dname, dzipcode, daddr1, daddr2, dphone, mno
 from deliveryaddr
-where dno='1';
+where mno='1';
 
 5. 수정
 update deliveryaddr 

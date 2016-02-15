@@ -10,7 +10,7 @@ public interface DeliveryAddrMapperInter {
   public ArrayList<DeliveryAddrVO> list(int mno);
   
   //<select id="read" resultType="DeliveryAddrVO" parameterType="int">
-  public DeliveryAddrVO read(int dno);
+  public DeliveryAddrVO read(int mno);
   
   //<update id="update" parameterType="DeliveryAddrVO">
   public int update(DeliveryAddrVO deliveryAddrVO);

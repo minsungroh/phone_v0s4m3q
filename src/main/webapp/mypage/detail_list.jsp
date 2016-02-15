@@ -1,11 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="com.phone.mypage.*" %>
-<%@ page import="com.phone.payment.*" %>
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ page import="java.util.*" %>
-<%@page import="java.text.DecimalFormat"%>
-<%MypageVO mypageVO = (MypageVO)request.getAttribute("MypageVO");%>
-<%PaymentVO paymentVO = (PaymentVO)request.getAttribute("PaymentVO");%>
-<%DecimalFormat df = new DecimalFormat("#,###,### 원"); %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -62,6 +58,11 @@ ul.nav li ul {
 * {
 font-size: 15px;
 }
+
+button{
+ margin-bottom: 2%;
+ width:40%;
+}
 </style>
 
 
@@ -76,34 +77,13 @@ font-size: 15px;
               <span style="font-weight: bold;">주문목록/배송조회</span>
             </div>
            <div id="order" style="margin: 2%;">
-            <%
-            ArrayList detail_list = (ArrayList)request.getAttribute("detail_list");
-  
-            for (int i = 0; i < detail_list.size(); i++) {
-              MypageVO vo = (MypageVO)detail_list.get(i);
-              String delivery = "";
-              if(vo.getOrderstate().equals("delivery_wait")){
-                delivery = "배송준비중";
-              } else if(vo.getOrderstate().equals("pay_wait")){
-                delivery = "결제 대기중";
-              } else if(vo.getOrderstate().equals("pay_ok")){
-                delivery = "결재 완료";
-              } else if(vo.getOrderstate().equals("delivery")){
-                delivery = "배송중";
-              } else if(vo.getOrderstate().equals("complate")){
-                delivery = "배송완료";
-              } else if(vo.getOrderstate().equals("ok_wait")){
-                delivery = "구매 결정 대기";
-              }
-             %>
-
                 <div style="border: none; margin-bottom: 1%;">
                    <div>
-                      <span>주문일 : <%=vo.getPayday().substring(0, 11) %></span>
-                      | <span>총 주문 금액 : <%=df.format(vo.getPaymoney())%> 원</span>
+                      <span>주문일 : ${detail_date }</span>
+                      | <span>총 주문 금액 : <fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></span>
                    </div>
                    <br>
-                   <table style="width:80%; margin: 0 auto;">
+                   <table style="width:70%; margin: 0 auto;">
                     <colgroup>
                       <col style="width:70%;">
                       <col style="width:30%;">
@@ -111,12 +91,12 @@ font-size: 15px;
                     <tr>
                     <td>
                       <a href="" target="_blank"><img src="./images/festival01_m.jpg" style="float: left; margin-right: 2%;"></img></a>
-                      <span><%=vo.getItem() %></span><br>
-                      <span><%=df.format(vo.getPaymoney()) %> / <%=vo.getPcnt() %> 개 </span>
+                      <span>${detail_list.item}</span><br>
+                      <span><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /> / ${detail_list.pcnt} 개 </span>
                    </td>
                    <td style="text-align: center; border-left: 1px solid #898989;">
-                      <span><%=delivery %></span><br>
-                      <button type="button" onclick="trace(<%=vo.getWaybil()%>, <%=vo.getTraceno()%>)">배송조회</button><br>
+                      <span>${detail_list.my_state }</span><br>
+                      <button type="button" onclick="trace(${detail_list.payno }, ${detail_list.mypageno })">배송조회</button><br>
                       <button type="button" onclick="#">반품신청</button><br>
                       <button type="button" onclick="#">교환문의</button>
                    </td>
@@ -133,15 +113,15 @@ font-size: 15px;
             </tr>
             <tr>
               <td>수령인</td>
-              <td><%=vo.getResive_name() %></td>
+              <td>${detail_list.resive_name}</td>
             </tr>
             <tr>
               <td>연락처</td>
-              <td><%=vo.getResive_phone() %></td>
+              <td>${detail_list.resive_phone}</td>
             </tr>
             <tr>
               <td>주소</td>
-              <td>(<%=vo.getResive_post() %>)<%=vo.getResive_addr1() %> <%=vo.getResive_addr2() %></td>
+              <td>(${detail_list.resive_post})${detail_list.resive_addr1} ${detail_list.resive_addr2}</td>
            </tr>
           </table>
           <br>
@@ -160,7 +140,7 @@ font-size: 15px;
               <td></td>
             </tr>
             <tr>
-              <%
+             <%--  <%
               String pay = "";
               String input = "";
               if(vo.getPaymeans().equals("card")){
@@ -203,13 +183,13 @@ font-size: 15px;
                   input = "헬로모바일";
                 }
               }
-              %>
-              <td>[<%=pay %>]</td>
+              %> --%>
+              <td>[<%-- ${pay } --%>]</td>
               <td>총 상품 가격</td>
-              <td><%=df.format(vo.getPaymoney()) %></td>
+              <td><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></td>
             </tr>
             <tr>
-            <%
+           <%--  <%
             String discount = "";
             if(vo.getDiscount() == 1 || vo.getDiscount() == 0){
               discount = "일시불";
@@ -220,8 +200,8 @@ font-size: 15px;
             } else if(vo.getDiscount() == 5){
               discount = "5개월";
             }
-            %>
-              <td><%=input %> / <%=discount %></td>
+            %> --%>
+              <td><%-- <%=input %> / <%=discount %> --%></td>
               <td>할인 금액</td>
               <td>0원</td>
             </tr>
@@ -232,16 +212,15 @@ font-size: 15px;
             </tr>
             <tr>
               <td style="border-top: 2px solid #898989"></td>
-              <td style="border-top: 2px solid #898989"><%=pay %></td>
-              <td style="border-top: 2px solid #898989"><%=df.format(vo.getPaymoney()) %></td>
+              <td style="border-top: 2px solid #898989">${pay }</td>
+              <td style="border-top: 2px solid #898989"><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></td>
             </tr>
             <tr>
               <td></td>
               <td>총 결제 금액</td>
-              <td><%=df.format(vo.getPaymoney()) %></td>
+              <td><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></td>
             </tr>
           </table>
-          <%} %>
           </div>
      </div>
      <div style="text-align: center;">

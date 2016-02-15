@@ -5,6 +5,7 @@ public class PaymentVO {
   private int payno;
   private String item;
   private String orderno;
+  private int caseno;
   private String payfile1;
   private int pcnt;
   private int paymoney;
@@ -20,8 +21,11 @@ public class PaymentVO {
   private int discount;
   private String deposit_input;
   private String phone_input;
-  private int contentno;
+  private int p_contentno;
   private int mno;
+  private int dno;
+  private int pwaybil;
+  private int pwaybil2;
 
   public int getPayno() {
     return payno;
@@ -37,6 +41,22 @@ public class PaymentVO {
 
   public void setItem(String item) {
     this.item = item;
+  }
+
+  public String getOrderno() {
+    return orderno;
+  }
+
+  public void setOrderno(String orderno) {
+    this.orderno = orderno;
+  }
+
+  public int getCaseno() {
+    return caseno;
+  }
+
+  public void setCaseno(int caseno) {
+    this.caseno = caseno;
   }
 
   public String getPayfile1() {
@@ -71,38 +91,6 @@ public class PaymentVO {
     this.paycharge = paycharge;
   }
 
-  public int getContentno() {
-    return contentno;
-  }
-
-  public void setContentno(int contentno) {
-    this.contentno = contentno;
-  }
-
-  public int getMno() {
-    return mno;
-  }
-
-  public void setMno(int mno) {
-    this.mno = mno;
-  }
-
-  public String getOrderno() {
-    return orderno;
-  }
-
-  public void setOrderno(String orderno) {
-    this.orderno = orderno;
-  }
-
-  public String getPaymeans() {
-    return paymeans;
-  }
-
-  public void setPaymeans(String paymeans) {
-    this.paymeans = paymeans;
-  }
-
   public String getResive_name() {
     return resive_name;
   }
@@ -111,21 +99,12 @@ public class PaymentVO {
     this.resive_name = resive_name;
   }
 
-
-  public String getResive_phone() {
-    return resive_phone;
+  public String getResive_post() {
+    return resive_post;
   }
 
-  public void setResive_phone(String resive_phone) {
-    this.resive_phone = resive_phone;
-  }
-
-  public String getPayday() {
-    return payday;
-  }
-
-  public void setPayday(String payday) {
-    this.payday = payday;
+  public void setResive_post(String resive_post) {
+    this.resive_post = resive_post;
   }
 
   public String getResive_addr1() {
@@ -144,12 +123,28 @@ public class PaymentVO {
     this.resive_addr2 = resive_addr2;
   }
 
-  public String getResive_post() {
-    return resive_post;
+  public String getResive_phone() {
+    return resive_phone;
   }
 
-  public void setResive_post(String resive_post) {
-    this.resive_post = resive_post;
+  public void setResive_phone(String resive_phone) {
+    this.resive_phone = resive_phone;
+  }
+
+  public String getPaymeans() {
+    return paymeans;
+  }
+
+  public void setPaymeans(String paymeans) {
+    this.paymeans = paymeans;
+  }
+
+  public String getPayday() {
+    return payday;
+  }
+
+  public void setPayday(String payday) {
+    this.payday = payday;
   }
 
   public String getCard_input() {
@@ -184,5 +179,44 @@ public class PaymentVO {
     this.phone_input = phone_input;
   }
 
-  
+  public int getP_contentno() {
+    return p_contentno;
+  }
+
+  public void setP_contentno(int p_contentno) {
+    this.p_contentno = p_contentno;
+  }
+
+  public int getMno() {
+    return mno;
+  }
+
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+
+  public int getDno() {
+    return dno;
+  }
+
+  public void setDno(int dno) {
+    this.dno = dno;
+  }
+
+  public int getPwaybil() {
+    return pwaybil;
+  }
+
+  public void setPwaybil(int pwaybil) {
+    this.pwaybil = pwaybil;
+  }
+
+  public int getPwaybil2() {
+    return pwaybil2;
+  }
+
+  public void setPwaybil2(int pwaybil2) {
+    this.pwaybil2 = pwaybil2;
+  }
+
 }

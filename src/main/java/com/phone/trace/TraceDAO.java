@@ -25,8 +25,8 @@ public class TraceDAO {
       return mapper().create(traceVO);
     }
     
-    public ArrayList<TraceVO> list(int waybil){
-      return mapper().list(waybil);
+    public ArrayList<TraceVO> list(TraceVO traceVO){
+      return mapper().list(traceVO);
     }
     
     public TraceVO read(TraceVO traceVO){
@@ -39,5 +39,21 @@ public class TraceDAO {
     
     public int delete(int deleveryno){
       return mapper().delete(deleveryno);
+    }
+    
+    public ArrayList<TraceVO> trace_situration_list(TraceVO traceVO){
+      return mapper().trace_situration_list(traceVO);
+    }
+    
+    public int ts_update(TraceVO traceVO){
+      return mapper().ts_update(traceVO);
+    }
+    
+    public int mypageno_update(TraceVO traceVO){
+      return mapper().mypageno_update(traceVO);
+    }
+    
+    public TraceVO trace_read(TraceVO traceVO){
+      return mapper().trace_read(traceVO);
     }
 }

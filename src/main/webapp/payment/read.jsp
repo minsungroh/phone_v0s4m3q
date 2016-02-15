@@ -96,8 +96,7 @@ function deliveryaddr(mno) {
     win_file1.moveTo(x, y);
   }
  
- function update(payno, card_input, discount, deposit_input, phone_input){
-	  $("#payno").attr("value", payno);
+ function update(p_contentno, mno, card_input, discount, deposit_input, phone_input, caseno){
      var card = $(":radio[name='paymeans']:checked").val();
      $("#rname").prop("name","resive_name");
      $("#zipcode").prop("name", "resive_post");
@@ -108,7 +107,7 @@ function deliveryaddr(mno) {
      $("#discount").attr("value", discount);
      $("#deposit_input").attr("value", deposit_input);
      $("#phone_input").attr("value", phone_input);
-     $("#frm").attr("action", "./update.do?payno=" + payno );
+     $("#frm").attr("action", "./update.do?p_contentno=" + p_contentno + "&mno=" + mno + "&caseno=" + caseno);
      $("#frm").submit();
    }
 </script>
@@ -126,8 +125,8 @@ font-size: 15px;
 <DIV class='title' style="font-size: 2em; text-align: center; font-weight: bold; color: #FF0000">주문서</DIV>
 
 <DIV style="width:70%; margin: 0 auto;">
-<FORM name='frm' id="frm" method='POST' action='./.do' onsubmit="update(<%=paymentVO.getPayno()%>, '<%=paymentVO.getCard_input()%>', <%=paymentVO.getDiscount()%>, '<%=paymentVO.getDeposit_input()%>', 
-'<%=paymentVO.getPhone_input()%>' )">
+<FORM name='frm' id="frm" method='POST' action='./.do' onsubmit="update(<%=paymentVO.getP_contentno() %>, <%=paymentVO.getMno() %>, '<%=paymentVO.getCard_input()%>', <%=paymentVO.getDiscount()%>, '<%=paymentVO.getDeposit_input()%>', 
+'<%=paymentVO.getPhone_input()%>' , <%=paymentVO.getCaseno() %>)">
   <input type="hidden" name="payno" id="payno" value="<%=paymentVO.getPayno()%>">
   <input type="hidden" name="mno" id="mno" value="<%=memberVO.getMno()%>">
   <span style="font-weight: bold;">1. 주문상품 확인</span>
@@ -147,8 +146,8 @@ font-size: 15px;
       </TR>
       <tr>
         <td style="padding-left: 1%;">
-          <a href="#"><img src="./images/festival01_m.jpg" style="float: left"></a>&nbsp;
-          <span style="line-height:80px; vertical-align: middle;"><a href="#">[ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></a></span></td>
+          <a href="../p_content/read.do?p_contentno=${contentVO.p_contentno }&p_categoryno=${contentVO.p_categoryno}"><img src="./images/festival01_m.jpg" style="float: left"></a>&nbsp;
+          <span style="line-height:80px; vertical-align: middle;"><a href="../p_content/read.do?p_contentno=${contentVO.p_contentno }&p_categoryno=${contentVO.p_categoryno}">[ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></a></span></td>
         <td style="text-align: center;"><%=paymentVO.getPcnt() %></td>
         <td style="text-align: center;">0</td>
         <td style="text-align: center;"><%=df.format(paymentVO.getPaymoney()) %></td>
@@ -370,7 +369,7 @@ font-size: 15px;
      </table>
      <div style="text-align: center;">
      <input type="submit" value="결제하기">
-     <button type="button" onclick="history.back();">취소</button>
+     <button type="button" onclick="location.href='./delete.do?payno=' + ${PaymentVO.payno}">취소</button>
      </div>
   </fieldset>
 </FORM>

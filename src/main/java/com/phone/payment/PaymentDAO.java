@@ -50,4 +50,12 @@ public class PaymentDAO {
     public int delete(int payno){
       return mapper().delete(payno);
     }
+    
+    public PaymentVO create_read(PaymentVO paymentVO){
+      return mapper().create_read(paymentVO);
+    }
+    
+    public PaymentVO mypage_read(PaymentVO paymentVO){
+      return mapper().mypage_read(paymentVO);
+    }
 }

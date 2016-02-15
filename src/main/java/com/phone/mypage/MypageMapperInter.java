@@ -27,12 +27,18 @@ public interface MypageMapperInter {
   // <select id="list" resultType="MypageVO" parameterType="MypageVO">
   public ArrayList<MypageVO> list(MypageVO mypageVO);
   
-  // <select id="detail_list" resultType="MypageVO" parameterType="MypageVO">
-  public ArrayList<MypageVO> detail_list(MypageVO mypageVO);
+  // <select id="detail_read" resultType="MypageVO" parameterType="MypageVO">
+  public MypageVO detail_read(MypageVO mypageVO);
   
   // <update id="update_os" parameterType="MypageVO">
   public int update_os(MypageVO mypageVO);
   
   // <select id="update_read" resultType="MypageVO" parameterType="int">
-  public MypageVO update_read(int mno);
+  public MypageVO update_read(MypageVO mypageVO);
+  
+  // <insert id="create" parameterType="MypageVO">
+  public int create(MypageVO mypageVO);
+  
+  // <update id="my_state_update" parameterType="MypageVO">
+  public int my_state_update(MypageVO mypageVO);
 }

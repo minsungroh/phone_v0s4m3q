@@ -2,6 +2,7 @@
 <%@ page import="com.phone.trace.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="web.tool.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -14,17 +15,81 @@
  
 <script type="text/javascript">
  $(function(){ 
-
+	  $("#delivery_cb").hide();
+	  evt("manager_phone", "blur", phone_format);
+	  evt("agent_phone", "blur", tel_format);
+	  $("#dsc_div").hide();
 });
  
- function agent(waybil, traceno){
-     var win_file1 = window.open("./agent.do?waybil=" + waybil + "&traceno=" + traceno, '택배기사조회', 'width=650px, height=300px',
-     'scrollbars=no');
-    
-    var x = (screen.width - 650) / 2;
-    var y = (screen.height - 300) / 2;
-    
-    win_file1.moveTo(x, y);
+ function delivery_create(){
+	 $("#delivery_cb").show();
+	 $("#frm").attr("action", "../trace_situation/create.do");
+	 $("#submit").html("등록");
+	 $("#date").focus();
+	 var Now = new Date();
+	 var date = Now.getFullYear();
+	 date += '-' + Now.getMonth() + 1 ;
+	 date += '-' + Now.getDate();
+	 
+	 var time = "";
+	 var p = "";
+	 if(Now.getHours() < 10){
+		 p = 0;
+	 }
+	 
+	 var m = "";
+	 if(Now.getMinutes() < 10){
+		 m = 0;
+	 }
+	 time += p + Now.getHours();
+	 time += ':' + m + Now.getMinutes();
+	  
+	 
+	  $("#trace_date").attr("value", date);
+	  $("#trace_time").attr("value", time);
+ }
+ 
+ function create_cancel(){
+	 $("#delivery_cb").hide();
+ }
+ 
+ function phone_format() {
+	    var num = $("#manager_phone").val();
+	    
+	    var phone_num = num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	    
+	    $("#manager_phone").val(phone_num);
+	    
+	    $("#mobile1").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1"));
+	    $("#mobile2").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$2"));
+	    $("#mobile3").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$3"));
+	}
+ 
+ function tel_format() {
+     var num = $("#agent_phone").val();
+     
+     var phone_num = num.replace(/(^01.{0}|^01.{2}|[0-9]{2})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+     
+     $("#agent_phone").val(phone_num);
+     
+     $("#mobile1").val(num.replace(/(^01.{0}|^01.{2}|[0-9]{2})([0-9]+)([0-9]{4})/,"$1"));
+     $("#mobile2").val(num.replace(/(^01.{0}|^01.{2}|[0-9]{2})([0-9]+)([0-9]{4})/,"$2"));
+     $("#mobile3").val(num.replace(/(^01.{0}|^01.{2}|[0-9]{2})([0-9]+)([0-9]{4})/,"$3"));
+ }
+ 
+ function delivery_state_chage(){
+	 $("#dsc_div").show();
+	 $("#trace_state").focus();
+ }
+ 
+ function update_cancel(){
+	 $("#dsc_div").hide();
+ }
+ 
+ function update(){
+	 opener.location.reload();
+	 
+	 return true;
  }
 </script>
  <style type="text/css">
@@ -50,9 +115,23 @@
     </colgroup>
     <tr>
       <td style="font-weight: bold; background-color:  #b3e0ff;">운송장 번호</td>
-      <td>${read.waybil }</td>
+      <td>${read.waybil } - ${read.waybil2 }</td>
       <td style="font-weight: bold; background-color:  #b3e0ff;">배송상태</td>
-      <td>${read.trace_state }</td>
+      <td>${read.trace_state }
+        <div id="dsc_div">
+          <form name="frm_update" id="frm_update" method="POST" action="./update.do" onsubmit="return update();">
+          <input type="hidden" name="payno" value="${read.payno }">
+          <input type="hidden" name="mypageno" value="${read.mypageno }">
+            <select name="trace_state" id="trace_state" required="required">
+                <option value="상품준비중" selected="selected">상품준비중</option>
+                <option value="배송중">배송중</option>
+                <option value="배송완료">배송완료</option>
+            </select>
+            <button type="submit">변경</button>
+            <button type="button" onclick="update_cancel();">취소</button>
+          </form>
+        </div>
+      </td>
     </tr>
     <tr>
       <td style="font-weight: bold; background-color:  #b3e0ff;">배송지</td>
@@ -71,6 +150,75 @@
   </table>
 </DIV>
 <br>
+
+<div id="delivery_cb">
+<form name="frm" id="frm" method="post" action="./create.do" >
+<input type="hidden" name="traceno" id="traceno" value="${read.traceno }">
+<table border="1" style="width:90%; margin:0 auto; border-collapse: collapse; text-align: center;">
+  <colgroup>
+    <col width="10%" />
+    <col width="10%" />
+    <col width="15%" />
+    <col width="15%" />
+    <col width="10%" />
+    <col width="15%" />
+    <col width="25%" />
+  </colgroup>
+  <tr>
+  <th style="background-color:  #b3e0ff;">일자</th>
+  <th style="background-color:  #b3e0ff;">시간</th>
+  <th style="background-color:  #b3e0ff;">대리점이름</th>
+  <th style="background-color:  #b3e0ff;">대리점번호</th>
+  <th style="background-color:  #b3e0ff;">담당자이름</th>
+  <th style="background-color:  #b3e0ff;">담당자번호</th>
+  <th style="background-color:  #b3e0ff;">구분</th>
+ </tr>
+ <tr>
+<td><input type="date" name="trace_date" id="trace_date" value="" required="required"></td>
+<td><input type="time" name="trace_time" id="trace_time" value="" required="required"></td>
+<td>
+    <select name="agent" id="agent" style="width:80%;" required="required">
+        <optgroup label="서울">
+          <option value="강북지점">강북지점</option>
+          <option value="강남지점">강남지점</option>
+          <option value="종로지점">종로지점</option>
+        </optgroup>
+        <optgroup label="경기/인천">
+          <option value="판교지점">판교지점</option>
+          <option value="파주지점">파주지점</option>
+          <option value="인천지점">인천지점</option>
+          <option value="고양지점">고양지점</option>
+        </optgroup>
+        <optgroup label="충청도">
+          <option value="서천지점">서천지점</option>
+        </optgroup>
+        <optgroup label="전라도">
+          <option value="나주지점">나주지점</option>
+        </optgroup>
+        <optgroup label="부산">
+          <option value="부산지점">부산지점</option>
+        </optgroup>
+        <optgroup label="제주도">
+          <option value="제주지점">제주지점</option>
+        </optgroup>
+      </select>
+</td>
+<td><input type="tel" name="agent_phone" id="agent_phone" value="" size="15px" placeholder="02-" required="required"></td>
+<td><input type="text" name="manager" id="manager" value="" size="10px" required="required"></td>
+<td><input type="tel" name="manager_phone" id="manager_phone" value="" size="15px" placeholder="010-" required="required"></td>
+<td><input type="text" name="content" id="content" value="" size="35px" required="required"></td>
+ </tr>
+  <tr>
+    <td colspan="7">
+    <div style="text-align: center;">
+  <button type="submit" id='submit'>등록</button>
+  <button type="button" onclick="create_cancel()">취소</button>
+  </div>
+  </tr>
+</table> 
+</form>
+</div>
+
 <DIV style="width: 80%; margin: 0 auto; font-weight: bold; font-size: 1.5em;">배송현황<br>
  <span style="font-size: 13px; color: #AAAAAA;">담당자 이름을 클릭하면 연락처를 확인하실 수 있습니다.</span></DIV>
   <DIV class='content'>
@@ -78,44 +226,31 @@
       <colgroup>
         <col style="width:15%;"/>
         <col style="width:15%;"/>
-        <col style="width:25%;" />
-        <col style="width:15%;" />
+        <col style="width:20%;" />
+        <col style="width:20%;" />
         <col style="width:30%;" />
       </colgroup>
       <tr>
         <th style="background-color:  #b3e0ff;">일자</th>
-        <th style="background-color:  #b3e0ff;">시각</th>
+        <th style="background-color:  #b3e0ff;">시간</th>
         <th style="background-color:  #b3e0ff;">대리점</th>
         <th style="background-color:  #b3e0ff;">담당자</th>
         <th style="background-color:  #b3e0ff;">구분</th>
      </tr>
-     <tr>
-  <%
-       ArrayList list = (ArrayList)request.getAttribute("list");
-  
-       for (int i = 0; i < list.size(); i++) {
-       TraceVO vo = (TraceVO)list.get(i);
-      
-       int a = Integer.parseInt(vo.getTdate().substring(11, 13));
-       String p;
-       if(a < 12){
-         p = "오전";
-       } else {
-         p = "오후";
-         a = a - 12;
-       }
-       %>
-        <tr>
-          <td><%=vo.getTdate().substring(0, 10)%></td>
-          <td><%=p + "  " + a + ":" +vo.getTdate().substring(14, 19)%></td>
-          <td><%=vo.getAgent() %></td>
-          <td><a href="#" onclick="agent(<%=vo.getWaybil()%>, <%=vo.getTraceno()%>);"><%=vo.getManager() %></a></td>
-          <td><%=vo.getContent() %></td>
-        </tr>    
-       <%} %>
+      <c:forEach var="trace" items="${trace }">
+           <tr>
+          <td>${trace.tdate }</td>
+          <td>${trace.tstime }</td>
+          <td>${trace.agent } / ${trace.agent_phone }</td>
+          <td>${trace.manager } / ${trace.manager_phone }</td>
+          <td>${trace.content }</td>
+      </tr>
+       </c:forEach>
   </table>
   </DIV>
   <div style="text-align: center;">
+    <button type="button" onclick="delivery_create();">등록</button>
+    <button type="button" onclick="delivery_state_chage()">배송상태 변경</button>
     <button type="button" onclick="window.close();">닫기</button>
   </div>
 <!-- -------------------------------------------- -->

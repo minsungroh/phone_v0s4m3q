@@ -4,17 +4,15 @@ public class TraceVO {
 
   private int traceno;
   private int waybil;
+  private int waybil2;
   private String trace_state;
-  private String tdate;
-  private String agent;
-  private String manager;
-  private String manager_phone;
-  private String content;
   private int payno;
+  private int mypageno;
 
   // paymentVO
   private String item;
   private String orderno;
+  private int caseno;
   private String payfile1;
   private int pcnt;
   private int paymoney;
@@ -30,6 +28,25 @@ public class TraceVO {
   private int discount;
   private String deposit_input;
   private String phone_input;
+  private int p_contentno;
+  private int mno;
+  private int dno;
+  private int pwaybil;
+  private int pwaybil2;
+
+  // Trace_situation
+  private int tsno;
+  private String tsdate;
+  private String agent;
+  private String agent_phone;
+  private String manager;
+  private String manager_phone;
+  private String content;
+
+  // add
+  private String tstime;
+  private String tdate;
+  
 
   public int getTraceno() {
     return traceno;
@@ -47,52 +64,20 @@ public class TraceVO {
     this.waybil = waybil;
   }
 
+  public int getWaybil2() {
+    return waybil2;
+  }
+
+  public void setWaybil2(int waybil2) {
+    this.waybil2 = waybil2;
+  }
+
   public String getTrace_state() {
     return trace_state;
   }
 
   public void setTrace_state(String trace_state) {
     this.trace_state = trace_state;
-  }
-
-  public String getTdate() {
-    return tdate;
-  }
-
-  public void setTdate(String tdate) {
-    this.tdate = tdate;
-  }
-
-  public String getAgent() {
-    return agent;
-  }
-
-  public void setAgent(String agent) {
-    this.agent = agent;
-  }
-
-  public String getManager() {
-    return manager;
-  }
-
-  public void setManager(String manager) {
-    this.manager = manager;
-  }
-
-  public String getManager_phone() {
-    return manager_phone;
-  }
-
-  public void setManager_phone(String manager_phone) {
-    this.manager_phone = manager_phone;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
   }
 
   public int getPayno() {
@@ -237,6 +222,134 @@ public class TraceVO {
 
   public void setPhone_input(String phone_input) {
     this.phone_input = phone_input;
+  }
+
+  public int getMypageno() {
+    return mypageno;
+  }
+
+  public void setMypageno(int mypageno) {
+    this.mypageno = mypageno;
+  }
+
+  public String getTstime() {
+    return tstime;
+  }
+
+  public void setTstime(String tstime) {
+    this.tstime = tstime;
+  }
+
+  public int getTsno() {
+    return tsno;
+  }
+
+  public void setTsno(int tsno) {
+    this.tsno = tsno;
+  }
+
+  public String getTsdate() {
+    return tsdate;
+  }
+
+  public void setTsdate(String tsdate) {
+    this.tsdate = tsdate;
+  }
+
+  public String getAgent() {
+    return agent;
+  }
+
+  public void setAgent(String agent) {
+    this.agent = agent;
+  }
+
+  public String getAgent_phone() {
+    return agent_phone;
+  }
+
+  public void setAgent_phone(String agent_phone) {
+    this.agent_phone = agent_phone;
+  }
+
+  public String getManager() {
+    return manager;
+  }
+
+  public void setManager(String manager) {
+    this.manager = manager;
+  }
+
+  public String getManager_phone() {
+    return manager_phone;
+  }
+
+  public void setManager_phone(String manager_phone) {
+    this.manager_phone = manager_phone;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+  public String getTdate() {
+    return tdate;
+  }
+
+  public void setTdate(String tdate) {
+    this.tdate = tdate;
+  }
+
+  public int getCaseno() {
+    return caseno;
+  }
+
+  public void setCaseno(int caseno) {
+    this.caseno = caseno;
+  }
+
+  public int getP_contentno() {
+    return p_contentno;
+  }
+
+  public void setP_contentno(int p_contentno) {
+    this.p_contentno = p_contentno;
+  }
+
+  public int getMno() {
+    return mno;
+  }
+
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+
+  public int getDno() {
+    return dno;
+  }
+
+  public void setDno(int dno) {
+    this.dno = dno;
+  }
+
+  public int getPwaybil() {
+    return pwaybil;
+  }
+
+  public void setPwaybil(int pwaybil) {
+    this.pwaybil = pwaybil;
+  }
+
+  public int getPwaybil2() {
+    return pwaybil2;
+  }
+
+  public void setPwaybil2(int pwaybil2) {
+    this.pwaybil2 = pwaybil2;
   }
 
 }

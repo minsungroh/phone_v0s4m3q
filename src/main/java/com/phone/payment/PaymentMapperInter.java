@@ -17,4 +17,10 @@ public interface PaymentMapperInter {
   
   // <delete id="delete" parameterType="int">
   public int delete(int payno);
+  
+  // <select id="create_read" resultType="PaymentVO" parameterType="PaymentVO">
+  public PaymentVO create_read(PaymentVO paymentVO);
+  
+  // <select id="mypage_read" resultType="PaymentVO" parameterType="int">
+  public PaymentVO mypage_read(PaymentVO paymentVO);
 }

@@ -28,7 +28,8 @@
                                    com.phone.cart,
                                    com.phone.admin1,
                                    com.phone.pds5,
-                                   com.phone.trace" />
+                                   com.phone.trace,
+                                   com.phone.Trace_situation" />
 		 <property name="mapperLocations" value="classpath:com/phone/**/*.xml" />
   </bean>
   

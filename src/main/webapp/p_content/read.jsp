@@ -13,7 +13,19 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
 <title></title>
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
+<script type="text/javascript" src="../js/tool.js"></script>
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script> <!-- 이 부분은 jquery 선언 후 사용해야 된다. -->
 
+<script type="text/javascript"> 
+window.onload = function(){
+ 
+}
+
+function buy(p_contentno, mno){
+	location.href="../payment/create.do?p_contentno=" + p_contentno + "&mno=" + mno ;
+}
+</script>
 </head>
 <!-- ----------------------------------------- -->
 <body leftmargin="0" topmargin="0">
@@ -45,8 +57,10 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
             </select>
               
             </span>
-            
-            <button type='button' onclick="location.href='#'" style="margin-left: 600px;">바로구매</button>
+            <%
+            int mno = 1;
+            %>
+            <button type='button' onclick="buy(<%=p_contentVO.getP_categoryno()%>, <%=mno %>)" style="margin-left: 600px;">바로구매</button>
             <button type='button' onclick="location.href='#'" >장바구니</button>
           
           </fieldset>

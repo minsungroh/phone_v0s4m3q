@@ -3,17 +3,14 @@ drop table trace;
 
 CREATE TABLE trace(
     traceno                           MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '배송번호',
-    waybil                            BIGINT     NOT NULL COMMENT '송장번호',
-    trace_state                       VARCHAR(100)     NOT NULL COMMENT '배송상태',
-    tdate                             DATETIME     NOT NULL COMMENT '배송일',
-    agent                             VARCHAR(100)     NOT NULL COMMENT '대리점',
-    manager                           VARCHAR(20)    NOT NULL COMMENT '담당자',
-    manager_phone                     VARCHAR(30)    NOT NULL COMMENT '담당자전화번호',
-    content                           VARCHAR(200)     NOT NULL COMMENT '구분',
+    waybil                            BIGINT    UNIQUE NOT NULL COMMENT '송장번호',
+    waybil2                           BIGINT    UNIQUE NOT NULL COMMENT '송장번호2',
+    trace_state                       VARCHAR(100)     DEFAULT "상품준비중"     NOT NULL COMMENT '배송상태',
     payno                             INT(10)    NULL  COMMENT '번호',
-  FOREIGN KEY (payno) REFERENCES payment (payno)
+    mypageno                          MEDIUMINT(10)    NULL  COMMENT '번호',
+  FOREIGN KEY (payno) REFERENCES payment (payno),
+  FOREIGN KEY (mypageno) REFERENCES mypage (mypageno)
 ) COMMENT='배송추적';
-
 -- 배송상태 : 물품준비중, 배송중, 배송완료
 
 2. 등록
@@ -31,23 +28,42 @@ select traceno, waybil, trace_state, ddate, agent, manger, manager_phone, conten
 from trace
 where waybil='160209001';
 
+select traceno, waybil, waybil2, trace_state, payno, mypageno
+from trace
+where payno=''
 
 select * from trace;
 4. 조회
-select t.traceno, t.waybil, t.trace_state, t.ddate, t.agent, t.manager, t.manager_phone, t.content, t.payno, p.payno, p.resive_post, p.resive_addr1, p.resive_addr2, p.resive_phone, p.resive_name, p.item, p.pcnt
+select t.traceno, t.waybil, t.trace_state, t.tdate, t.agent, t.manager, t.manager_phone, t.content, t.payno, p.payno, p.resive_post, p.resive_addr1, p.resive_addr2, p.resive_phone, p.resive_name, p.item, p.pcnt
 from trace t
 join payment p on t.payno = p.payno
-where t.waybil='160209001' and t.deleveryno='1';
+where t.waybil='160209001'
 
+select traceno, waybil, waybil2, trace_state, payno, mypageno
+from trace
+where traceno='1';
 
 select traceno, waybil, trace_state, ddate, agent, manager, manager_phone, content, payno
 from trace
 where waybil='160209001';
 
+select ts.tsno, ts.tsdate, ts.agent, ts.agent_phone, ts.manager, ts.manager_phone, ts.content, ts.traceno, t.traceno, t.waybil, t.waybil2, t.trace_state, t.payno, t.mypageno
+from trace_situation as ts
+join trace as t on ts.traceno = t.traceno
+where waybil and waybil2
+
 5. 수정
 update trace
 set trace_state = '배송중';
 where traceno='1';
+
+update trace
+set trace_state=''
+where waybil and waybil2
+
+update trace
+set mypageno=''
+where payno=''
 
 6. 값 찾기
 select count(traceno) as cnt
@@ -60,3 +76,6 @@ delete from trace;
 delete from trace
 where traceno='1';
 
+update trace
+set mypageno=''
+where traceno

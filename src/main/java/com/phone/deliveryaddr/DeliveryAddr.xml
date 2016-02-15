@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="read" resultType="DeliveryAddrVO" parameterType="int">
     select dno, dcategory, dname, dzipcode, daddr1, daddr2, dphone, mno
     from deliveryaddr
-    where dno=#{dno}
+    where mno=#{mno}
   </select>
   
   <update id="update" parameterType="DeliveryAddrVO">

@@ -62,8 +62,8 @@ public class MypageDAO {
     }
     
     // 주문 상세 조회
-    public ArrayList<MypageVO> detail_list(MypageVO mypageVO){
-      return mapper().detail_list(mypageVO);
+    public MypageVO detail_read(MypageVO mypageVO){
+      return mapper().detail_read(mypageVO);
     }
     
     // 주문확정 수정
@@ -71,7 +71,17 @@ public class MypageDAO {
       return mapper().update_os(mypageVO);
     }
     
-    public MypageVO update_read(int mno){
-      return mapper().update_read(mno);
+    // update read
+    public MypageVO update_read(MypageVO mypageVO){
+      return mapper().update_read(mypageVO);
+    }
+    
+    // 등록
+    public int create(MypageVO mypageVO){
+      return mapper().create(mypageVO);
+    }
+    
+    public int my_state_update(MypageVO mypageVO){
+      return mapper().my_state_update(mypageVO);
     }
 }

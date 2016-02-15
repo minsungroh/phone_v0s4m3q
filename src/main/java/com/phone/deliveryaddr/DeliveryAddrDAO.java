@@ -29,8 +29,8 @@ public class DeliveryAddrDAO {
       return mapper().list(mno);
     }
     
-    public DeliveryAddrVO read(int dno){
-      return mapper().read(dno);
+    public DeliveryAddrVO read(int mno){
+      return mapper().read(mno);
     }
     
     public int update(DeliveryAddrVO deliveryAddrVO){
