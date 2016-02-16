@@ -60,7 +60,7 @@ function buy(p_contentno, mno){
             <%
             int mno = 1;
             %>
-            <button type='button' onclick="buy(<%=p_contentVO.getP_categoryno()%>, <%=mno %>)" style="margin-left: 600px;">바로구매</button>
+            <button type='button' onclick="buy(<%=p_contentVO.getP_contentno()%>, <%=mno %>)" style="margin-left: 600px;">바로구매</button>
             <button type='button' onclick="location.href='#'" >장바구니</button>
           
           </fieldset>

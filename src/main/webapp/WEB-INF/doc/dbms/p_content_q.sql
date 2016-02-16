@@ -31,7 +31,7 @@ from p_content;
 4. 조회
 select contentno, title, content, file, file1, itemnum, replycnt, money, productcnt, mno
 from p_content
-where contentno='1';
+where contentno='3';
 
 5. 수정
 update p_content

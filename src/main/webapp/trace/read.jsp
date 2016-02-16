@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="web.tool.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -86,7 +87,7 @@
 	 $("#dsc_div").hide();
  }
  
- function update(){
+ function review(){
 	 opener.location.reload();
 	 
 	 return true;
@@ -119,7 +120,7 @@
       <td style="font-weight: bold; background-color:  #b3e0ff;">배송상태</td>
       <td>${read.trace_state }
         <div id="dsc_div">
-          <form name="frm_update" id="frm_update" method="POST" action="./update.do" onsubmit="return update();">
+          <form name="frm_update" id="frm_update" method="POST" action="./update.do" onsubmit="return review();">
           <input type="hidden" name="payno" value="${read.payno }">
           <input type="hidden" name="mypageno" value="${read.mypageno }">
             <select name="trace_state" id="trace_state" required="required">

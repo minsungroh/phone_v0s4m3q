@@ -50,9 +50,10 @@ public class MypageCont {
       mypageVO.setOrderstate("결제대기중");
     }
     mypageVO.setPayno(paymentDAO.mypage_read(paymentVO).getPayno());
-    
     mypageDAO.create(mypageVO);
-    mav.setViewName("redirect:./read.do?mno=" + mypageVO.getMno());
+    
+    int mypageno = mypageDAO.read_mypageno(mypageVO).getMypageno();
+    mav.setViewName("redirect:../trace/create_mypageno.do?mypageno=" + mypageno + "&mno=" + mypageVO.getMno());
     return mav;
   }
   
@@ -70,22 +71,22 @@ public class MypageCont {
     
     ArrayList<MypageVO> list = mypageDAO.list(mypageVO);
     Iterator<MypageVO> iter = list.iterator();
-    String state="";
     while(iter.hasNext() == true){
       MypageVO vo = iter.next();
      
       if(vo.getOrderstate().equals("결제대기중")){
-        state = "결제대기중";
+        vo.setMy_state("결제대기중");
      } else if(vo.getOrderstate().equals("결제완료") && vo.getTrace_state().equals("")){
-        state = "결제완료";
-     }else if(vo.getOrderstate().equals("결제완료") && vo.getTrace_state().equals("상품준비중") || vo.getTrace_state().equals("배송중")){
-        state = vo.getTrace_state();
+        vo.setMy_state("결제완료");
+     } else if((vo.getTrace_state().equals("상품준비중") || vo.getTrace_state().equals("배송중")) && vo.getOrderstate().equals("결제완료")){
+        vo.setMy_state(vo.getTrace_state());
      } else if(vo.getTrace_state().equals("배송완료")){
-        state = "구매 결정 대기";
+        vo.setMy_state("구매 결정 대기");
      }
-      vo.setPayday(vo.getPayday().substring(0, 11));
       
-      mypageVO.setMy_state(state);
+      vo.setPayday(vo.getPayday().substring(0, 11));
+      mypageVO.setMy_state(vo.getMy_state());
+      System.out.println(mypageVO.getMy_state());
       mypageDAO.my_state_update(mypageVO);
     }
     
@@ -99,10 +100,59 @@ public class MypageCont {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/mypage/detail_list");
     
-    System.out.println(mypageDAO.detail_read(mypageVO).getMy_state());
-    mav.addObject("detail_list", mypageDAO.detail_read(mypageVO));
-    mav.addObject("detail_date", mypageDAO.detail_read(mypageVO).getPayday().substring(0, 11));
 
+    mav.addObject("detail_date", mypageDAO.detail_read(mypageVO).getPayday().substring(0, 11));
+    mav.addObject("detail_list", mypageDAO.detail_read(mypageVO));
+    
+    MypageVO vo = mypageDAO.detail_read(mypageVO);
+    String pay = "";
+    String input = "";
+    if(vo.getPaymeans().equals("card")){
+      pay = "신용카드";
+      if(vo.getCard_input().equals("bc")){
+        input = "비씨카드";
+      } else if(vo.getCard_input().equals("kbc")){
+        input = "국민카드";
+      } else if(vo.getCard_input().equals("uric")){
+        input = "우리카드";
+      } else if(vo.getCard_input().equals("hyundaec")){
+        input = "현대카드";
+      } else if(vo.getCard_input().equals("samsungc")){
+        input = "삼성카드";
+      }
+    } else if(vo.getPaymeans().equals("deposit")){
+      pay = "무통장입금";
+      if(vo.getDeposit_input().equals("kbb")){
+        input = "국민은행";
+      } else if(vo.getDeposit_input().equals("urib")){
+        input = "우리은행";
+      } else if(vo.getDeposit_input().equals("sinhanb")){
+        input = "신한은행";
+      } else if(vo.getDeposit_input().equals("hanab")){
+        input = "하나은행";
+      } else if(vo.getDeposit_input().equals("postb")){
+        input = "우체국";
+      }
+    } else if(vo.getPaymeans().equals("phone")){
+      pay = "휴대폰결제";
+      if(vo.getCard_input().equals("skt")){
+        input = "SKT";
+      } else if (vo.getCard_input().equals("lgu")){
+        input = "LG U+";
+      } else if (vo.getCard_input().equals("kt")){
+        input = "KT";
+      } else if (vo.getCard_input().equals("kct")){
+        input = "알뜰폰-KCT";
+      } else if (vo.getCard_input().equals("hm")){
+        input = "헬로모바일";
+      }
+    }
+    
+    vo.setPay_detail(pay);
+    vo.setInput_detail(input);
+    mav.addObject("pay_detail", vo.getPay_detail());
+    mav.addObject("input_detail", vo.getInput_detail());
+    
     return mav;
   }
   
@@ -121,7 +171,7 @@ public class MypageCont {
     ModelAndView mav = new ModelAndView();
     
     int money = mypageDAO.update_read(mypageVO).getPaymoney();
-    
+    System.out.println(money);
     if(mypageDAO.update_read(mypageVO).getOrdersubmit().equals("N")){
       mypageDAO.update_read(mypageVO).setOrdersubmit("Y");
       mypageDAO.update_read(mypageVO).setPoint((int)(money * 0.001));

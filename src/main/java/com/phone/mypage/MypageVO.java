@@ -36,12 +36,17 @@ public class MypageVO {
   private int dno;
   private int pwaybil;
   private int pwaybil2;
-
+  private int p_categoryno;
+  
   // trace
   private int waybil;
   private int waybil2;
   private String trace_state;
 
+  // add
+  private String pay_detail;
+  private String input_detail;
+  
   public int getMypageno() {
     return mypageno;
   }
@@ -322,4 +327,29 @@ public class MypageVO {
     this.pwaybil2 = pwaybil2;
   }
 
+  public int getP_categoryno() {
+    return p_categoryno;
+  }
+
+  public void setP_categoryno(int p_categoryno) {
+    this.p_categoryno = p_categoryno;
+  }
+
+  public String getPay_detail() {
+    return pay_detail;
+  }
+
+  public void setPay_detail(String pay_detail) {
+    this.pay_detail = pay_detail;
+  }
+
+  public String getInput_detail() {
+    return input_detail;
+  }
+
+  public void setInput_detail(String input_detail) {
+    this.input_detail = input_detail;
+  }
+
+  
 }
