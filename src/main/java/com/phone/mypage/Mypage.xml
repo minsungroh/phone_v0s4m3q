@@ -71,17 +71,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <select id="list" resultType="MypageVO" parameterType="MypageVO">
     select m.mypageno, p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, m.mno, m.ordersubmit, p.paycharge, m.payno, m.point, m.my_state,
-    t.waybil, t.waybil2, t.trace_state
+    t.waybil, t.waybil2, t.trace_state, p.payfile1, p.p_contentno, p.p_categoryno
     from mypage as m
     join payment as p on m.payno = p.payno
     join trace as t on m.mypageno = t.mypageno
     where m.mno=#{mno}
-    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
-    and date(p.payday) &lt;= date(now())
   </select>
   
   <select id="detail_read" resultType="MypageVO" parameterType="MypageVO">
-    select p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, t.traceno, t.waybil, p.resive_name, 
+    select p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, t.traceno, t.waybil, p.resive_name, p.p_contentno, p.p_categoryno,
     p.resive_phone, p.resive_post, p.resive_addr1, p.resive_addr2, p.paymeans, p.card_input, p.discount, p.deposit_input, p.phone_input, p.paymoney, p.paymeans,
     m.orderstate, m.ordersubmit, m.point, m.payno, m.mno, m.my_state, t.waybil2, t.payno
     from mypage m
@@ -100,8 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     select m.mypageno, m.orderstate, m.ordersubmit, m.point, m.payno, m.mno, p.paycharge, p.paymoney
     from mypage as m
     join payment as p on m.payno = p.payno
-    join trace as t on m.mypageno = t.mypageno
-    where m.mno=#{mno} and t.waybil=#{waybil}
+    where m.payno=#{payno} and m.mno=#{mno}
   </select>
    
   <update id="my_state_update" parameterType="MypageVO">
@@ -109,4 +106,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     set my_state=#{my_state}
     where mno=#{mno}
   </update>
+  
+    <select id="read_mypageno" resultType="MypageVO" parameterType="MypageVO">
+    select mypageno, orderstate, ordersubmit, point, payno, mno
+    from mypage
+    where payno=#{payno}
+  </select>
 </mapper>

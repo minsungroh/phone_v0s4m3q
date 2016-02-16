@@ -26,7 +26,10 @@ public class PaymentVO {
   private int dno;
   private int pwaybil;
   private int pwaybil2;
+  private int p_categoryno;
 
+  private int tracecnt;
+  
   public int getPayno() {
     return payno;
   }
@@ -219,4 +222,21 @@ public class PaymentVO {
     this.pwaybil2 = pwaybil2;
   }
 
+  public int getTracecnt() {
+    return tracecnt;
+  }
+
+  public void setTracecnt(int tracecnt) {
+    this.tracecnt = tracecnt;
+  }
+
+  public int getP_categoryno() {
+    return p_categoryno;
+  }
+
+  public void setP_categoryno(int p_categoryno) {
+    this.p_categoryno = p_categoryno;
+  }
+
+  
 }

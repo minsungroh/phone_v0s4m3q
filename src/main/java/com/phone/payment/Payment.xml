@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.phone.payment.PaymentMapperInter">
 
   <insert id="create" parameterType="PaymentVO">
-     insert into payment(item, orderno, caseno, payfile1, pcnt, paymoney, paycharge, p_contentno, mno)
-     values(#{item}, #{orderno}, #{caseno}, #{payfile1}, #{pcnt}, #{paymoney}, 'N', #{p_contentno}, #{mno});
+     insert into payment(item, orderno, caseno, payfile1, pcnt, paymoney, paycharge, p_categoryno, p_contentno, mno)
+     values(#{item}, #{orderno}, #{caseno}, #{payfile1}, #{pcnt}, #{paymoney}, 'N', #{p_categoryno}, #{p_contentno}, #{mno});
   </insert>
   
   <select id="read" resultType="PaymentVO" parameterType="PaymentVO">

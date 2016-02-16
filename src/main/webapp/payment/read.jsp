@@ -146,7 +146,7 @@ font-size: 15px;
       </TR>
       <tr>
         <td style="padding-left: 1%;">
-          <a href="../p_content/read.do?p_contentno=${contentVO.p_contentno }&p_categoryno=${contentVO.p_categoryno}"><img src="./images/festival01_m.jpg" style="float: left"></a>&nbsp;
+          <a href="../p_content/read.do?p_contentno=${contentVO.p_contentno }&p_categoryno=${contentVO.p_categoryno}"><img src="../p_content/storage/${contentVO.file }" style="float: left; width:100px;"></a>&nbsp;
           <span style="line-height:80px; vertical-align: middle;"><a href="../p_content/read.do?p_contentno=${contentVO.p_contentno }&p_categoryno=${contentVO.p_categoryno}">[ <%=paymentVO.getOrderno() %> ] <%=Tool.textLength(50, paymentVO.getItem()) %></a></span></td>
         <td style="text-align: center;"><%=paymentVO.getPcnt() %></td>
         <td style="text-align: center;">0</td>

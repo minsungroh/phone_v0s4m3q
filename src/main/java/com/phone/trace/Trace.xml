@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="mypageno_update" parameterType="TraceVO">
     update trace
     set mypageno=#{mypageno}
-    where payno=#{payno}
+    where traceno=#{traceno}
   </update>
   
   <select id="trace_read" resultType="TraceVO" parameterType="TraceVO">
@@ -57,4 +57,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     from trace
     where payno=#{payno}
   </select>
+  
 </mapper>

@@ -21,11 +21,11 @@
     }); */
   });
   
-  function trace(waybil, traceno) {
-      var win_file = window.open("../trace/read.do?waybil=" + waybil +"&traceno=" + traceno, '배송조회', 'width=800px, height=550px',
+  function trace(payno, mypageno) {
+      var win_file = window.open("../trace/read.do?payno=" + payno +"&mypageno=" + mypageno, '배송조회', 'width=1200px, height=550px',
           'scrollbars=no');
 
-      var x = (screen.width - 800) / 2;
+      var x = (screen.width - 1200) / 2;
       var y = (screen.height - 550) / 2;
 
       win_file.moveTo(x, y);
@@ -90,15 +90,15 @@ button{
                     </colgroup>
                     <tr>
                     <td>
-                      <a href="" target="_blank"><img src="./images/festival01_m.jpg" style="float: left; margin-right: 2%;"></img></a>
+                      <a href="../p_content/read.do?p_contentno=${detail_list.p_contentno }&p_categoryno=${detail_list.p_categoryno }" target="_blank"><img src="../p_content/storage/${detail_list.payfile1 }" style="float: left; margin-right: 2%; width:100px;"></img></a><br>
                       <span>${detail_list.item}</span><br>
                       <span><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /> / ${detail_list.pcnt} 개 </span>
                    </td>
                    <td style="text-align: center; border-left: 1px solid #898989;">
                       <span>${detail_list.my_state }</span><br>
                       <button type="button" onclick="trace(${detail_list.payno }, ${detail_list.mypageno })">배송조회</button><br>
-                      <button type="button" onclick="#">반품신청</button><br>
-                      <button type="button" onclick="#">교환문의</button>
+                      <button type="button" onclick="">반품신청</button><br>
+                      <button type="button" onclick="">교환문의</button>
                    </td>
                 </table>
           </div>
@@ -109,19 +109,19 @@ button{
               <col style="width:80%;"/>
             </colgroup>
             <tr>
-              <th colspan="2" style="border-bottom: 2px solid black; text-align: left;">받는사람 정보</th>
+              <th colspan="2" style="border-bottom: 2px solid black; text-align: left; background-color: rgba(157, 216, 169, 0.46)">받는사람 정보</th>
             </tr>
             <tr>
-              <td>수령인</td>
-              <td>${detail_list.resive_name}</td>
+              <td style="text-align: center; background-color: rgba(157, 216, 169, 0.46)">수령인</td>
+              <td>&nbsp;${detail_list.resive_name}</td>
             </tr>
             <tr>
-              <td>연락처</td>
-              <td>${detail_list.resive_phone}</td>
+              <td style="text-align: center; background-color: rgba(157, 216, 169, 0.46)">연락처</td>
+              <td>&nbsp;${detail_list.resive_phone}</td>
             </tr>
             <tr>
-              <td>주소</td>
-              <td>(${detail_list.resive_post})${detail_list.resive_addr1} ${detail_list.resive_addr2}</td>
+              <td style="text-align: center; background-color: rgba(157, 216, 169, 0.46)">주소</td>
+              <td>&nbsp;(${detail_list.resive_post})${detail_list.resive_addr1} ${detail_list.resive_addr2}</td>
            </tr>
           </table>
           <br>
@@ -136,55 +136,12 @@ button{
             </tr>
             <tr>
               <td>결제수단</td>
-              <td></td>
+              <td>${input_detail }</td>
               <td></td>
             </tr>
             <tr>
-             <%--  <%
-              String pay = "";
-              String input = "";
-              if(vo.getPaymeans().equals("card")){
-                pay = "신용카드";
-                if(vo.getCard_input().equals("bc")){
-                  input = "비씨카드";
-                } else if(vo.getCard_input().equals("kbc")){
-                  input = "국민카드";
-                } else if(vo.getCard_input().equals("uric")){
-                  input = "우리카드";
-                } else if(vo.getCard_input().equals("hyundaec")){
-                  input = "현대카드";
-                } else if(vo.getCard_input().equals("samsungc")){
-                  input = "삼성카드";
-                }
-              } else if(vo.getPaymeans().equals("deposit")){
-                pay = "무통장입금";
-                if(vo.getDeposit_input().equals("kbb")){
-                  input = "국민은행";
-                } else if(vo.getDeposit_input().equals("urib")){
-                  input = "우리은행";
-                } else if(vo.getDeposit_input().equals("sinhanb")){
-                  input = "신한은행";
-                } else if(vo.getDeposit_input().equals("hanab")){
-                  input = "하나은행";
-                } else if(vo.getDeposit_input().equals("postb")){
-                  input = "우체국";
-                }
-              } else if(vo.getPaymeans().equals("phone")){
-                pay = "휴대폰결제";
-                if(vo.getCard_input().equals("skt")){
-                  input = "SKT";
-                } else if (vo.getCard_input().equals("lgu")){
-                  input = "LG U+";
-                } else if (vo.getCard_input().equals("kt")){
-                  input = "KT";
-                } else if (vo.getCard_input().equals("kct")){
-                  input = "알뜰폰-KCT";
-                } else if (vo.getCard_input().equals("hm")){
-                  input = "헬로모바일";
-                }
-              }
-              %> --%>
-              <td>[<%-- ${pay } --%>]</td>
+
+              <td>[${pay_detail }]</td>
               <td>총 상품 가격</td>
               <td><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></td>
             </tr>

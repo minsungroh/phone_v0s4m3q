@@ -41,6 +41,10 @@ SELECT p_contentno, title, content, file, file1, replycnt, money, productcnt, me
 FROM p_content
 ORDER BY p_contentno ASC;
 
+SELECT p_contentno, title, content, file, file1, replycnt, money, productcnt, meterial, p_categoryno
+FROM p_content
+where p_contentno='3';
+
 
 4. ¼öÁ¤
 UPDATE p_content

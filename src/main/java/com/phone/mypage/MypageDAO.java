@@ -84,4 +84,8 @@ public class MypageDAO {
     public int my_state_update(MypageVO mypageVO){
       return mapper().my_state_update(mypageVO);
     }
+    
+    public MypageVO read_mypageno(MypageVO mypageVO){
+      return mapper().read_mypageno(mypageVO);
+    }
 }

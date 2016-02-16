@@ -59,6 +59,7 @@ CREATE TABLE payment(
 		payday                        		DATETIME		 NULL  COMMENT '결재날짜',
 		pwaybil                       		BIGINT(10)		 NOT NULL COMMENT '택배송장번호1',
 		pwaybil2                      		MEDIUMINT(10)		 NOT NULL COMMENT '택배송장번호2',
+		p_categoryno                  		MEDIUMINT		 NOT NULL COMMENT '카테고리번호',
 		mno                           		INT(10)		 NULL  COMMENT 'mno',
 		p_contentno                   		MEDIUMINT(7)		 NULL  COMMENT 'p_contentno',
   FOREIGN KEY (p_contentno) REFERENCES p_content (p_contentno),

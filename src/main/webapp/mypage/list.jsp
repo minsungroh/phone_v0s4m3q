@@ -29,32 +29,35 @@
 	
 	
 	 function detail_read(mno, waybil) {
-	      var win_file = window.open("./detail_read.do?mno=" + mno +"&waybil=" + waybil, '주문상세보기', 'width=800px, height=600px',
+	      var win_file = window.open("./detail_read.do?mno=" + mno +"&waybil=" + waybil, '주문상세보기', 'width=1000px, height=600px',
 	          'scrollbars=no');
 
-	      var x = (screen.width - 800) / 2;
+	      var x = (screen.width - 1000) / 2;
 	      var y = (screen.height - 600) / 2;
 
 	      win_file.moveTo(x, y);
 	    }
 	 
 	 
-function update(mno, waybil, my_state){
+function update(payno, my_state, mno){
+  alert(my_state);
 	if(my_state != "구매 결정 대기"){
 		var sm = confirm("배송완료가 되지 않은 제품을 구매확정하시겠습니까?");
 		if(sm == true){
-			location.href="./update.do?mno=" + mno + "&waybil=" + waybil;
+			location.href="./update.do?payno=" + payno + "&mno=" + mno;
+		} else {
+			return false;
 		}
-	} else {
-			location.href="./update.do?mno=" + mno + "&waybil=" + waybil;
+	} else if(my_state == "구매 결정 대기") {
+		location.href="./update.do?payno=" + payno + "&mno=" + mno;
 	}
 }
 
 function take_back(mno, waybil){
-	 var win_file = window.open("./take_back.do?mno=" + mno +"&waybil=" + waybil, '반품신청', 'width=800px, height=600px',
+	 var win_file = window.open("./take_back.do?mno=" + mno +"&waybil=" + waybil, '반품신청', 'width=1000px, height=600px',
      'scrollbars=no');
 
- var x = (screen.width - 800) / 2;
+ var x = (screen.width - 1000) / 2;
  var y = (screen.height - 600) / 2;
 
  win_file.moveTo(x, y);
@@ -63,7 +66,7 @@ function take_back(mno, waybil){
 
 </script>
 
-<style>
+<style>  
 a {
   text-decoration: none;
   font-size: 12px;
@@ -150,7 +153,7 @@ button:hover{
                 <div style="background-color: #e5e5cc">
                 <li><a href="" style="font-weight: bold; font-size: 15px;">MY 쇼핑</a>
                   <ul>
-                    <li><a href="" onclick="history.back();">주문목록(배송조회)</a></li>
+                    <li><a href="" onclick="">주문목록(배송조회)</a></li>
                     <li><a href="#">취소/반품/환불내역</a></li>
                   </ul>
                   </li>
@@ -174,9 +177,8 @@ button:hover{
                   </div>
               </ul>
             </div>
-          
           </div>
-          <div style="border:none; float: left; width:79.5%;" id="order_menu">
+          <div style="border:none; float: left; width:79.5%;">
             <div style="border: none; margin: 5px; ">
               <span style="font-weight: bold;">주문목록/배송조회</span>
             </div>
@@ -196,7 +198,7 @@ button:hover{
                     </colgroup>
                     <tr>
                     <td>
-                      <a href="" target="_blank"><img src="./images/festival01_m.jpg" style="float: left; margin-right: 2%;"></img></a><br>
+                      <a href="../p_content/read.do?p_contentno=${vo.p_contentno }&p_categoryno=${vo.p_categoryno }" target="_blank"><img src="../p_content/storage/${vo.payfile1 }" style="float: left; margin-right: 2%; width:100px;"></img></a><br>
                       <span>${vo.item}</span><br>
                       <span><fmt:formatNumber value="${vo.paymoney }" pattern="￦#,###,### 원" /> / ${vo.pcnt } 개 </span>
                    </td>
@@ -204,7 +206,7 @@ button:hover{
                       <span>${vo.my_state}</span><br>
                       <button type="button" onclick="trace(${vo.payno}, ${vo.mypageno})">배송조회</button><br>  
                     <c:if test="${vo.ordersubmit == 'N'}">
-                      <button type="button" onclick="update(${vo.mno}, ${vo.waybil },'${vo.my_state}')">구매확정</button><br>
+                      <button type="button" onclick="update(${vo.payno }, '${vo.my_state }', ${vo.mno })">구매확정</button><br>
                    </c:if>
                       <button type="button" onclick="take_back(${vo.mno}, ${vo.waybil })">반품신청</button><br>
                       <button type="button" onclick="" style="margin-bottom: 3%">교환문의</button><br>
@@ -215,12 +217,6 @@ button:hover{
          </c:forEach>
           </div>
      </div>
-<!--           <ul>
-          <li class='right'>
-            <button type="submit"></button>
-            <button type="button" onclick="location.href='./list.jsp'"></button>
-          </li>
-        </ul> -->
       </fieldset>
     </FORM>
   </DIV>

@@ -22,12 +22,17 @@
   });
   
   function reason(paymoney, money, tot){
-	  $("#default").html(paymoney);
-	  $("#take").html(tot);
+	 // $("#default").html(paymoney);
+	 $("#default").html(paymoney);
+	 $("#take").html(tot);
 	  $("#item_won").html(paymoney);
 	  $("#add_trace").html(money);
 	  $("#resive").html(money);
 	  $("#total").html(tot);
+	  
+    if($("#reason").val() == "p7"){
+		  $("#reason_content").prop("disabled", "");
+	  }
   }
 </script>
 
@@ -70,15 +75,15 @@
                   <td colspan="5" style="height:30px;">
                     <select name="reason" id="reason" onchange="reason(${take_back.paymoney },
                     5000, ${take_back.paymoney - 5000 })">
-                      <option value="1" selected="selected">상품에 이상 없으나, 구매 의사 없어짐</option>
-                      <option value="2">색상을 잘 못 선택함</option>
-                      <option value="3">상품이 상품상세 정보와 틀림</option>
-                      <option value="4">배송된 상품의 파손/불량 불량</option>
-                      <option value="5">상품이 배송되지 않고 있음</option>
-                      <option value="6">다른 상품이 잘못 배송됨</option>
-                      <option value="7">기타</option>
+                      <option value="p1" selected="selected">상품에 이상 없으나, 구매 의사 없어짐</option>
+                      <option value="p2">색상을 잘 못 선택함</option>
+                      <option value="p3">상품이 상품상세 정보와 틀림</option>
+                      <option value="p4">배송된 상품의 파손/불량 불량</option>
+                      <option value="p5">상품이 배송되지 않고 있음</option>
+                      <option value="p6">다른 상품이 잘못 배송됨</option>
+                      <option value="p7">기타</option>
                     </select>
-                    <input type="text" name="reason_content" id="reason_content" size="60px" placeholder="상세 사유를 입력해 주세요.">
+                    <input type="text" name="reason_content" id="reason_content" size="60px" placeholder="상세 사유를 입력해 주세요." disabled="disabled">
              </table>
              <br>
              <table border="1" style="width: 100%; border-collapse: collapse;">
@@ -96,24 +101,24 @@
                  </tr>
                  <tr>
                   <td>원 결재 금액</td>
-                  <td><span id="default">0</span></td>
+                  <td><span id="default"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span></td>
                   <td>차감 금액 : </td>
-                  <td><span id="minus">0</span></td>
+                  <td><span id="minus"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span></td>
                   <td style="color: red; font-weight: bold;">환불 예상 금액</td>
                   <td><span id="take" style="color: red; font-weight: bold;">0</span></td>
                 </tr>
                 <ul>
                 <tr>
                   <td><li>상품금액</li></td>
-                  <td><span id="item_won">0</span></td>
+                  <td><span id="item_won"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span></td>
                   <td><li>추가배송비</li></td>
-                  <td><span id="add_trace">0</span></td>
+                  <td><span id="add_trace"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span></td>
                   <td></td>
                   <td></tr>
                 </tr>
                 <tr>  
                   <td><li>할인금액</li></td>
-                  <td><span id="discount">0</span></td>
+                  <td><span id="discount"><fmt:formatNumber value="0" pattern="￦#,###,###" /></span></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -137,7 +142,7 @@
                 <td><input type="radio" name="resive_money" id="resive_money1" value="box">박스에 동봉(반품 배송시 상품과 함께 반품배송비를 동봉하겠습니다.)</td>
                  </tr>
                  <tr>
-                <td><input type="radio" name="resive_money" id="resive_money1" value="box">판매자에게 직접송금(판매자에게 연락 후 반품배송비를 입금처리하겠습니다.)</td>
+                <td><input type="radio" name="resive_money" id="resive_money1" value="phone">판매자에게 직접송금(판매자에게 연락 후 반품배송비를 입금처리하겠습니다.)</td>
                  </tr>
              </table>
               <br><br>

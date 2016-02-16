@@ -48,11 +48,23 @@ public class TraceCont {
     return mav;
   }
   
+  @RequestMapping(value = "/trace/create_mypageno.do", method = RequestMethod.GET)
+  public ModelAndView create_mypageno(TraceVO traceVO, MypageVO mypageVO) {
+    System.out.println("--> create() GET called.");
+    ModelAndView mav = new ModelAndView();
+    
+     traceVO.setMypageno(mypageVO.getMypageno());
+     traceVO.setTraceno(mypageVO.getMypageno());
+     traceDAO.mypageno_update(traceVO);
+     
+     mav.setViewName("redirect:../mypage/read.do?mno=" + mypageVO.getMno());
+    return mav;
+  }
+  
   @RequestMapping(value = "/trace/read.do", method = RequestMethod.GET)
   public ModelAndView read(TraceVO traceVO, PaymentVO paymentVO) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/trace/read");
-    traceDAO.mypageno_update(traceVO);
     
     traceVO.setWaybil(traceDAO.trace_read(traceVO).getWaybil());
     traceVO.setWaybil2(traceDAO.trace_read(traceVO).getWaybil2());

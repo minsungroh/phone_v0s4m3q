@@ -21,7 +21,7 @@ public class PaymentCont {
   
   @Autowired
   @Qualifier("com.phone.p_content.P_contentDAO")
-  private P_contentDAO contentDAO;
+  private P_contentDAO p_contentDAO;
   
   @Autowired
   @Qualifier("com.phone.member.memberDAO")
@@ -32,21 +32,25 @@ public class PaymentCont {
   }
   
   @RequestMapping(value = "/payment/create.do", method = RequestMethod.GET)
-  public ModelAndView create(PaymentVO paymentVO, P_contentVO contentVO) {
+  public ModelAndView create(PaymentVO paymentVO, P_contentVO p_contentVO) {
     // System.out.println("--> create() POST called");
     ModelAndView mav = new ModelAndView();
-
-    P_contentVO vo = contentDAO.read(paymentVO.getP_contentno());
+    System.out.println(p_contentVO.getP_contentno());
+    P_contentVO vo = p_contentDAO.read(paymentVO.getP_contentno());
     if(vo.getP_contentno() == paymentVO.getP_contentno()){
       int caseno = (int)(Math.random() * 1000000000 + 1); 
       paymentVO.setCaseno(caseno);
     }
+    System.out.println(vo.getP_contentno());
     paymentVO.setItem(vo.getTitle() + " / " + vo.getContent());
     paymentVO.setPayfile1(vo.getFile());
     paymentVO.setPaymoney(vo.getMoney());
     paymentVO.setPcnt(vo.getProductcnt());
     paymentVO.setOrderno("P00" + vo.getP_contentno());
+    paymentVO.setP_categoryno(vo.getP_categoryno());
+
     paymentDAO.create(paymentVO);
+    
     mav.setViewName("redirect:./read.do?p_contentno=" + paymentVO.getP_contentno() + "&caseno=" + paymentVO.getCaseno() + "&mno=" + paymentVO.getMno());
     return mav;
   }
@@ -62,7 +66,7 @@ public class PaymentCont {
       mav.setViewName("/payment/read");
       mav.addObject("PaymentVO", paymentDAO.read(paymentVO));
       mav.addObject("MemberVO", memberDAO.read(paymentDAO.read(paymentVO).getMno()));
-      mav.addObject("contentVO", contentDAO.read(paymentVO.getP_contentno()));
+      mav.addObject("contentVO", p_contentDAO.read(paymentVO.getP_contentno()));
     } catch(NullPointerException e){
       mav.setViewName("/payment/message");
       msgs.add("<span style='font-size:20px; color:red; font-weight:bold;'>상품페이지에서 필요하신 상품을 구매 해 주세요</span>");

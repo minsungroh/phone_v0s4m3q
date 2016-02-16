@@ -41,4 +41,7 @@ public interface MypageMapperInter {
   
   // <update id="my_state_update" parameterType="MypageVO">
   public int my_state_update(MypageVO mypageVO);
+  
+  // <select id="read_mypageno" resultType="MypageVO" parameterType="MypageVO">
+  public MypageVO read_mypageno(MypageVO mypageVO);
 }

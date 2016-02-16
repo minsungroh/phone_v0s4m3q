@@ -81,10 +81,18 @@ update mypage
 set orderstate='발송중'
 where mypageno='201602020001';
 
-update mypage as m join payment as p on m.payno = p.payno
-set m.ordersubmit='N'
-where m.mno = '1' and p.orderno='201602020101';
-m.point=''
+    mypageno                          MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+    orderstate                        VARCHAR(100)     NOT NULL COMMENT '주문상태',
+    ordersubmit                       CHAR     DEFAULT 'N'     NULL  COMMENT '구매확정',
+    point                             MEDIUMINT    DEFAULT 0     NOT NULL COMMENT '포인트',
+    my_state                          VARCHAR(30)    NULL  COMMENT '배송상태',
+    payno                             INT(10)    NULL  COMMENT '번호',
+    mno   
+    
+    select m.mypageno, m.orderstate, m.ordersubmit, m.point, m.payno, m.mno, p.paycharge, p.paymoney
+    from mypage as m
+    join payment as p on m.payno = p.payno
+    where m.payno=#{payno}
 
 update trace
 set my_state=''
@@ -174,3 +182,13 @@ and date(p.payday) <= date(now());
     join payment p on m.payno = p.payno
     join trace t on m.mypageno = t.mypageno
     where p.orderno=#{orderno};
+    
+    
+    select m.mypageno, p.item, p.payfile1, p.pcnt, p.paymoney, p.payday, p.orderno, m.orderstate, m.mno, m.ordersubmit, p.paycharge, m.payno, m.point, m.my_state,
+    t.waybil, t.waybil2, t.trace_state
+    from mypage as m
+    join payment as p on m.payno = p.payno
+    join trace as t on m.mypageno = t.mypageno
+    where m.mno=#{mno}
+    and date(p.payday) &gt;= date(subdate(now(), INTERVAL 30 DAY)) 
+    and date(p.payday) &lt;= date(now())
