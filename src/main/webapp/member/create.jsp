@@ -71,40 +71,44 @@ function send(){
   <fieldset>
     <ul>
       <li>
-        <label class='label' for='id'>ID</label>
-        <input type='text' name='id' id='id' value='user1' required="required">
+        <label class='label' for='id'>아이디</label>
+        <input type='text' name='id' id='id' value='' required="required">
         <button type='button' onclick="checkId()">중복확인</button>
         <SPAN id='panel_id'></SPAN>
       </li>
       <li>
         <label class='label' for='passwd'>패스워드</label>
-        <input type='password' name='passwd' id='passwd' value='1234' required="required">
+        <input type='password' name='passwd' id='passwd' value='' required="required">
         <span id='panel_passwd'></span>
       </li>
       <li>
         <label class='label' for='passwd2'>패스워드 확인</label>
-        <input type='password' name='passwd2' id='passwd2' value='1234' required="required">
+        <input type='password' name='passwd2' id='passwd2' value='' required="required">
       </li>
       <li>
         <label class='label' for='mname'>성명</label>
-        <input type='text' name='mname' id='mname' value='왕눈이' required="required">
+        <input type='text' name='mname' id='mname' value='' required="required">
       </li>
-      <li>
+       <li>
+        <label class='label' for='nname'>닉네임</label>
+        <input type='text' name='nname' id='nname' value='' required="required">
+      </li> 
+      <li> 
         <label class='label' for='tel'>핸드폰 번호</label>
-        <input type="tel" name='tel' id='tel' value='010-1111-1111'> 예) 010-0000-0000
+        <input type="tel" name='tel' id='tel' value='' placeholder="예)010-0000-0000">
       </li>
       <li>
         <label class='label' for='zipcode'>우편번호</label>
-        <input type='text' name='zipcode' id='zipcode' value='' placeholder="우편번호">
+        <input type='text' name='zipcode' id='zipcode' value='' placeholder="">
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>        
       </li>
       <li>
         <label class='label' for='address1'>주소</label>
-        <input type='text' name='address1' id='address1' value='' size='60' placeholder="주소">  
+        <input type='text' name='address1' id='address1' value='' size='60' placeholder="">  
       </li>
       <li>
         <label class='label' for='address2'>상세 주소</label>
-        <input type='text' name='address2' id='address2' value='' size='40' placeholder="상세 주소">      
+        <input type='text' name='address2' id='address2' value='' size='40' placeholder="">      
       </li>
       <li>
         <label class='label'></label>  
@@ -167,9 +171,9 @@ function send(){
 <!-- ----- DAUM 우편번호 API 종료----- -->
         
       </li>
-      <li class='right'>
-        <button type="submit">가입</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
+      <li class='center'>
+        <button type="submit">회원가입</button>
+        <!-- <button type="button" onclick="location.href='./list.do'">목록</button> -->
       </li>         
     </ul>
   </fieldset>

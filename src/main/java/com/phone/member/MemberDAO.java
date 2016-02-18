@@ -107,7 +107,7 @@ public class MemberDAO {
   public int login(MemberVO memberVO){
     return mapper().login(memberVO);
         
-  }
+  } 
   
 }
 

@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace = "com.phone.member.MemberMapperInter">
   <insert id="create" parameterType="MemberVO">
-    INSERT INTO member(id, passwd, mname, tel, zipcode, address1, address2, mdate)
-    VALUES (#{id}, #{passwd}, #{mname}, #{tel}, #{zipcode}, #{address1}, #{address2}, now()) 
+    INSERT INTO member(id, passwd, mname, nname, tel, zipcode, address1, address2, mdate)
+    VALUES (#{id}, #{passwd}, #{mname}, #{nname}, #{tel}, #{zipcode}, #{address1}, #{address2}, now()) 
   </insert>
 
   <select id='checkId' resultType='int' parameterType='String'>
@@ -17,21 +17,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 검색을하지 않는 전체 목록 -->
   <select id="list" resultType="MemberVO">
-    SELECT mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
+    SELECT mno, id, passwd, mname, nname, grade, money, point, tel, zipcode, address1, address2, mdate
     FROM member
     ORDER BY mno ASC
   </select>
 
   <!-- 조회 -->
   <select id="read" resultType="MemberVO" parameterType="int">
-    SELECT mno, id, passwd, mname, grade, money, point, tel, zipcode, address1, address2, mdate
+    SELECT mno, id, passwd, mname, nname, grade, money, point, tel, zipcode, address1, address2, mdate
     FROM member
     WHERE mno=#{mno}
   </select>
   
   <update id="update" parameterType="MemberVO">
     UPDATE member 
-    SET mname=#{mname}, tel=#{tel}, zipcode=#{zipcode},
+    SET mname=#{mname}, nname=#{nname}, tel=#{tel}, zipcode=#{zipcode},
           address1=#{address1}, address2=#{address2}
     WHERE mno=#{mno}
   </update>  
