@@ -77,7 +77,7 @@ public class Tool {
   public static synchronized boolean isMember(HttpServletRequest request) {
     boolean sw = false;
 
-    HttpSession session = request.getSession();
+    HttpSession session = request.getSession(); 
     String id = (String) session.getAttribute("id");
 
     if (id != null) {

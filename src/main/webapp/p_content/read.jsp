@@ -1,7 +1,6 @@
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.phone.p_content.*" %>
-<%@ page import="web.tool.Tool" %>
+<%@ page import ="web.tool.*" %>
 
 <% 
 P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");  
@@ -22,10 +21,16 @@ P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");
 window.onload = function(){
  
 }
-
+  
 function buy(p_contentno, mno){
-	location.href="../payment/create.do?p_contentno=" + p_contentno + "&mno=" + mno ;
+    if('<%=Tool.isMember(request)%>' == 'true'){
+    	location.href="../payment/create.do?p_contentno=" + p_contentno + "&mno=" + mno ;
+    }else{
+    	location.href="../member/login.do"
+    }
+
 }
+
 </script>
 </head>
 <!-- ----------------------------------------- -->
