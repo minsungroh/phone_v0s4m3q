@@ -46,8 +46,9 @@ for (int i=0; i < cookies.length; i++){
 <FORM name='frm' method='POST' action='./login.do'>
   <input type='hidden' name='url_address' value='<%=url_address %>'>
   <fieldset>
-    <ul>
-      <li>
+    <ul> 
+    <%-- <IMG src='<%=root %>/member/images/9.png' width='100%' height='200px'> --%>
+      <li> 
         <label class='label' for='id'>아이디</label>
         <input type='text' name='id' id='id' value='<%=ck_id %>' style='width: 40%;' autocomplete="off" required="required">
         <label>
@@ -84,6 +85,7 @@ for (int i=0; i < cookies.length; i++){
         </label>
       </li>
       <li class='center'>
+        <button type="button" onclick="location.href='./create.do'">회원가입</button>
         <button type='submit'>로그인</button>
         <button type='button' onclick="history.back();">취소</button>
          
