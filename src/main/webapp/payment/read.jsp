@@ -20,7 +20,7 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script> <!-- 이 부분은 jquery 선언 후 사용해야 된다. -->
 
 <script type="text/javascript"> 
-window.onload = function(){
+$(function(){
 	  $("#rname").attr("value", "");
 	  $("#zipcode").attr("value", "");
 	  $("#address1").attr("value", "");
@@ -31,8 +31,9 @@ window.onload = function(){
 	  evt("card3", "click", btrans_p);
 	  evt("s_card", "change", s_card_p);
 	  evt("m_phone", "blur", phone_format);
-  }
-	 
+});
+
+
 function delivery1(){
 	$("#rname").attr("value", "");
 	$("#zipcode").attr("value", "");
@@ -60,6 +61,7 @@ function phone_format() {
   $("#mobile1").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1"));
   $("#mobile2").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$2"));
   $("#mobile3").val(num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$3"));
+  
 }
 
 function card_p(){
@@ -96,7 +98,8 @@ function deliveryaddr(mno) {
     win_file1.moveTo(x, y);
   }
  
- function update(p_contentno, mno, card_input, discount, deposit_input, phone_input, caseno){
+ 
+ function update(p_contentno, mno, card_input, discount, deposit_input, phone_input, caseno){	 
      var card = $(":radio[name='paymeans']:checked").val();
      $("#rname").prop("name","resive_name");
      $("#zipcode").prop("name", "resive_post");
@@ -108,8 +111,31 @@ function deliveryaddr(mno) {
      $("#deposit_input").attr("value", deposit_input);
      $("#phone_input").attr("value", phone_input);
      $("#frm").attr("action", "./update.do?p_contentno=" + p_contentno + "&mno=" + mno + "&caseno=" + caseno);
-     $("#frm").submit();
-   }
+     
+     if($(':radio[id="card1"]:checked').val() == "card"){
+    	 if($("#card_input").val() == "none"){
+  	       alert("결재할 카드를 선택해 주세요");
+  	       return false; 
+      } 
+     } else if($(':radio[id="card2"]:checked').val() == "deposit"){
+    	 if($("#deposit_input").val() == "none"){
+  	       alert("결재할 무통장통장을 선택해 주세요");
+  	       return false; 
+      }
+     } else if($(':radio[id="card3"]:checked').val() == "phone"){
+    	 if($("#phone_input").val() == "none"){
+    	     alert("결재할 핸드폰 통신사를 선택해 주세요.");
+    	     return false;
+    	 }
+     } else {
+    	 return true;
+     }
+  }
+
+
+ function memo(){
+	 $("#delivery_memo").attr("value", "");
+ }
 </script>
  <style type="text/css">
 *{
@@ -125,8 +151,8 @@ font-size: 15px;
 <DIV class='title' style="font-size: 2em; text-align: center; font-weight: bold; color: #FF0000">주문서</DIV>
 
 <DIV style="width:70%; margin: 0 auto;">
-<FORM name='frm' id="frm" method='POST' action='./.do' onsubmit="update(<%=paymentVO.getP_contentno() %>, <%=paymentVO.getMno() %>, '<%=paymentVO.getCard_input()%>', <%=paymentVO.getDiscount()%>, '<%=paymentVO.getDeposit_input()%>', 
-'<%=paymentVO.getPhone_input()%>' , <%=paymentVO.getCaseno() %>)">
+<FORM name='frm' id="frm" method='POST' action='./.do' onsubmit="return update(${paymentVO.p_contentno }, <%=paymentVO.getMno() %>, '<%=paymentVO.getCard_input()%>', <%=paymentVO.getDiscount()%>, '<%=paymentVO.getDeposit_input()%>', 
+	'<%=paymentVO.getPhone_input()%>' , <%=paymentVO.getCaseno() %>, '${paymentVO.delivery_memo }')">
   <input type="hidden" name="payno" id="payno" value="<%=paymentVO.getPayno()%>">
   <input type="hidden" name="mno" id="mno" value="<%=memberVO.getMno()%>">
   <span style="font-weight: bold;">1. 주문상품 확인</span>
@@ -293,7 +319,8 @@ font-size: 15px;
       <tr>
         <td style="line-height: 35px;">배송매시지</td>
         <td><span>상품명 : <%=Tool.textLength(50, paymentVO.getItem()) %></span><br>
-        <input type="text" name="delivery_meno" id="delivery_memo" size="50px" placeholder="택배 기사님께 전달할 배송 메시지를 입력해 주세요."><Br>
+        <div id="divNm"><input type="text" name="delivery_memo" id="delivery_memo" size="50px" maxlength="30" value="빠른 배송 부탁드립니다" onfocus="memo();">
+        <span>30자 까지 입력 가능</span><br>
         <span>· 부재시 연락가능한 전화번호 또는 상품수령이 가능한 장소를 남겨주세요.</span>
     </table>
     <br>
@@ -315,9 +342,10 @@ font-size: 15px;
           <td><label><input type="radio" name="paymeans" id="card2" value="deposit">무통장입금</label>
               <label><input type="radio" name="paymeans" id="card3" value="phone">휴대폰결제</label>
                <div id="card_select" style="border: 2px solid black; display: block">
-                <label>카드 선택</label>
+                <label>카드 선택</label><span id="payment_bigo"></span>
                 <select id="card_input" name="card_input">
-                  <option value="bc" selected="selected">비씨카드</option>
+                  <option value="none" selected="selected">카드선택</option>
+                  <option value="bc">비씨카드</option>
                   <option value="kbc">KB국민카드</option>
                   <option value="uric">우리카드</option>
                   <option value="sinhanc">신한카드</option>

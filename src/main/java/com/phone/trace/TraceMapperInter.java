@@ -29,4 +29,10 @@ public interface TraceMapperInter {
   
   // <select id="trace_read" resultType="TraceVO" parameterType="TraceVO">
   public TraceVO trace_read(TraceVO traceVO);
+  
+  //   <select id="mypage_read" resultType="TraceVO" parameterType="TraceVO">
+  public TraceVO mypage_read(TraceVO traceVO);
+  
+  // <update id="update_mypage_my_state" parameterType="TraceVO">
+  public int update_mypage_my_state(TraceVO traceVO);
 }

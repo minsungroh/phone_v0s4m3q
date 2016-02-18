@@ -1,5 +1,5 @@
 1. 테이블 등록
-drop table trace;
+drop table IF EXISTS trace;
 
 CREATE TABLE trace(
     traceno                           MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '배송번호',
@@ -79,3 +79,31 @@ where traceno='1';
 update trace
 set mypageno=''
 where traceno
+
+-- trace
+    traceno                           MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '배송번호',
+    waybil                            BIGINT    UNIQUE NOT NULL COMMENT '송장번호',
+    waybil2                           BIGINT    UNIQUE NOT NULL COMMENT '송장번호2',
+    trace_state                       VARCHAR(100)     DEFAULT "상품준비중"     NOT NULL COMMENT '배송상태',
+    payno                             INT(10)    NULL  COMMENT '번호',
+    mypageno  
+      FOREIGN KEY (payno) REFERENCES payment (payno),
+  FOREIGN KEY (mypageno) REFERENCES mypage (mypageno)
+ -- mypage
+     mypageno                          MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+    orderstate                        VARCHAR(100)     NOT NULL COMMENT '주문상태',
+    ordersubmit                       CHAR     DEFAULT 'N'     NULL  COMMENT '구매확정',
+    point                             MEDIUMINT    DEFAULT 0     NOT NULL COMMENT '포인트',
+    my_state                          VARCHAR(30)    NULL  COMMENT '배송상태',
+    payno                             INT(10)    NULL  COMMENT '번호',
+    mno                               INT(10)    NULL  COMMENT 'mno',
+
+
+select t.traceno, t.waybil, t.waybil2, t.trace_state, t.payno, t.mypageno, m.mypageno, m.orderstate, m.ordersubmit, m.point, m.my_state, m.payno, m.mno
+from trace as t
+join mypage as m on t.mypageno = m.mypageno
+where t.payno = 8
+
+update trace as t join mypage as m on t.mypageno = m.mypageno
+set m.my_state=''
+where t.payno = 

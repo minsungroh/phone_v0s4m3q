@@ -58,4 +58,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where payno=#{payno}
   </select>
   
+  <select id="mypage_read" resultType="TraceVO" parameterType="TraceVO">
+    select t.traceno, t.waybil, t.waybil2, t.trace_state, t.payno, t.mypageno, m.mypageno, m.orderstate, m.ordersubmit, m.my_state, m.payno, m.mno
+    from trace as t
+    join mypage as m on t.mypageno = m.mypageno
+    where t.payno = #{payno}
+  </select>
+  
+  <update id="update_mypage_my_state" parameterType="TraceVO">
+    update trace as t join mypage as m on t.mypageno = m.mypageno
+    set m.my_state=#{my_state}
+    where t.payno = #{payno}
+  </update>
 </mapper>

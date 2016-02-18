@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="PaymentVO">
      update payment
      set paycharge=#{paycharge}, resive_name=#{resive_name}, resive_post=#{resive_post}, resive_addr1=#{resive_addr1}, resive_addr2=#{resive_addr2}, resive_phone=#{resive_phone}, paymeans=#{paymeans}, payday=now(),
-     card_input=#{card_input}, discount=#{discount}, deposit_input=#{deposit_input}, phone_input=#{phone_input}, pwaybil=#{pwaybil}, pwaybil2=#{pwaybil2}
+     card_input=#{card_input}, discount=#{discount}, deposit_input=#{deposit_input}, phone_input=#{phone_input}, pwaybil=#{pwaybil}, pwaybil2=#{pwaybil2}, delivery_memo=#{delivery_memo}
      where p_contentno=#{p_contentno} and caseno=#{caseno} and mno=#{mno}
   </update>
   

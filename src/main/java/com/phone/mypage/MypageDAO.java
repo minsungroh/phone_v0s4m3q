@@ -46,11 +46,6 @@ public class MypageDAO {
       return mapper().count_delivery(mno);
     }
     
-    // 마이페이지 조회수(배송완료)
-    public int count_complate(int mno){
-      return mapper().count_complate(mno);
-    }
-    
     // 마이페이지 조회수(구매결정대기)
     public int count_okwait(int mno){
       return mapper().count_okwait(mno);
@@ -80,12 +75,31 @@ public class MypageDAO {
     public int create(MypageVO mypageVO){
       return mapper().create(mypageVO);
     }
-    
-    public int my_state_update(MypageVO mypageVO){
-      return mapper().my_state_update(mypageVO);
-    }
-    
+       
     public MypageVO read_mypageno(MypageVO mypageVO){
       return mapper().read_mypageno(mypageVO);
+    }
+    
+    // traceback 변경
+    public int takeback_update(MypageVO mypageVO){
+      return mapper().takeback_update(mypageVO);
+    }
+    
+    // traceback_cancel 조회
+    public MypageVO take_back_cancel(MypageVO mypageVO){
+      return mapper().take_back_cancel(mypageVO);
+    }
+    
+    // replace 변경
+    public int replace_update(MypageVO mypageVO){
+      return mapper().replace_update(mypageVO);
+    }
+    
+    public int count_payno(){
+      return mapper().count_payno();
+    }
+    
+    public int count_ok(int mno){
+      return mapper().count_ok(mno);
     }
 }

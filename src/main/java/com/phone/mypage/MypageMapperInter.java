@@ -18,9 +18,6 @@ public interface MypageMapperInter {
   // <select id="count_delivery" resultType="int" parameterType="int">
   public int count_delivery(int mno);
   
-  // <select id="count_complate" resultType="int" parameterType="int">
-  public int count_complate(int mno);
-  
   // <select id="count_okwait" resultType="int" parameterType="int">
   public int count_okwait(int mno);
   
@@ -39,9 +36,21 @@ public interface MypageMapperInter {
   // <insert id="create" parameterType="MypageVO">
   public int create(MypageVO mypageVO);
   
-  // <update id="my_state_update" parameterType="MypageVO">
-  public int my_state_update(MypageVO mypageVO);
-  
   // <select id="read_mypageno" resultType="MypageVO" parameterType="MypageVO">
   public MypageVO read_mypageno(MypageVO mypageVO);
+  
+  // <update id="takeback_update" parameterType="MypageVO">
+  public int takeback_update(MypageVO mypageVO);
+  
+  // <select id="take_back_cancel" resultType="MypageVO" parameterType="MypageVO">
+  public MypageVO take_back_cancel(MypageVO mypageVO);
+  
+  //    <update id="replace_update" parameterType="MypageVO">
+  public int replace_update(MypageVO mypageVO);
+  
+  // <select id="count_payno" resultType="int">
+  public int count_payno();
+  
+  // <select id="count_ok" resultType="int" parameterType="int">
+  public int count_ok(int mno);
 }

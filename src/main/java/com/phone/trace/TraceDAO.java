@@ -56,4 +56,12 @@ public class TraceDAO {
     public TraceVO trace_read(TraceVO traceVO){
       return mapper().trace_read(traceVO);
     }
+    
+    public TraceVO mypage_read(TraceVO traceVO){
+      return mapper().mypage_read(traceVO);
+    }
+    
+    public int update_mypage_my_state(TraceVO traceVO){
+      return mapper().update_mypage_my_state(traceVO);
+    }
 }

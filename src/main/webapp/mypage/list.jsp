@@ -40,7 +40,6 @@
 	 
 	 
 function update(payno, my_state, mno){
-  alert(my_state);
 	if(my_state != "구매 결정 대기"){
 		var sm = confirm("배송완료가 되지 않은 제품을 구매확정하시겠습니까?");
 		if(sm == true){
@@ -63,6 +62,35 @@ function take_back(mno, waybil){
  win_file.moveTo(x, y);
 }
 
+function take_back_cancel(mno, waybil){
+	   var win_file = window.open("./take_back_cancel.do?mno=" + mno +"&waybil=" + waybil, '반품취소', 'width=1000px, height=600px',
+	     'scrollbars=no');
+
+	 var x = (screen.width - 1000) / 2;
+	 var y = (screen.height - 600) / 2;
+
+	 win_file.moveTo(x, y);
+}
+
+function replace_back(mno, waybil){
+    var win_file = window.open("./replace_back.do?mno=" + mno +"&waybil=" + waybil, '교환신청', 'width=1000px, height=600px',
+      'scrollbars=no');
+
+  var x = (screen.width - 1000) / 2;
+  var y = (screen.height - 600) / 2;
+
+  win_file.moveTo(x, y);
+}
+
+function replace_back_cancel(mno, waybil){
+    var win_file = window.open("./replace_back_cancel.do?mno=" + mno +"&waybil=" + waybil, '교환취소', 'width=1000px, height=600px',
+      'scrollbars=no');
+
+  var x = (screen.width - 1000) / 2;
+  var y = (screen.height - 600) / 2;
+
+  win_file.moveTo(x, y);
+}
 
 </script>
 
@@ -104,7 +132,7 @@ button:hover{
   <DIV class='title'>마이페이지</DIV>
 
   <DIV class='content'>
-    <FORM name='frm' method='POST' action='./.jsp'>
+    <FORM name='frm' id="frm" method='POST' action='./.jsp'>
       <fieldset>
         <legend class='legend'></legend>
         <div style="border: none;">
@@ -142,8 +170,8 @@ button:hover{
                 <td style="font-size: 15px;">결재완료 : ${pay_ok } 건</td>
                 <td style="font-size: 15px;">상품준비중 : ${product_ready } 건</td>
                 <td style="font-size: 15px;">배송중 : ${delivery } 건</td>
-                <td style="font-size: 15px;">배송완료 : ${complate } 건</td>
                 <td style="font-size: 15px;">구매결정대기 : ${ok_wait } 건</td>
+                <td style="font-size: 15px;">구매완료 : ${complate } 건</td>
               </tr>  
           </table>
         </div>
@@ -208,14 +236,31 @@ button:hover{
                     <c:if test="${vo.ordersubmit == 'N'}">
                       <button type="button" onclick="update(${vo.payno }, '${vo.my_state }', ${vo.mno })">구매확정</button><br>
                    </c:if>
+                   <c:choose>
+                   <c:when test="${vo.takeback_state == 'N' }">
                       <button type="button" onclick="take_back(${vo.mno}, ${vo.waybil })">반품신청</button><br>
-                      <button type="button" onclick="" style="margin-bottom: 3%">교환문의</button><br>
+                   </c:when>
+                   <c:when test="${vo.takeback_state == 'Y' }">
+                      <button type="button" onclick="take_back_cancel(${vo.mno}, ${vo.waybil })">반품취소</button><br>
+                   </c:when>
+                   </c:choose>
+                   <c:choose>
+                      <c:when test="${vo.replace_state == 'N' }">
+                           <button type="button" onclick="replace_back(${vo.mno}, '${vo.waybil }')" style="margin-bottom: 3%">교환신청</button><br>
+                      </c:when>
+                       <c:when test="${vo.replace_state == 'Y' }">
+                          <button type="button" onclick="replace_back_cancel(${vo.mno}, '${vo.waybil }')" style="margin-bottom: 3%">교환취소</button><br>
+                      </c:when>
+                   </c:choose>
                    </td>
                 </table>
           </div>
         
          </c:forEach>
           </div>
+     </div>
+     <div>
+         ${paging }
      </div>
       </fieldset>
     </FORM>

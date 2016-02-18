@@ -143,7 +143,7 @@ public class Paging {
    * @param word 검색어
    * @return 페이징 생성 문자열
    */ 
-  public String paging3(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
+  public String paging3(int totalRecord, int nowPage, int recordPerPage, String col, String word, int mno){ 
     int pagePerBlock = 10; // 블럭당 페이지 수 
     int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // 전체 페이지  
     int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// 전체 그룹 
@@ -184,7 +184,7 @@ public class Paging {
 
     int _nowPage = (nowGrp-1) * pagePerBlock; // 10개 이전 페이지로 이동 
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></span>"); 
+      str.append("<span class='span_box_1'><A href='./read.do?mno=" + mno + "&col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></span>"); 
     } 
 
     for(int i=startPage; i<=endPage; i++){ 
@@ -195,13 +195,13 @@ public class Paging {
       if (nowPage == i){ 
         str.append("<span class='span_box_2'>"+i+"</span>"); 
       }else{ 
-        str.append("<span class='span_box_1'><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></span>");   
+        str.append("<span class='span_box_1'><A href='./read.do?mno=" + mno + "&col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></span>");   
       } 
     } 
      
     _nowPage = (nowGrp * pagePerBlock)+1; // 10개 다음 페이지로 이동 
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></span>"); 
+      str.append("<span class='span_box_1'><A href='./read.do?mno=" + mno + "&col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></span>"); 
     } 
     str.append("</DIV>"); 
      

@@ -2,8 +2,9 @@
 <%@ page import="com.phone.member.MemberVO" %>
 
 <%
-String url_address = request.getParameter("url_address"); // 로그인 후 이동할 주소
+String url_address = request.getHeader("referer");
 
+out.println(url_address);
 Cookie[] cookies = request.getCookies();
 Cookie cookie = null;
 String ck_id = "";

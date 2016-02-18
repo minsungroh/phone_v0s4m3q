@@ -57,7 +57,10 @@ public class TraceCont {
      traceVO.setTraceno(mypageVO.getMypageno());
      traceDAO.mypageno_update(traceVO);
      
-     mav.setViewName("redirect:../mypage/read.do?mno=" + mypageVO.getMno());
+     String col = "";
+     String word = "";
+     int nowPage = 1;
+     mav.setViewName("redirect:../mypage/read.do?mno=" + mypageVO.getMno() + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage);
     return mav;
   }
   
@@ -102,7 +105,17 @@ public class TraceCont {
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
     
+    TraceVO vo = traceDAO.mypage_read(traceVO);
+    
     if(traceDAO.ts_update(traceVO) == 1){
+      if(vo.getOrderstate().equals("결제대기중")){
+        traceVO.setMy_state("결제대기중");
+      } else if((vo.getTrace_state().equals("상품준비중") || vo.getTrace_state().equals("배송중")) && vo.getOrderstate().equals("결제완료")){
+        traceVO.setMy_state(traceVO.getTrace_state());
+      } else if(vo.getOrderstate().equals("결제 완료") && vo.getTrace_state().equals("배송완료")){
+        traceVO.setMy_state("구매 결정 대기");
+      }
+      traceDAO.update_mypage_my_state(traceVO);
       // 수정후 조회로 자동 이동
       mav.setViewName("redirect:./read.do?payno=" + traceVO.getPayno() + "&mypageno=" + traceVO.getMypageno());
     }else{

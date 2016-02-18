@@ -1,5 +1,5 @@
 1 테이블 등록
-drop table payment;
+drop table IF EXISTS payment;
 
 CREATE TABLE payment(
     payno                             INT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
@@ -21,15 +21,16 @@ CREATE TABLE payment(
     deposit_input                     VARCHAR(20)    NULL  COMMENT '무통장입금',
     phone_input                       VARCHAR(10)    NULL  COMMENT '핸드폰결제',
     payday                            DATETIME     NULL  COMMENT '결재날짜',
-    pwaybil                           BIGINT(10)     NULL COMMENT '택배송장번호1',
-    pwaybil2                          MEDIUMINT(10)    NULL COMMENT '택배송장번호2',
+    delivery_memo                     VARCHAR(500)    NULL  COMMENT '배송메모',
+    pwaybil                           BIGINT(10)     NULL  COMMENT '택배송장번호1',
+    pwaybil2                          BIGINT(10)    NULL  COMMENT '택배송장번호2',
     p_categoryno                      MEDIUMINT    NOT NULL COMMENT '카테고리번호',
     mno                               INT(10)    NULL  COMMENT 'mno',
     p_contentno                       MEDIUMINT(7)     NULL  COMMENT 'p_contentno',
   FOREIGN KEY (p_contentno) REFERENCES p_content (p_contentno),
   FOREIGN KEY (mno) REFERENCES member (mno),
   CONSTRAINT  UNIQUE (caseno)
-) COMMENT='주문/결제';
+) COMMENT='주문/결제'
 
 
 2. 등록

@@ -1,5 +1,5 @@
 1. 등록
-drop table trace_situation;
+drop table IF EXISTS trace_situation;
 
 CREATE TABLE trace_situation(
     tsno                              MEDIUMINT(10)    NOT NULL    PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
