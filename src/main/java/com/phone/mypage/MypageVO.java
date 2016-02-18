@@ -5,13 +5,18 @@ public class MypageVO {
   private int mypageno;
   private String orderstate;
   private String ordersubmit;
-  private int point;
+  private String my_state;
+  private String takeback_state;
+  private String takeback_reason;
+  private String replace_state;
+  private String replace_reason;
   private int mwaybil;
   private int mwaybil2;
+  private String resive_money;
+  private String replace_money;
   private int traceno;
   private int payno;
   private int mno;
-  private String my_state;
 
   // payment
   private String item;
@@ -37,7 +42,7 @@ public class MypageVO {
   private int pwaybil;
   private int pwaybil2;
   private int p_categoryno;
-  
+
   // trace
   private int waybil;
   private int waybil2;
@@ -46,7 +51,17 @@ public class MypageVO {
   // add
   private String pay_detail;
   private String input_detail;
-  
+  private String reason_content;
+
+  // paging
+  private int totalRecord;
+  private int nowPage;
+  private int recordPerPage;
+  private String col;
+  private String word;
+  private int offset;
+  private String paging;
+
   public int getMypageno() {
     return mypageno;
   }
@@ -71,12 +86,44 @@ public class MypageVO {
     this.ordersubmit = ordersubmit;
   }
 
-  public int getPoint() {
-    return point;
+  public String getMy_state() {
+    return my_state;
   }
 
-  public void setPoint(int point) {
-    this.point = point;
+  public void setMy_state(String my_state) {
+    this.my_state = my_state;
+  }
+
+  public String getTakeback_state() {
+    return takeback_state;
+  }
+
+  public void setTakeback_state(String takeback_state) {
+    this.takeback_state = takeback_state;
+  }
+
+  public String getTakeback_reason() {
+    return takeback_reason;
+  }
+
+  public void setTakeback_reason(String takeback_reason) {
+    this.takeback_reason = takeback_reason;
+  }
+
+  public String getReplace_state() {
+    return replace_state;
+  }
+
+  public void setReplace_state(String replace_state) {
+    this.replace_state = replace_state;
+  }
+
+  public String getReplace_reason() {
+    return replace_reason;
+  }
+
+  public void setReplace_reason(String replace_reason) {
+    this.replace_reason = replace_reason;
   }
 
   public int getMwaybil() {
@@ -93,6 +140,22 @@ public class MypageVO {
 
   public void setMwaybil2(int mwaybil2) {
     this.mwaybil2 = mwaybil2;
+  }
+
+  public String getResive_money() {
+    return resive_money;
+  }
+
+  public void setResive_money(String resive_money) {
+    this.resive_money = resive_money;
+  }
+
+  public String getReplace_money() {
+    return replace_money;
+  }
+
+  public void setReplace_money(String replace_money) {
+    this.replace_money = replace_money;
   }
 
   public int getTraceno() {
@@ -119,14 +182,6 @@ public class MypageVO {
     this.mno = mno;
   }
 
-  public String getMy_state() {
-    return my_state;
-  }
-
-  public void setMy_state(String my_state) {
-    this.my_state = my_state;
-  }
-
   public String getItem() {
     return item;
   }
@@ -141,6 +196,14 @@ public class MypageVO {
 
   public void setOrderno(String orderno) {
     this.orderno = orderno;
+  }
+
+  public int getCaseno() {
+    return caseno;
+  }
+
+  public void setCaseno(int caseno) {
+    this.caseno = caseno;
   }
 
   public String getPayfile1() {
@@ -263,38 +326,6 @@ public class MypageVO {
     this.phone_input = phone_input;
   }
 
-  public int getWaybil() {
-    return waybil;
-  }
-
-  public void setWaybil(int waybil) {
-    this.waybil = waybil;
-  }
-
-  public int getWaybil2() {
-    return waybil2;
-  }
-
-  public void setWaybil2(int waybil2) {
-    this.waybil2 = waybil2;
-  }
-
-  public String getTrace_state() {
-    return trace_state;
-  }
-
-  public void setTrace_state(String trace_state) {
-    this.trace_state = trace_state;
-  }
-
-  public int getCaseno() {
-    return caseno;
-  }
-
-  public void setCaseno(int caseno) {
-    this.caseno = caseno;
-  }
-
   public int getP_contentno() {
     return p_contentno;
   }
@@ -335,6 +366,30 @@ public class MypageVO {
     this.p_categoryno = p_categoryno;
   }
 
+  public int getWaybil() {
+    return waybil;
+  }
+
+  public void setWaybil(int waybil) {
+    this.waybil = waybil;
+  }
+
+  public int getWaybil2() {
+    return waybil2;
+  }
+
+  public void setWaybil2(int waybil2) {
+    this.waybil2 = waybil2;
+  }
+
+  public String getTrace_state() {
+    return trace_state;
+  }
+
+  public void setTrace_state(String trace_state) {
+    this.trace_state = trace_state;
+  }
+
   public String getPay_detail() {
     return pay_detail;
   }
@@ -351,5 +406,68 @@ public class MypageVO {
     this.input_detail = input_detail;
   }
 
-  
+  public String getReason_content() {
+    return reason_content;
+  }
+
+  public void setReason_content(String reason_content) {
+    this.reason_content = reason_content;
+  }
+
+  public int getTotalRecord() {
+    return totalRecord;
+  }
+
+  public void setTotalRecord(int totalRecord) {
+    this.totalRecord = totalRecord;
+  }
+
+  public int getNowPage() {
+    return nowPage;
+  }
+
+  public void setNowPage(int nowPage) {
+    this.nowPage = nowPage;
+  }
+
+  public int getRecordPerPage() {
+    return recordPerPage;
+  }
+
+  public void setRecordPerPage(int recordPerPage) {
+    this.recordPerPage = recordPerPage;
+  }
+
+  public String getCol() {
+    return col;
+  }
+
+  public void setCol(String col) {
+    this.col = col;
+  }
+
+  public String getWord() {
+    return word;
+  }
+
+  public void setWord(String word) {
+    this.word = word;
+  }
+
+  public int getOffset() {
+    return offset;
+  }
+
+  public void setOffset(int offset) {
+    this.offset = offset;
+  }
+
+  public String getPaging() {
+    return paging;
+  }
+
+  public void setPaging(String paging) {
+    this.paging = paging;
+  }
+
 }

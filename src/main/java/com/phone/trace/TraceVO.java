@@ -46,7 +46,13 @@ public class TraceVO {
   // add
   private String tstime;
   private String tdate;
-  
+
+  // mypage
+  private String orderstate;
+  private String ordersubmit;
+  private int mwaybil;
+  private int mwaybil2;
+  private String my_state;
 
   public int getTraceno() {
     return traceno;
@@ -350,6 +356,46 @@ public class TraceVO {
 
   public void setPwaybil2(int pwaybil2) {
     this.pwaybil2 = pwaybil2;
+  }
+
+  public String getOrderstate() {
+    return orderstate;
+  }
+
+  public void setOrderstate(String orderstate) {
+    this.orderstate = orderstate;
+  }
+
+  public String getOrdersubmit() {
+    return ordersubmit;
+  }
+
+  public void setOrdersubmit(String ordersubmit) {
+    this.ordersubmit = ordersubmit;
+  }
+
+  public int getMwaybil() {
+    return mwaybil;
+  }
+
+  public void setMwaybil(int mwaybil) {
+    this.mwaybil = mwaybil;
+  }
+
+  public int getMwaybil2() {
+    return mwaybil2;
+  }
+
+  public void setMwaybil2(int mwaybil2) {
+    this.mwaybil2 = mwaybil2;
+  }
+
+  public String getMy_state() {
+    return my_state;
+  }
+
+  public void setMy_state(String my_state) {
+    this.my_state = my_state;
   }
 
 }

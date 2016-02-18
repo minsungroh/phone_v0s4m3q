@@ -135,13 +135,11 @@ button{
               <th colspan="3" style="text-align: left; border-bottom: 2px solid black">결제정보</th>
             </tr>
             <tr>
-              <td>결제수단</td>
-              <td>${input_detail }</td>
-              <td></td>
+              <td colspan="3">결제수단</td>
             </tr>
             <tr>
 
-              <td>[${pay_detail }]</td>
+              <td>[${pay_detail } / ${input_detail }]</td>
               <td>총 상품 가격</td>
               <td><fmt:formatNumber value="${detail_list.paymoney }" pattern="￦#,###,### 원" /></td>
             </tr>

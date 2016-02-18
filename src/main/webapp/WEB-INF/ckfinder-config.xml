@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<baseDir>C:\hybrid2\ws_frame\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\phone_v1s4m3q\ckstorage</baseDir>
-	<baseURL>/member/ckstorage</baseURL>
+	<baseURL>/phone/ckstorage</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

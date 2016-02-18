@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.phone.member.MemberDAO;
+import com.phone.member.MemberVO;
 import com.phone.p_category.P_categoryDAO;
 import com.phone.p_category.P_categoryVO;
 
@@ -27,6 +29,10 @@ public class P_contentCont {
   @Autowired
   @Qualifier("com.phone.p_category.P_categoryDAO")
   private P_categoryDAO p_categoryDAO;
+  
+ @Autowired
+  @Qualifier("com.phone.member.memberDAO")
+  private MemberDAO memberDAO;
   
   public P_contentCont(){
     System.out.println("--> P_contentCont created.");
@@ -119,7 +125,6 @@ public class P_contentCont {
     
     P_categoryVO vo = p_categoryDAO.read(p_categoryno);
     mav.addObject("title", vo.getTitle());
-    
     //mav.addObject("title", p_categoryDAO.read(p_categoryno).getTitle());
     return mav;
   }
@@ -279,7 +284,7 @@ public class P_contentCont {
     P_categoryVO vo = p_categoryDAO.read(p_contentVO.getP_categoryno());
     mav.addObject("title", vo.getTitle());
     /*mav.addObject("read", vo.getP_categoryno());*/
-    
+
     return mav;
   }
   

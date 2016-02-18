@@ -35,13 +35,13 @@ public class PaymentCont {
   public ModelAndView create(PaymentVO paymentVO, P_contentVO p_contentVO) {
     // System.out.println("--> create() POST called");
     ModelAndView mav = new ModelAndView();
-    System.out.println(p_contentVO.getP_contentno());
+
     P_contentVO vo = p_contentDAO.read(paymentVO.getP_contentno());
     if(vo.getP_contentno() == paymentVO.getP_contentno()){
       int caseno = (int)(Math.random() * 1000000000 + 1); 
       paymentVO.setCaseno(caseno);
     }
-    System.out.println(vo.getP_contentno());
+  
     paymentVO.setItem(vo.getTitle() + " / " + vo.getContent());
     paymentVO.setPayfile1(vo.getFile());
     paymentVO.setPaymoney(vo.getMoney());
@@ -112,21 +112,27 @@ public class PaymentCont {
         
   if(paymentVO.getPaymeans().equals("card") || paymentVO.getPaymeans().equals("phone")){    
     paymentVO.setPaycharge("Y");
+    if(!paymentVO.getCard_input().equals("none") || !paymentVO.getDeposit_input().equals("none") || !paymentVO.getPhone_input().equals("none")){
      if (paymentDAO.update(paymentVO) == 1) {
        msgs.add("결제에 성공했습니다.");
+       links.add("<button type='button' onclick=\"location.href='../trace/create.do?pwaybil=" + paymentVO.getPwaybil() + "&pwaybil2=" + paymentVO.getPwaybil2() + "&mno=" + paymentVO.getMno() + "&paycharge=" + paymentVO.getPaycharge() + "&caseno=" + paymentVO.getCaseno() + "&payno=" + paymentVO.getPayno() +  "'\">마이페이지</button>");
     } else {
-      msgs.add("결제에 실패했습니다.");
+      msgs.add("<span style='color:#ff0000; font-weight:blod;'>결제정보가 누락이 되어 결제에 실패했습니다.</span>");
       msgs.add("다시 한번 시도해 주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시 시도</button>");
-    }  
+    } 
+  } else {
+    msgs.add("결제에 실패했습니다.");
+    msgs.add("다시 한번 시도해 주세요.");
+    links.add("<button type='button' onclick=\"history.back()\">다시 시도</button>");
+    }
   } else if(paymentVO.getPaymeans().equals("deposit")){
     paymentVO.setPaycharge("N");
     paymentDAO.update(paymentVO);
   }
     
     links.add("<button type='button' onclick=\"location.href='../index.do'\">메인</button>");
-    links.add("<button type='button' onclick=\"location.href='../trace/create.do?pwaybil=" + paymentVO.getPwaybil() + "&pwaybil2=" + paymentVO.getPwaybil2() + "&mno=" + paymentVO.getMno() + "&paycharge=" + paymentVO.getPaycharge() + "&caseno=" + paymentVO.getCaseno() + "&payno=" + paymentVO.getPayno() +  "'\">마이페이지</button>");
-    
+       
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
 

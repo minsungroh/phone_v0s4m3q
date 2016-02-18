@@ -27,9 +27,10 @@ public class PaymentVO {
   private int pwaybil;
   private int pwaybil2;
   private int p_categoryno;
+  private String delivery_memo;
 
   private int tracecnt;
-  
+
   public int getPayno() {
     return payno;
   }
@@ -238,5 +239,12 @@ public class PaymentVO {
     this.p_categoryno = p_categoryno;
   }
 
-  
+  public String getDelivery_memo() {
+    return delivery_memo;
+  }
+
+  public void setDelivery_memo(String delivery_memo) {
+    this.delivery_memo = delivery_memo;
+  }
+
 }
