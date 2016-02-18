@@ -2,8 +2,9 @@
 <%@ page import="com.phone.member.MemberVO" %>
 
 <%
-String url_address = request.getParameter("url_address"); // 로그인 후 이동할 주소
+String url_address = request.getHeader("referer");
 
+out.println(url_address);
 Cookie[] cookies = request.getCookies();
 Cookie cookie = null;
 String ck_id = "";
@@ -46,9 +47,8 @@ for (int i=0; i < cookies.length; i++){
 <FORM name='frm' method='POST' action='./login.do'>
   <input type='hidden' name='url_address' value='<%=url_address %>'>
   <fieldset>
-    <ul> 
-    <%-- <IMG src='<%=root %>/member/images/9.png' width='100%' height='200px'> --%>
-      <li> 
+    <ul>
+      <li>
         <label class='label' for='id'>아이디</label>
         <input type='text' name='id' id='id' value='<%=ck_id %>' style='width: 40%;' autocomplete="off" required="required">
         <label>
@@ -85,7 +85,6 @@ for (int i=0; i < cookies.length; i++){
         </label>
       </li>
       <li class='center'>
-        <button type="button" onclick="location.href='./create.do'">회원가입</button>
         <button type='submit'>로그인</button>
         <button type='button' onclick="history.back();">취소</button>
          
