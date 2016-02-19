@@ -245,11 +245,11 @@ public class MemberCont {
       String id_save = Tool.checkNull(memberVO.getId_save());
       if (id_save.equals("Y")){ // id 저장 할 경우
         Cookie ck_id = new Cookie("ck_id", memberVO.getId()); // id 저장
-        ck_id.setMaxAge(600); // 초
+        ck_id.setMaxAge(9999999); // 초
         response.addCookie(ck_id);
       }else{ // id를 저장하지 않을 경우
         Cookie ck_id = new Cookie("ck_id", ""); 
-        ck_id.setMaxAge(0); // 초
+        ck_id.setMaxAge(9999999); // 초
         response.addCookie(ck_id);
       }
       // id 저장 여부를 결정하는 쿠기 기록, Y or "" 저장
@@ -264,18 +264,18 @@ public class MemberCont {
       String passwd_save = Tool.checkNull(memberVO.getPasswd_save());
       if (passwd_save.equals("Y")){ 
         Cookie ck_passwd = new Cookie("ck_passwd", memberVO.getPasswd()); 
-        ck_passwd.setMaxAge(600); // 초
+        ck_passwd.setMaxAge(9999999); // 초
         response.addCookie(ck_passwd);
         
       }else{ // passwd를 저장하지 않을 경우
         Cookie ck_passwd = new Cookie("ck_passwd", "");
-        ck_passwd.setMaxAge(600); // 초
+        ck_passwd.setMaxAge(9999999); // 초
         response.addCookie(ck_passwd);
         
       }
       // passwd 저장 여부를 결정하는 쿠기 기록, Y or "" 저장
       Cookie ck_passwd_save = new Cookie("ck_passwd_save", memberVO.getPasswd_save());
-      ck_passwd_save.setMaxAge(60); // 초
+      ck_passwd_save.setMaxAge(9999999); // 초
       response.addCookie(ck_passwd_save);
       // ------------------------------------------------------------------
 
