@@ -125,6 +125,9 @@ public class P_contentCont {
     
     P_categoryVO vo = p_categoryDAO.read(p_categoryno);
     mav.addObject("title", vo.getTitle());
+    
+    ArrayList<MemberVO> list = memberDAO.list();
+    mav.addObject("list", list);
     //mav.addObject("title", p_categoryDAO.read(p_categoryno).getTitle());
     return mav;
   }

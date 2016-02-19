@@ -20,7 +20,7 @@ public class P_contentVO {
   private String file1;
   private int replycnt;
   private int money;
-  private int productcnt;
+  private int pcnt;
   private String meterial;
   private int p_categoryno;
   
@@ -66,13 +66,13 @@ public int getMoney() {
 public void setMoney(int money) {
 	this.money = money;
 }
-public int getProductcnt() {
-	return productcnt;
-}
-public void setProductcnt(int productcnt) {
-	this.productcnt = productcnt;
-}
 
+public int getPcnt() {
+	return pcnt;
+}
+public void setPcnt(int pcnt) {
+	this.pcnt = pcnt;
+}
 public String getMeterial() {
 	return meterial;
 }

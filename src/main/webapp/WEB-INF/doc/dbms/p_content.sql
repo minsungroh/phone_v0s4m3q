@@ -12,7 +12,6 @@ CREATE TABLE p_content(
 		file1                         		VARCHAR(300)		 NULL  COMMENT '첨부파일',
 		replycnt                      				INT(5)		 DEFAULT 0  NULL  COMMENT '댓글수',
 		money                         		MEDIUMINT(10)		 NOT NULL COMMENT '상품값',
-		productcnt                    		MEDIUMINT(10)		 DEFAULT 0		 NULL  COMMENT '상품개수',
 	    p_categoryno                  		MEDIUMINT(7)		 NULL  COMMENT '카테고리번호',
 	    meterial                      		TEXT		 NOT NULL COMMENT '소재',
   FOREIGN KEY (p_categoryno) REFERENCES p_category (p_categoryno)
