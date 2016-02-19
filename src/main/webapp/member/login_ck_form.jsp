@@ -85,6 +85,7 @@ for (int i=0; i < cookies.length; i++){
         </label>
       </li>
       <li class='center'>
+        <button type="button" onclick="location.href='./create.do'">회원가입</button>
         <button type='submit'>로그인</button>
         <button type='button' onclick="history.back();">취소</button>
          

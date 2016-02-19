@@ -109,6 +109,7 @@ ArrayList<Admin1VO> list = admin1DAO.list();
 
 <DIV class='bottom'>
   <button type='button' onclick="location.href='./create_form.jsp'">등록</button>
+  <button type='button' onclick="location.href='../member/list.do'">회원목록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
 </DIV>
 <!-- -------------------------------------------- -->

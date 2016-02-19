@@ -29,8 +29,9 @@ ArrayList<MemberVO> list = (ArrayList<MemberVO>)request.getAttribute("list");
     <col style='width: 5%;'/>
     <col style='width: 10%;'/>
     <col style='width: 10%;'/>
+    <col style='width: 10%;'/>
     <col style='width: 20%;'/>
-    <col style='width: 30%;'/>
+    <col style='width: 20%;'/>
     <col style='width: 15%;'/>
     <col style='width: 10%;'/>
   </colgroup>
@@ -38,6 +39,7 @@ ArrayList<MemberVO> list = (ArrayList<MemberVO>)request.getAttribute("list");
     <TH class='th'>번호</TH>
     <TH class='th'>ID</TH>
     <TH class='th'>성명</TH>
+    <TH class='th'>닉네임</TH>
     <TH class='th'>전화번호</TH>
     <TH class='th'>주소</TH>
     <TH class='th'>등록일</TH>
@@ -54,6 +56,7 @@ ArrayList<MemberVO> list = (ArrayList<MemberVO>)request.getAttribute("list");
     <TD class='td'><%=mno %></TD>
     <TD class='td'><A href="./read.do?mno=<%=mno %>"><%=vo.getId() %></A></TD>
     <TD class='td'><A href="./read.do?mno=<%=mno %>"><%=vo.getMname() %></A></TD>
+    <TD class='td'><A href="./read.do?mno=<%=mno %>"><%=vo.getNname() %></A></TD>
     <TD class='td'><%=vo.getTel() %></TD>
     <TD class='td'>
       <%
