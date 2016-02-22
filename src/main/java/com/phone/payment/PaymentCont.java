@@ -45,7 +45,7 @@ public class PaymentCont {
     paymentVO.setItem(vo.getTitle() + " / " + vo.getContent());
     paymentVO.setPayfile1(vo.getFile());
     paymentVO.setPaymoney(vo.getMoney());
-    paymentVO.setPcnt(vo.getProductcnt());
+    paymentVO.setPcnt(vo.getPcnt());
     paymentVO.setOrderno("P00" + vo.getP_contentno());
     paymentVO.setP_categoryno(vo.getP_categoryno());
 

@@ -239,6 +239,7 @@ public class MemberCont {
     ArrayList<String> links = new ArrayList<String>();
  
     if (memberDAO.login(memberVO) == 1) {
+      session.setAttribute("mno", memberVO.getMno());
       session.setAttribute("id", memberVO.getId());
       session.setAttribute("passwd", memberVO.getPasswd());
  
@@ -254,7 +255,7 @@ public class MemberCont {
       }
       // id 저장 여부를 결정하는 쿠기 기록, Y or "" 저장
       Cookie ck_id_save = new Cookie("ck_id_save", memberVO.getId_save());
-      ck_id_save.setMaxAge(600); // 초
+      ck_id_save.setMaxAge(999999); // 초
       response.addCookie(ck_id_save);
       // ------------------------------------------------------------------
    

@@ -8,7 +8,7 @@
 P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");  
 
 %>
-
+       
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -49,6 +49,7 @@ function buy(p_contentno, mno){
   </div> 
   
      <DIV>
+          
           <fieldset style="width: 1000px; height: 500px; margin: 20px auto;">
          <br><br>
  
@@ -68,13 +69,14 @@ function buy(p_contentno, mno){
             </select>
               
             </span>
- <%--            <%
-            int mno = memberVO.getMno();
+            <%-- <%
+            int mno = 1;
           
             %> --%>
-             <% 
-          int mno = 1;
-    %>
+      <% 
+          int mno = (Integer)session.getAttribute("mno");
+        
+         %>
             <button type='button' onclick="buy(<%=p_contentVO.getP_contentno()%>, <%=mno %>)" style="margin-left: 600px;">바로구매</button>
             <button type='button' onclick="location.href='#'" >장바구니</button>
           
