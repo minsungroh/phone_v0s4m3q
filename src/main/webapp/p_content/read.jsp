@@ -3,12 +3,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.phone.p_content.*" %>
 <%@ page import ="web.tool.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <% 
 P_contentVO p_contentVO = (P_contentVO)request.getAttribute("p_contentVO");  
 
 %>
-       
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,12 +27,15 @@ window.onload = function(){
 }
   
 function buy(p_contentno, mno){
-    if('<%=Tool.isMember(request)%>' == 'true'){
-    	location.href="../payment/create.do?p_contentno=" + p_contentno + "&mno=" + mno ;
-    }else{
-    	location.href="../member/login.do"
+	    var pnt = $("#pcnt").val();
+      location.href="../payment/create.do?p_contentno=" + p_contentno + "&mno=" + mno + "&pcnt=" + pnt ;
     }
-
+    
+function buy1(){
+	if('<%=Tool.isMember(request)%>' != 'true'){
+     location.href="../member/login.do";
+ }
+    
 }
 
 </script>
@@ -41,7 +45,6 @@ function buy(p_contentno, mno){
   <jsp:include page="/menu/top.jsp" flush='false' />
   <!-- ----------------------------------------- -->
  
-
   <div class='content_menu'>
     <A href='./list2.do?p_categoryno=<%=p_contentVO.getP_categoryno() %>'>${title } 게시판</A>｜
     <A href='./update.do?p_contentno=<%=p_contentVO.getP_contentno()%>'>글 수정</A>｜
@@ -49,7 +52,6 @@ function buy(p_contentno, mno){
   </div> 
   
      <DIV>
-          
           <fieldset style="width: 1000px; height: 500px; margin: 20px auto;">
          <br><br>
  
@@ -59,26 +61,26 @@ function buy(p_contentno, mno){
             <br>판매가 : <%=p_contentVO.getMoney() %><br>
             <br>배송비안내 : 50,000원 이상 구매시 무료배송<br>
             <br>소재 : <%=p_contentVO.getMeterial() %><br>
-            <br>수량 : <input type="number" name = 'pcnt' min='1' max='50' step='1' value='1'><br>
+            <br>수량 : <input type="number" name = 'pcnt' id="pcnt" min='1' max='50' step='1' value='1'><br>
             <br>색상 : <select>
               <option value='Black'>Black</option>
-	          <option value='Gray'>Gray</option>
-	          <option value='Red'>Red</option>
-	          <option value='Blue'>Blue</option>
-	          <option value='Pink'>Pink</option>
+            <option value='Gray'>Gray</option>
+            <option value='Red'>Red</option>
+            <option value='Blue'>Blue</option>
+            <option value='Pink'>Pink</option>
             </select>
               
             </span>
-            <%-- <%
-            int mno = 1;
-          
-            %> --%>
-      <% 
-          int mno = (Integer)session.getAttribute("mno");
-        
-         %>
-            <button type='button' onclick="buy(<%=p_contentVO.getP_contentno()%>, <%=mno %>)" style="margin-left: 600px;">바로구매</button>
-            <button type='button' onclick="location.href='#'" >장바구니</button>
+            <c:choose>
+              <c:when test="${mno >= 1}">
+                <button type='button' onclick="buy(<%=p_contentVO.getP_contentno()%>, ${mno })" style="margin-left: 600px;">바로구매</button>
+                <button type='button' onclick="location.href='#'" >장바구니</button>
+              </c:when>
+              <c:otherwise>
+                 <button type='button' onclick="buy1()" style="margin-left: 600px;">바로구매</button>
+                  <button type='button' onclick="location.href='#'" >장바구니</button>
+              </c:otherwise>
+            </c:choose>
           
     
     
